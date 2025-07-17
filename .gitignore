@@ -1,0 +1,15 @@
+# macOS metadata
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db
+
+# VS Code settings folder
+.vscode/
+
+# GitHub Pages build folder (if you ever customize a build)
+_site/
+docs/_site/
+
+# Local env files (if you store your Mapbox token here later)
+.env
