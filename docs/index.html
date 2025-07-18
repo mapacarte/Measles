@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>US Measles Time Series</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Mapbox GL JS -->
+  <link  
+    href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"  
+    rel="stylesheet"  
+  />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+
+  <!-- CSV parser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+  <style>
+    body { margin:0; padding:0; }
+    #map  { position:absolute; top:0; bottom:50px; width:100%; }
+    #slider {
+      position:absolute;
+      bottom:10px; left:50%;
+      transform:translateX(-50%);
+      background:rgba(255,255,255,0.8);
+      padding:5px 10px; border-radius:3px;
+    }
+    #dateLabel { margin-left:10px; font-weight:bold; }
+	
+	#menu {
+    position: absolute;
+	top: 10px; left: 10px;
+	background: rgba(255,255,255,0.8);
+	padding: 5px 10px;
+	border-radius: 3px;
+	font-family: sans-serif;
+	z-index: 1;
+	}
+	#menu input { margin-left: 10px; }
+
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+  <div id="menu">
+  <input id="stateRadio"  type="radio" name="level" value="state"  checked>
+  <label for="stateRadio">State</label>
+
+  <input id="countyRadio" type="radio" name="level" value="county">
+  <label for="countyRadio">County</label>
+  </div>
+  <div id="slider">
+    <input id="dateSlider" type="range" />
+    <span id="dateLabel"></span>
+  </div>
+
+  <script>
+    // ── 1. Initialize map ─────────────────────────────
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style:     'mapbox://styles/mapbox/light-v10',
+      center:    [-98, 38],
+      zoom:      3
+    });
+
+    // ── Load data ───────────────────────────────────
+    let geojson, dates;
+    const casesLookup = {};
+
+    // Parse 
+    Papa.parse('data/USMeaslesCases.csv', {
+	  download: true, header: true,
+	  complete: ({ data }) => {
+        // build casesLookup (aggregate by state_date or fips_date)
+        dates = Array.from(new Set(data.map(r => r.date))).sort();
+        initSlider();
+	
+		map.on('load', () => {
+		  loadStateGeoJSON();
+		  loadCountyGeoJSON();
+		  // set up layer toggles
+          setupLayerSwitcher();
+          // show first date
+          updateMap(dates[0]);
+        });
+      }
+    });
+	
+	// State layer
+	function loadStateGeoJSON(){
+      fetch('data/us-states.geojson')
+        .then(r => r.json())
+		.then(json => {
+			stateData = json;
+			map.addSource('states', { type:'geojson', data: stateData });
+			map.addLayer({
+				id:     'state-fills',
+				type:   'fill',
+				source: 'states',
+				layout: { visibility: 'visible' },
+				paint:  {/* same color ramp as before */ }
+              });
+        });
+    }
+	
+    // County layer
+    function loadCountyGeoJSON(){
+      fetch('data/us-counties.geojson')
+		.then(r => r.json())
+		.then(json => {
+			countyData = json;
+			
+            // Check if GEOIDs are matching
+            // 1) build a Set of GEOIDs from the GeoJSON
+            const geoids = new Set(
+            countyData.features.map(f => f.properties.GEOID)
+            );
+
+            // 2) build a Set of location_ids from parsed CSV
+            //    (make sure you normalized to 5‑digit strings if needed)
+            const csvIds = new Set(
+            data.map(r => String(r.location_id).padStart(5, '0'))
+            );
+
+            // 3) log a few samples
+            console.log('Sample GEOIDs:', [...geoids].slice(0,10));
+            console.log('Sample CSV IDs:', [...csvIds].slice(0,10));
+
+            // 4) find any GEOIDs not in CSV and vice‑versa
+            const onlyInGeo = [...geoids].filter(id => !csvIds.has(id));
+            const onlyInCsv = [...csvIds].filter(id => !geoids.has(id));
+
+            console.log('GEOIDs with no CSV rows:', onlyInGeo.slice(0,20));
+            console.log('CSV IDs with no matching geo:', onlyInCsv.slice(0,20));
+
+            // add source & layer
+			map.addSource('counties', { type:'geojson', data: countyData });
+			map.addLayer({
+				id:     'county-fills',
+				type:   'fill',
+				source: 'counties',
+				layout: { visibility: 'none' },
+				paint:  {/* similar ramp, but with lower break‑points */}
+			  });
+        });
+    }
+
+    // Update both sources’ data on each tick
+	function updateMap(date){
+      // states
+      stateData.features.forEach(f => {
+        const key = `${f.properties.NAME}_${date}`;
+        f.properties.cases = casesLookup[key]||0;
+      });
+      map.getSource('states').setData(stateData);
+	  
+	  // counties (assuming f.properties.GEOID matches your CSV.location_id)
+	  countyData.features.forEach(f => {
+	    const key = `${f.properties.GEOID}_${date}`;
+      f.properties.cases = casesLookup[key]||0;
+      });
+      map.getSource('counties').setData(countyData);
+    }
+	  
+    // Hook up the radios
+	function setupLayerSwitcher(){
+		document.getElementById('stateRadio').onclick = () => {
+			map.setLayoutProperty('state-fills',  'visibility','visible');
+			map.setLayoutProperty('county-fills', 'visibility','none');
+        };
+		document.getElementById('countyRadio').onclick = () => {
+			map.setLayoutProperty('state-fills',  'visibility','none');
+			map.setLayoutProperty('county-fills', 'visibility','visible');
+        };
+    }
+  </script>
+
+</body>
+</html>
