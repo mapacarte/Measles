@@ -1,11 +1,9 @@
-# .github/workflows/update-measles-data.yml
 name: Update Measles Data
 
-# Run daily (UTC) and allow manual trigger
 on:
   schedule:
-    # every day at 16:00 UTC 
-    - cron:  '0  16 * * *'
+    # every day at 16:00 UTC
+    - cron: '0 16 * * *'
   workflow_dispatch:
 
 jobs:
@@ -13,43 +11,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Pull down THIS repo (so we can commit back)
+      # Checkout Pages repo to commit back updated data
       - name: Checkout this repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0           # get full history so we can push tags, etc. :contentReference[oaicite:0]{index=0}
+          fetch-depth: 0
 
-      # 3) Pull in your existing pipeline project
-      - name: Checkout measles‑pipeline repo
+      # Checkout Meaghan's measles‑pipeline repo
+      - name: Checkout measles-pipeline repo
         uses: actions/checkout@v3
         with:
           repository: mmcalend/USMeaslesData
           path: measles-pipeline
 
-      # Set up Python (if your pipeline is Python‑based)
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+      # Set up R to run the pipeline script
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
 
-      #  Run the pipeline
-      - name: Run JHU measles pipeline
+      # Install dependencies
+      - name: Install R dependencies
+        run: |
+          Rscript -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
+          Rscript -e 'remotes::install_deps(dependencies = TRUE)'
+
+      # Run the measles pipeline and move outputs to Pages site
+      - name: Run measles pipeline
         working-directory: measles-pipeline
         run: |
-          pip install -r requirements.txt
-          # adapt to your script’s entrypoint:
-          python run_pipeline.py --output ../docs/data
+          Rscript daily_measles.R
+          mv YearlyComparison.json USMeaslesCases.csv ../docs/data/
 
-      # Commit any changes back to this repo
+      # Commit the refreshed data back into Pages repo
       - name: Commit updated CSVs
         uses: EndBug/add-and-commit@v9
         with:
           author_name: github-actions
           author_email: github-actions@users.noreply.github.com
-          message: chore: update measles data
+          message: "chore: update measles data"
           add: |
             docs/data/USMeaslesCases.csv
             docs/data/YearlyComparison.json
-
-      # (the default GITHUB_TOKEN allows pushing back to the same repo)
-
