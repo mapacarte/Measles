@@ -5,7 +5,7 @@ name: Update Measles Data
 on:
   schedule:
     # every day at 16:00 UTC 
-    - cron:  '1 6 * * *'
+    - cron:  '0  16 * * *'
   workflow_dispatch:
 
 jobs:
