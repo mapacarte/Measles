@@ -46,7 +46,7 @@ jobs:
         with:
           author_name: github-actions
           author_email: github-actions@users.noreply.github.com
-          message: chore: 🚑 update measles data
+          message: chore: update measles data
           add: |
             docs/data/USMeaslesCases.csv
             docs/data/YearlyComparison.json
