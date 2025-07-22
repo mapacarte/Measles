@@ -32,8 +32,7 @@ jobs:
       - name: Install R dependencies
         working-directory: measles-pipeline
         run: |
-          Rscript -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
-          Rscript -e 'remotes::install_deps(dependencies = TRUE)'
+          Rscript -e 'install.packages(c("readr", "stringr", "dplyr", "tidyr", "MMWRweek", "jsonlite"))'
 
       # Run the measles pipeline and move outputs to Pages site
       - name: Run measles pipeline
