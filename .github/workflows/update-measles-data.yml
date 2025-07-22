@@ -30,6 +30,7 @@ jobs:
 
       # Install dependencies
       - name: Install R dependencies
+        working-directory: measles-pipeline
         run: |
           Rscript -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
           Rscript -e 'remotes::install_deps(dependencies = TRUE)'
