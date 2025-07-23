@@ -92,20 +92,26 @@
   const stateRes = await fetch('data/us_states.geojson');
   stateData = await stateRes.json();
 
-  // Counties — safe manual parse
-  const countyRes = await fetch('data/counties.geojson');
-  const countyRes = await fetch(`data/counties.geojson?ts=${Date.now()}`);
+  // Counties — one fetch, with cache-busting
+  const cacheBuster = Date.now();
+  const countyUrl   = `data/counties.geojson?ts=${cacheBuster}`;
+  const countyRes   = await fetch(countyUrl);
 
-  console.log('Raw countyText:', countyText.length);
-  console.log('Preview:', countyText.slice(0, 100));
+  if (!countyRes.ok) {
+    throw new Error(`Failed to load counties.geojson: ${countyRes.status}`);
+  }
+
+  const countyText = await countyRes.text();
+  console.log('Raw countyText.length:', countyText.length);
+  console.log('Preview:', countyText.slice(0, 100).replace(/\n/g, ''));
 
   try {
     countyData = JSON.parse(countyText);
     console.log('Parsed counties:', countyData.features.length);
   } catch (e) {
     console.error('JSON parse error:', e.message);
-    }
-}
+  }
+ }
 
   // ── Layer Setup ────────────
   function addLayers() {
