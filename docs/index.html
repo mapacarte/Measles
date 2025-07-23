@@ -94,7 +94,7 @@
 
   // Counties — safe manual parse
   const countyRes = await fetch('data/counties.geojson');
-  const countyText = await countyRes.text();
+  const countyRes = await fetch(`data/counties.geojson?ts=${Date.now()}`);
 
   console.log('Raw countyText:', countyText.length);
   console.log('Preview:', countyText.slice(0, 100));
