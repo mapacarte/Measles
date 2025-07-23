@@ -148,10 +148,18 @@
     }
   
   
-    fetch('data/counties.geojson')
-		.then(r => r.json())
-		.then(json => {
-			countyData = json;
+   fetch('data/counties.geojson')
+  .then(r => r.text())
+  .then(text => {
+    console.log('Raw GeoJSON response:', text.length, 'chars');
+    try {
+      const json = JSON.parse(text);
+      console.log('Parsed successfully');
+    } catch (e) {
+      console.error('Parsing error:', e.message);
+    }
+  })
+  .catch(err => console.error('Fetch error:', err));
 
             // add source & layer
 			map.addSource('counties', { type:'geojson', data: countyData });
