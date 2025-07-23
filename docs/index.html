@@ -50,6 +50,11 @@
 </div>
 
 <script>
+  window.fetch = ((originalFetch) => (...args) => {
+    console.log('Intercepted fetch to:', args[0]);
+    return originalFetch(...args);
+  })(window.fetch);
+  
   mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
   const map = new mapboxgl.Map({
     container: 'map',
