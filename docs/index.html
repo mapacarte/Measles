@@ -81,29 +81,25 @@
     }
   });
 
-// ---------- Load GEOJSON-----------------
+  // ---------- Load GEOJSON-----------------
   async function loadGeoJSONs() {
   // States — standard fetch
   const stateRes = await fetch('data/us_states.geojson');
   stateData = await stateRes.json();
 
   // Counties — safe manual parse
-  try {
-    const countyRes = await fetch('data/counties.geojson');
-    if (!countyRes.ok) throw new Error(`Failed to load counties.geojson: ${countyRes.status}`);
-    
-    const countyText = await countyRes.text();
-    if (!countyText || countyText.trim().length === 0) {
-      throw new Error('Counties GeoJSON is empty');
-    }
+  const countyRes = await fetch('data/counties.geojson');
+  const countyText = await countyRes.text();
 
-    console.log('Raw countyText:', countyText.length, 'chars');
-    console.log('Preview:', countyText.slice(0, 100)); // first 100 char
+  console.log('Raw countyText:', countyText.length);
+  console.log('Preview:', countyText.slice(0, 100));
+
+  try {
     countyData = JSON.parse(countyText);
-    console.log('Parsed counties successfully:', countyData.features.length);
+    console.log('Parsed counties:', countyData.features.length);
   } catch (e) {
-    console.error('Counties GeoJSON parse error:', e.message);
-  }
+    console.error('JSON parse error:', e.message);
+    }
 }
 
   // ── Layer Setup ────────────
