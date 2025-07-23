@@ -148,7 +148,7 @@
     }
   
   
-    fetch('data/us-counties.geojson')
+    fetch('data/counties.geojson')
 		.then(r => r.json())
 		.then(json => {
 			countyData = json;
@@ -166,7 +166,7 @@
     
      
 	function loadCountyGeoJSON() {
-    return fetch('data/us-counties.geojson')
+    return fetch('data/counties.geojson')
       .then(r => r.json())
       .then(json => {
         countyData = json;
