@@ -42,7 +42,8 @@ jobs:
         working-directory: measles-pipeline
         run: |
           Rscript daily_measles.R
-          mv YearlyComparison.json USMeaslesCases.csv ../docs/data/
+          [ -f YearlyComparison.json ] && mv YearlyComparison.json ../docs/data/
+          [ -f USMeaslesCases.csv ] && mv USMeaslesCases.csv ../docs/data/
           
       # CSV cleanup (matches unknown counties and malformed location-id to geojson geoid/county)
       - name: Clean & fix IDs
