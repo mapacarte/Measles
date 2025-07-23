@@ -32,7 +32,7 @@ jobs:
 
       # Install dependencies
       - name: Install R dependencies
-        working-directory: meales-pipeline
+        working-directory: measles-pipeline
         run: |
           Rscript -e 'install.packages(c("readr", "stringr", "dplyr", "tidyr", "MMWRweek", "jsonlite"))'
 
