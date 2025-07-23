@@ -150,7 +150,7 @@
     }
   
   
-    fetch('data/counties.json')
+    fetch('data/counties.geojson')
   .then(r => r.text())
   .then(text => {
     console.log('Raw GeoJSON response:', text.length, 'chars');
@@ -176,7 +176,7 @@
         
      
 	function loadCountyGeoJSON() {
-    return fetch('data/counties.json')
+    return fetch('data/counties.geojson')
       .then(r => r.json())
       .then(json => {
         countyData = json;
