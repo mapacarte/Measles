@@ -32,18 +32,78 @@ jobs:
 
       # Install dependencies
       - name: Install R dependencies
-        working-directory: measles-pipeline
+        working-directory: meales-pipeline
         run: |
           Rscript -e 'install.packages(c("readr", "stringr", "dplyr", "tidyr", "MMWRweek", "jsonlite"))'
 
-      # Run the measles pipeline and move outputs to Pages site
+      # Run the measles pipeline (it writes into its own folder)
+      # then move the outputs into docs/data for Pages site
       - name: Run measles pipeline
         working-directory: measles-pipeline
         run: |
           Rscript daily_measles.R
           mv YearlyComparison.json USMeaslesCases.csv ../docs/data/
+          
+      # CSV cleanup (matches unknown counties and malformed location-id to geojson geoid/county)
+      - name: Clean & fix IDs
+        run: |
+          csv_path <- "data/USMeaslesCases.csv"
+          geo_path <- "data/us_counties.geojson"
+        
+          # --- Load GeoJSON and build lookup ---
+          gj <- fromJSON(geo_path, flatten = TRUE)
+          lookup <- gj$features$properties %>%
+            transmute(
+              geoid      = GEOID,          # 5-digit county FIPS
+              statefp    = STATEFP,        # 2-digit state FIPS
+              county_geo = NAME,
+              county_up  = toupper(NAME)   # uppercase only
+           )
+          valid_fips <- lookup$geoid
+        
+          # --- Load pipeline CSV ---
+          df <- read_csv(
+          csv_path,
+          show_col_types = FALSE,
+          col_types = cols(
+            state = col_character(),
+            code  = col_character(),
+            county = col_character(),
+            location_id = col_character(),
+            date = col_character(),
+            outcome_type = col_character(),
+            cases = col_double(),
+            mmwr_week = col_double(),
+            mmwr_week_start = col_character()
+            )
+          )
+          
+          # Pad first, make uppercase versions
+          df <- df %>%
+            mutate(
+            raw_location_id = location_id,
+            location_id = str_pad(str_extract(raw_location_id, "\\d+"), 5, pad = "0"),
+            county_up = toupper(coalesce(county, "")),
+            code = toupper(coalesce(code, ""))
+          )
+        
+          # Valid/unknown/bad flags
+          valid_fips_mask <- str_detect(df$location_id, "^\\d{5}$") & df$location_id %in% valid_fips
+          is_unknown <- str_detect(df$county, regex("^UNKNOWN(\\s+COUNTY)?$", ignore_case = TRUE))
+          bad_id <- !valid_fips_mask
+        
+          # Outputs
+          county_clean <- df %>% filter(valid_fips_mask & !is_unknown)
+          write_csv(county_clean, "data/measles_daily_county_clean.csv")
+        
+          df <- df %>% mutate(state_fips = substr(location_id, 1, 2))
+            state_daily <- df %>%
+            group_by(date, state_fips) %>%
+            summarise(cases = sum(cases, na.rm = TRUE), .groups = "drop")
+          write_csv(state_daily, "data/measles_state_daily.csv")
+        
 
-      # Commit the refreshed data back into Pages repo
+      # Commit csvs back into Pages repo
       - name: Commit updated CSVs
         uses: EndBug/add-and-commit@v9
         with:
@@ -53,3 +113,6 @@ jobs:
           add: |
             docs/data/USMeaslesCases.csv
             docs/data/YearlyComparison.json
+            data/measles_daily_county_clean.csv
+            data/measles_state_daily.csv
+            
