@@ -121,6 +121,239 @@
     }
     // ---- Loaders ----
     function loadStateGeoJSON() {
+     return fetch('data/states.geojson')
+      .then(r => r.json())
+      .then(json => {
+        stateData = json;
+        map.addSource('states', { type: 'geojson', data: stateData });
+        map.addLayer({
+          id: 'state-fills',
+          type: 'fill',
+          source: 'states',
+          layout: { visibility: 'visible' },
+          paint: {
+            'fill-color': [
+              'interpolate', ['linear'], ['get', 'cases'],
+              0, '#ffffff',
+			  1, '#fee5d9',
+              5, '#fcae91',
+              10, '#fb6a4a',
+              20, '#de2d26',
+              50, '#a50f15'
+            ],
+            'fill-opacity': 0.7
+          }
+        });
+      });
+    }
+  
+  
+    fetch('data/counties.geojson')
+		.then(r => r.json())
+		.then(json => {
+			countyData = json;
+
+            // add source & layer
+			map.addSource('counties', { type:'geojson', data: countyData });
+			map.addLayer({
+				id:     'county-fills',
+				type:   'fill',
+				source: 'counties',
+				layout: { visibility: 'none' },
+				paint:  {/* similar ramp, but with lower break‑points */}
+			  });
+        });
+    
+     
+	function loadCountyGeoJSON() {
+    return fetch('data/counties.geojson')
+      .then(r => r.json())
+      .then(json => {
+        countyData = json;
+		
+    map.addSource('counties', { type: 'geojson', data: countyData });
+        map.addLayer({
+          id: 'county-fills',
+          type: 'fill',
+          source: 'counties',
+          layout: { visibility: 'none' },
+          paint: {
+            'fill-color': [
+              'interpolate', ['linear'], ['get', 'cases'],
+              0, '#ffffff',
+              1, '#fee0d2',
+              3, '#fcbba1',
+              6, '#fc9272',
+              10, '#fb6a4a',
+              20, '#de2d26',
+              40, '#a50f15'
+            ],
+            'fill-opacity': 0.7
+          }
+        });
+      });
+  }
+
+  // ---- Update map ----
+  function updateMap(date) {
+    // states
+    if (stateData) {
+      stateData.features.forEach(f => {
+        const key = `${f.properties.NAME}_${date}`; // adjust if you used state_abbrev
+        f.properties.cases = casesLookup[key] || 0;
+      });
+      map.getSource('states').setData(stateData);
+    }
+
+    // counties
+    if (countyData) {
+      countyData.features.forEach(f => {
+        const key = `${f.properties.GEOID}_${date}`;
+        f.properties.cases = casesLookup[key] || 0;
+      });
+      map.getSource('counties').setData(countyData);
+    }
+  }
+
+  // ---- Radio buttons ----
+  function setupLayerSwitcher() {
+    document.getElementById('stateRadio').onclick = () => {
+      map.setLayoutProperty('state-fills', 'visibility', 'visible');
+      map.setLayoutProperty('county-fills', 'visibility', 'none');
+    };
+    document.getElementById('countyRadio').onclick = () => {
+      map.setLayoutProperty('state-fills', 'visibility', 'none');
+      map.setLayoutProperty('county-fills', 'visibility', 'visible');
+    };
+  }
+  
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>US Measles Time Series</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Mapbox GL JS -->
+  <link  
+    href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"  
+    rel="stylesheet"  
+  />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+
+  <!-- CSV parser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+  <style>
+    body { margin:0; padding:0; }
+    #map  { position:absolute; top:0; bottom:50px; width:100%; }
+    #slider {
+      position:absolute;
+      bottom:10px; left:50%;
+      transform:translateX(-50%);
+      background:rgba(255,255,255,0.8);
+      padding:5px 10px; border-radius:3px;
+    }
+    #dateLabel { margin-left:10px; font-weight:bold; }
+	
+	#menu {
+    position: absolute;
+	top: 10px; left: 10px;
+	background: rgba(255,255,255,0.8);
+	padding: 5px 10px;
+	border-radius: 3px;
+	font-family: sans-serif;
+	z-index: 1;
+	}
+	#menu input { margin-left: 10px; }
+
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+  <div id="menu">
+  <input id="stateRadio"  type="radio" name="level" value="state"  checked>
+  <label for="stateRadio">State</label>
+
+  <input id="countyRadio" type="radio" name="level" value="county">
+  <label for="countyRadio">County</label>
+  </div>
+  <div id="slider">
+    <input id="dateSlider" type="range" />
+    <span id="dateLabel"></span>
+  </div>
+
+  <script>
+    // ── 1. Initialize map ─────────────────────────────
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style:     'mapbox://styles/mapbox/light-v10',
+      center:    [-98, 38],
+      zoom:      3
+    });
+	
+	// Globals
+    let dates = [];
+    let csvRows = [];
+    const casesLookup = {};
+    let stateData, countyData;
+
+    //  Load CSV
+    Papa.parse('data/USMeaslesCases.csv', {
+      download: true,
+      header: true,
+      complete: ({ data }) => {
+        csvRows = data.filter(r => r.date);  // sanity
+        // dates
+        dates = Array.from(new Set(csvRows.map(r => r.date))).sort();
+		
+		// build lookup 
+        csvRows.forEach(r => {
+          const isCounty = r.level === 'county'; 
+          const id = isCounty
+            ? String(r.location_id).padStart(5, '0')
+            : r.state; 
+        const key = `${id}_${r.date}`;
+        casesLookup[key] = Number(r.cases) || 0;
+        });
+		
+		// init slider now (needs dates)
+        initSlider();
+		
+		// Wait for map load, then load GeoJSONs
+        map.on('load', () => {
+          loadStateGeoJSON().then(() => loadCountyGeoJSON()).then(() => {
+            setupLayerSwitcher();
+            updateMap(dates[0]);               // draw first frame
+         });
+       });
+     }
+   });
+
+   // ---- Slider ----
+   function initSlider() {
+    const slider = document.getElementById('dateSlider');
+    const label  = document.getElementById('dateLabel');
+
+    slider.min = 0;
+    slider.max = dates.length - 1;
+    slider.value = 0;
+    label.textContent = dates[0];
+
+    slider.oninput = e => {
+      const d = dates[e.target.value];
+      label.textContent = d;
+      updateMap(d);
+     };
+    }
+    // ---- Loaders ----
+    function loadStateGeoJSON() {
      return fetch('data/us-states.geojson')
       .then(r => r.json())
       .then(json => {
