@@ -89,7 +89,7 @@
 
   // Counties — safe manual parse
   try {
-    const countyRes = await fetch('data/counties.geojson');
+    const countyRes = await fetch('data/test_counties.geojson');
     if (!countyRes.ok) throw new Error(`Failed to load counties.geojson: ${countyRes.status}`);
     
     const countyText = await countyRes.text();
