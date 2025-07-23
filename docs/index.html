@@ -89,7 +89,7 @@
 
   // Counties — safe manual parse
   try {
-    const countyRes = await fetch('data/test_counties.geojson');
+    const countyRes = await fetch('data/counties.geojson');
     if (!countyRes.ok) throw new Error(`Failed to load counties.geojson: ${countyRes.status}`);
     
     const countyText = await countyRes.text();
@@ -97,6 +97,8 @@
       throw new Error('Counties GeoJSON is empty');
     }
 
+    console.log('Raw countyText:', countyText.length, 'chars');
+    console.log('Preview:', countyText.slice(0, 100)); // first 100 char
     countyData = JSON.parse(countyText);
     console.log('Parsed counties successfully:', countyData.features.length);
   } catch (e) {
