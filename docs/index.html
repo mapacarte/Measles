@@ -125,30 +125,32 @@
       .then(r => r.json())
       .then(json => {
         stateData = json;
-        map.addSource('states', { type: 'geojson', data: stateData });
-        map.addLayer({
-          id: 'state-fills',
-          type: 'fill',
-          source: 'states',
-          layout: { visibility: 'visible' },
-          paint: {
-            'fill-color': [
-              'interpolate', ['linear'], ['get', 'cases'],
-              0, '#ffffff',
-			  1, '#fee5d9',
-              5, '#fcae91',
-              10, '#fb6a4a',
-              20, '#de2d26',
-              50, '#a50f15'
-            ],
-            'fill-opacity': 0.7
-          }
-        });
-      });
+		map.on('styledata', () => {
+          map.addSource('states', { type: 'geojson', data: stateData });
+          map.addLayer({
+            id: 'state-fills',
+            type: 'fill',
+            source: 'states',
+            layout: { visibility: 'visible' },
+            paint: {
+              'fill-color': [
+                'interpolate', ['linear'], ['get', 'cases'],
+                0, '#ffffff',
+			    1, '#fee5d9',
+                5, '#fcae91',
+                10, '#fb6a4a',
+                20, '#de2d26',
+                50, '#a50f15'
+              ],
+              'fill-opacity': 0.7
+             }
+           });
+         });
+	   });
     }
   
   
-   fetch('data/counties.geojson')
+    fetch('data/counties.geojson')
   .then(r => r.text())
   .then(text => {
     console.log('Raw GeoJSON response:', text.length, 'chars');
@@ -160,7 +162,7 @@
     }
   })
   .catch(err => console.error('Fetch error:', err));
-
+          map.on('styledata', () => {
             // add source & layer
 			map.addSource('counties', { type:'geojson', data: countyData });
 			map.addLayer({
@@ -170,8 +172,8 @@
 				layout: { visibility: 'none' },
 				paint:  {/* similar ramp, but with lower break‑points */}
 			  });
-        
-    
+          });
+        });
      
 	function loadCountyGeoJSON() {
     return fetch('data/counties.geojson')
