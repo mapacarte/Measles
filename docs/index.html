@@ -83,13 +83,21 @@
 
   // ── GeoJSON Load ───────────
   async function loadGeoJSONs() {
-    const [states, counties] = await Promise.all([
-      fetch('data/us_states.geojson').then(r => r.json()),
-      fetch('data/counties.geojson').then(r => r.json())
-    ]);
-    stateData = states;
-    countyData = counties;
+  // Safe fetch for states
+  const stateRes = await fetch('data/us_states.geojson');
+  stateData = await stateRes.json(); // No known issues here
+
+  // Defensive fetch for counties
+  const countyRes = await fetch('data/counties.geojson');
+  const countyText = await countyRes.text();
+
+  try {
+    countyData = JSON.parse(countyText);
+    console.log('Parsed counties successfully:', countyData.features.length);
+  } catch (e) {
+    console.error('Counties GeoJSON parse error:', e.message);
   }
+}
 
   // ── Layer Setup ────────────
   function addLayers() {
