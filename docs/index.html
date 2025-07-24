@@ -206,7 +206,7 @@ input[type="range"]::-moz-range-thumb {
     // Popups
     map.on('click', 'state-fills', e => {
       const feature = e.features[0];
-      const state = feature.properties.ste_name;
+      const state = norm(feature.properties.ste_name);
       const month = document.getElementById('dateLabel').textContent;
       const monthlyCases = stateTrends[state] || {};
       const trendSVG = generateTrendSVG(monthlyCases);
@@ -351,7 +351,7 @@ input[type="range"]::-moz-range-thumb {
     document.getElementById('dateSlider').value      = 0;
     document.getElementById('dateLabel').textContent = firstMonth;
 
-    // ---- Console Inspection (optional) ----
+    // ---- Console Inspection  ----
     // console.table(aggTable);
     // const monthlyTotals = months.map(month => {
     //   const total = aggTable
