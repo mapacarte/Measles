@@ -175,16 +175,44 @@ input[type="range"]::-moz-range-thumb {
       }
     });
 	
+	function generateTrendSVG(monthlyData) {
+  const monthOrder = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const values = monthOrder
+    .filter(m => monthlyData[m] !== undefined)
+    .map(m => monthlyData[m]);
+
+  const width = 100, height = 40;
+  const max = Math.max(...values, 1); // Avoid divide-by-zero
+  const points = values.map((val, i) => {
+    const x = (i / (values.length - 1)) * width;
+    const y = height - (val / max) * height;
+    return `${x},${y}`;
+  }).join(' ');
+
+  return `
+    <svg width="${width}" height="${height}">
+      <polyline points="${points}" stroke="#0074D9" stroke-width="2" fill="none" />
+    </svg>
+  `;
+}
+
+	// Popups
 	map.on('click', 'state-fills', e => {
      const feature = e.features[0];
      const state = feature.properties.ste_name;
-     const cases = feature.properties.cases || 0;
      const month = document.getElementById('dateLabel').textContent;
+	 const monthlyCases = stateTrends[state] || {};	 
+	 const trendSVG = generateTrendSVG(monthlyCases); 
 
      new mapboxgl.Popup()
-      .setLngLat(e.lngLat)
-      .setHTML(`<strong>${state}</strong><br>${month}<br>Cases: ${cases}`)
-     .addTo(map);
+    .setLngLat(e.lngLat)
+    .setHTML(`
+      <strong>${state}</strong><br>${month}<br>Cases: ${monthlyCases[month] || 0}
+      <div style="margin-top:8px;">${trendSVG}</div>
+    `)
+    .addTo(map);
+
     });
     map.addLayer({
       id: 'state-outline',
@@ -323,6 +351,14 @@ console.log('=== Total Cases by Month ===');
 console.table(monthlyTotals);
 
 // ——— END INSPECTION ———
+
+// Create lookup for popup charts
+const stateTrends = {};
+aggTable.forEach(row => {
+  const { State, Month, Cases } = row;
+  if (!stateTrends[State]) stateTrends[State] = {};
+  stateTrends[State][Month] = Cases;
+});
 
 
     // add everything
