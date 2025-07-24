@@ -83,6 +83,7 @@ input[type="range"]::-moz-range-thumb {
 
   <!-- play/pause control -->
   <button id="playPause">Pause</button>
+
 </div>
 
 <div id="legend" class="legend"></div>
@@ -216,48 +217,39 @@ input[type="range"]::-moz-range-thumb {
       f.properties.cases = casesLookup[k] || 0;
     });
 	
-	//  A) Populate the datalist with month ticks
-const tickList = document.getElementById('monthTicks');
-months.forEach((m, i) => {
-  const opt = document.createElement('option');
-  opt.value = i;
-  opt.label = m;        // some browsers will use this label
-  tickList.appendChild(opt);
-});
+	// A) grab references
+const slider      = document.getElementById('dateSlider');
+const label       = document.getElementById('dateLabel');
+const playPauseBtn = document.getElementById('playPause');
 
-//  B) Update slider max to match number of months
-const slider = document.getElementById('dateSlider');
-slider.max = months.length - 1;
+// B) autoplay state
+let isPlaying  = true;
+const pace     = 2000;            // ms between steps
+let intervalId = null;
 
-//  C) Set up play/pause & autoplay variables
-let playing     = true;
-const playPause = document.getElementById('playPause');
-const pace       = 2000;   // milliseconds between steps (slower)
-let intervalId;            // will hold our setInterval
-
-// advance function
+// C) step function
 function stepForward() {
   let idx = Number(slider.value);
   idx = (idx + 1) % months.length;
   slider.value = idx;
   const m = months[idx];
-  document.getElementById('dateLabel').textContent = m;
+  label.textContent = m;
   updateMap(m);
 }
 
-// start autoplay
+// D) start the interval
 intervalId = setInterval(stepForward, pace);
 
-// toggle play/pause on button click
-playPause.addEventListener('click', () => {
-  if (playing) {
+// E) wire up the click
+playPauseBtn.addEventListener('click', () => {
+  if (isPlaying) {
     clearInterval(intervalId);
-    playPause.textContent = 'Play';
+    playPauseBtn.textContent = 'Play';
   } else {
     intervalId = setInterval(stepForward, pace);
-    playPause.textContent = 'Pause';
+    playPauseBtn.textContent = 'Pause';
   }
-  playing = !playing;
+  isPlaying = !isPlaying;
 });
 
 
