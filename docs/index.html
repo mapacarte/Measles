@@ -144,25 +144,26 @@
     await waitForDates();
 
       /* ================= DEBUG BLOCK ================= */
-    console.log('Example lookup keys:', Object.keys(casesLookup).slice(0,5));
+     /* ---------- FIND A DATE THAT HAS DATA (DROP HERE) ---------- */
+     const firstWithData = dates.find(d =>
+       stateData.features.some(f => {
+        const k = `${norm(f.properties.ste_name)}_${d}`;
+        return (casesLookup[k] ?? 0) > 0;
+       })
+     ) ?? dates[0];                     // fallback if none
+     console.log('firstWithData:', firstWithData);
+     /* ----------------------------------------------------------- */
 
-    const testDate = dates[0];
+     // (optional) prime 'cases' for that date before adding the layer
+     stateData.features.forEach(f => {
+       const key = `${norm(f.properties.ste_name)}_${firstWithData}`;
+       f.properties.cases = casesLookup[key] || 0;
+     });
 
-    // Which features have no ste_name?
-    const noName = stateData.features.filter(f => !('ste_name' in f.properties));
-    console.log('Features missing ste_name:', noName.map(f => f.properties));
-
-    // Which features don’t match the lookup?
-   const missing = stateData.features.filter(f => {
-   const k = `${norm(f.properties.ste_name)}_${testDate}`;
-   return !(k in casesLookup);
-   });
-   console.log('No match for', testDate, missing.map(f => f.properties.ste_name));
 
     /* =============================================== */
 	
 	addStateLayer();
-    updateMap(testDate);
     initSlider();
   });
 
