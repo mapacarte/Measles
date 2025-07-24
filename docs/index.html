@@ -175,31 +175,16 @@ input[type="range"]::-moz-range-thumb {
       }
     });
 	
-	// Step 1: Aggregate
-const aggTable = Object.entries(casesLookup).map(([key, value]) => {
-  const [state, month] = key.split('_');
-  return { State: state, Month: month, Cases: value };
-});
-
-// Step 2: Lookup for popup charts
-const stateTrends = {};
-aggTable.forEach(row => {
-  const { State, Month, Cases } = row;
-  if (!stateTrends[State]) stateTrends[State] = {};
-  stateTrends[State][Month] = Cases;
-});
-
-// Step 3: Trend SVG generator (outside any function)
-function generateTrendSVG(monthlyData) {
-  const monthOrder = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+	function generateTrendSVG(monthlyData) {
+    const monthOrder = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const values = monthOrder
-    .filter(m => monthlyData[m] !== undefined)
-    .map(m => monthlyData[m]);
+    const values = monthOrder
+      .filter(m => monthlyData[m] !== undefined)
+      .map(m => monthlyData[m]);
 
-  const width = 100, height = 40;
-  const max = Math.max(...values, 1);
-  const points = values.map((val, i) => {
+    const width = 100, height = 40;
+    const max = Math.max(...values, 1); // Avoid divide-by-zero
+    const points = values.map((val, i) => {
     const x = (i / (values.length - 1)) * width;
     const y = height - (val / max) * height;
     return `${x},${y}`;
@@ -211,23 +196,39 @@ function generateTrendSVG(monthlyData) {
     </svg>
   `;
 }
+	// Popups
+	map.on('click', 'state-fills', e => {
+     const feature = e.features[0];
+     const state = feature.properties.ste_name;
+     const month = document.getElementById('dateLabel').textContent;
+	 const monthlyCases = stateTrends[state] || {};	 
+	 const trendSVG = generateTrendSVG(monthlyCases); 
+	 
+	 //lookup for popup charts
+     const stateTrends = {};
+     aggTable.forEach(row => {
+     const { State, Month, Cases } = row;
+     if (!stateTrends[State]) stateTrends[State] = {};
+     stateTrends[State][Month] = Cases;
+     });
 
-// Step 4: Now your map click handler will work reliably
-map.on('click', 'state-fills', e => {
-  const feature = e.features[0];
-  const state = feature.properties.ste_name;
-  const month = document.getElementById('dateLabel').textContent;
-  const monthlyCases = stateTrends[state] || {};
-  const trendSVG = generateTrendSVG(monthlyCases);
-
-  new mapboxgl.Popup()
+     new mapboxgl.Popup()
     .setLngLat(e.lngLat)
     .setHTML(`
       <strong>${state}</strong><br>${month}<br>Cases: ${monthlyCases[month] || 0}
       <div style="margin-top:8px;">${trendSVG}</div>
     `)
     .addTo(map);
-});
+
+    });
+	
+    map.addLayer({
+      id: 'state-outline',
+      type: 'line',
+      source: 'states',
+      paint: { 'line-color': '#666', 'line-width': 0.8 }
+    });
+}
 
   // 4) Update features for a given month
   function updateMap(month) {
