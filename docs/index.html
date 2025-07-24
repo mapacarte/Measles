@@ -123,7 +123,7 @@ input[type="range"]::-moz-range-thumb {
   let aggTable = [];
   let stateTrends = {};
   const norm = s => String((Array.isArray(s) ? s[0] : s) ?? '').trim().toUpperCase();
-
+  
   // 1) Load CSV, aggregate to months
   function loadCases() {
     return new Promise(resolve => {
@@ -205,36 +205,30 @@ input[type="range"]::-moz-range-thumb {
 
     // Popups
     map.on('click', 'state-fills', e => {
-  const feature = e.features[0];
-  const stateRaw = feature.properties.ste_name;
-  const state = norm(stateRaw);
-  const month = document.getElementById('dateLabel').textContent;
-  //debug mismatch
-  console.log('Month Label:', month); // See what format it is
+    const feature = e.features[0];
 
-  const key = `${norm(feature.properties.ste_name)}_${month}`;
-  if (!(key in casesLookup)) {
-  console.warn(`Missing key in casesLookup: ${key}`);
-  }
-  //debug mismatch
-  console.log('Constructed Key:', key);
+    // Flatten any stray array structure (even if accidentally nested)
+    const rawState = Array.isArray(feature.properties.ste_name)
+     ? feature.properties.ste_name[0]
+     : feature.properties.ste_name;
 
-  const cases = casesLookup[key] ?? 'No data';
+    const state = norm(rawState);
+    const month = document.getElementById('dateLabel').textContent;
+    const key = `${state}_${month}`;
+    const cases = casesLookup[key] ?? 'No data';
 
- //debug
-  console.log(norm(["Texas"])); // TEXAS
-  console.log(norm("Texas"));   // TEXAS
-  console.log(norm(null));      // ''
+    console.log('Constructed Key:', key);
+    console.log('Cases:', cases);
 
-  new mapboxgl.Popup()
-    .setLngLat(e.lngLat)
-    .setHTML(`
-      <strong>${stateRaw}</strong><br>
+    new mapboxgl.Popup()
+     .setLngLat(e.lngLat)
+     .setHTML(`
+       <strong>${rawState}</strong><br>
       ${month}<br>
-      Cases: ${cases}
+       Cases: ${cases}
     `)
     .addTo(map);
-});
+    });
 
     map.addLayer({
       id: 'state-outline',
