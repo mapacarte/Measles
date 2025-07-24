@@ -48,15 +48,43 @@
     margin-bottom: 4px;
     line-height: 20px;
   }
+  
+  input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  width: 12px; height: 12px; margin-top: -4px;
+}
+input[type="range"]::-moz-range-track {
+  height: 4px;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 12px; height: 12px;
+}
+
   </style>
 </head>
 <body>
 
 <div id="map"></div>
-<div id="slider">
-  <input id="dateSlider" type="range" />
-  <span id="dateLabel"></span>
+<div id="slider" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.8);padding:5px 10px;border-radius:3px;display:flex;align-items:center;gap:8px;">
+  <!-- range input will pick up ticks from this datalist -->
+  <input 
+    id="dateSlider" 
+    type="range" 
+    min="0" 
+    max="0" 
+    list="monthTicks" 
+    style="flex:1;" />
+  <datalist id="monthTicks"></datalist>
+  
+  <!-- show the current month -->
+  <span id="dateLabel" style="min-width:60px;text-align:center;font-weight:bold;"></span>
+
+  <!-- play/pause control -->
+  <button id="playPause">Pause</button>
 </div>
+
 <div id="legend" class="legend"></div>
 <script>
   // Mapbox access
@@ -152,8 +180,9 @@
     slider.min   = 0;
     slider.max   = months.length - 1;
     slider.oninput = e => {
-      const m = months[e.target.value];
-      label.textContent = m;
+      const idx = Number(e.target.value);
+      const m   = months[idx];
+      document.getElementById('dateLabel').textContent = m;
       updateMap(m);
     };
   }
@@ -187,6 +216,51 @@
       f.properties.cases = casesLookup[k] || 0;
     });
 	
+	//  A) Populate the datalist with month ticks
+const tickList = document.getElementById('monthTicks');
+months.forEach((m, i) => {
+  const opt = document.createElement('option');
+  opt.value = i;
+  opt.label = m;        // some browsers will use this label
+  tickList.appendChild(opt);
+});
+
+//  B) Update slider max to match number of months
+const slider = document.getElementById('dateSlider');
+slider.max = months.length - 1;
+
+//  C) Set up play/pause & autoplay variables
+let playing     = true;
+const playPause = document.getElementById('playPause');
+const pace       = 2000;   // milliseconds between steps (slower)
+let intervalId;            // will hold our setInterval
+
+// advance function
+function stepForward() {
+  let idx = Number(slider.value);
+  idx = (idx + 1) % months.length;
+  slider.value = idx;
+  const m = months[idx];
+  document.getElementById('dateLabel').textContent = m;
+  updateMap(m);
+}
+
+// start autoplay
+intervalId = setInterval(stepForward, pace);
+
+// toggle play/pause on button click
+playPause.addEventListener('click', () => {
+  if (playing) {
+    clearInterval(intervalId);
+    playPause.textContent = 'Play';
+  } else {
+    intervalId = setInterval(stepForward, pace);
+    playPause.textContent = 'Pause';
+  }
+  playing = !playing;
+});
+
+
 	// ——— INSPECT AGGREGATED VALUES ———
 
 // 1) Build an array of { state, month, cases }
