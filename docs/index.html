@@ -61,10 +61,12 @@
       // filter out empty lines, collect unique dates
       const rows = data.filter(r => r.date);
       dates = Array.from(new Set(rows.map(r => r.date))).sort();
-
+      
+	  const norm = s => s.trim().toUpperCase();
+	  
       // build { "StateCode_YYYY-MM-DD": cases } lookup
       rows.forEach(r => {
-        const key = `${r.state}_${r.date}`;
+        const key = `${norm(r.state)}_${r.date}`;   // CSV state already caps, but normalize anyway
         casesLookup[key] = Number(r.cases) || 0;
       });
     }
@@ -105,7 +107,7 @@
   // 4) Update state data for given date
   function updateMap(date) {
     stateData.features.forEach(f => {
-      const key = `${f.properties.STUSPS}_${date}`;
+      const key = `${f.properties.ste_name}_${date}`;
       f.properties.cases = casesLookup[key] || 0;
     });
     map.getSource('states').setData(stateData);
