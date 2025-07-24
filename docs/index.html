@@ -217,39 +217,48 @@ input[type="range"]::-moz-range-thumb {
       f.properties.cases = casesLookup[k] || 0;
     });
 	
-	// A) grab references
-const slider      = document.getElementById('dateSlider');
-const label       = document.getElementById('dateLabel');
-const playPauseBtn = document.getElementById('playPause');
+	//  A) Populate the datalist with month ticks
+const tickList = document.getElementById('monthTicks');
+months.forEach((m, i) => {
+  const opt = document.createElement('option');
+  opt.value = i;
+  opt.label = m;        // some browsers will use this label
+  tickList.appendChild(opt);
+});
 
-// B) autoplay state
-let isPlaying  = true;
-const pace     = 2000;            // ms between steps
-let intervalId = null;
+//  B) Update slider max to match number of months
+const slider = document.getElementById('dateSlider');
+slider.max = months.length - 1;
 
-// C) step function
+//  C) Set up play/pause & autoplay variables
+let playing     = true;
+const playPause = document.getElementById('playPause');
+const pace       = 2000;   // milliseconds between steps (slower)
+let intervalId;            // will hold our setInterval
+
+// advance function
 function stepForward() {
   let idx = Number(slider.value);
   idx = (idx + 1) % months.length;
   slider.value = idx;
   const m = months[idx];
-  label.textContent = m;
+  document.getElementById('dateLabel').textContent = m;
   updateMap(m);
 }
 
-// D) start the interval
+// start autoplay
 intervalId = setInterval(stepForward, pace);
 
-// E) wire up the click
-playPauseBtn.addEventListener('click', () => {
-  if (isPlaying) {
+// toggle play/pause on button click
+playPause.addEventListener('click', () => {
+  if (playing) {
     clearInterval(intervalId);
-    playPauseBtn.textContent = 'Play';
+    playPause.textContent = 'Play';
   } else {
     intervalId = setInterval(stepForward, pace);
-    playPauseBtn.textContent = 'Pause';
+    playPause.textContent = 'Pause';
   }
-  isPlaying = !isPlaying;
+  playing = !playing;
 });
 
 
