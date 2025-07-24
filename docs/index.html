@@ -209,9 +209,14 @@ input[type="range"]::-moz-range-thumb {
   const stateRaw = feature.properties.ste_name;
   const state = norm(stateRaw);
   const month = document.getElementById('dateLabel').textContent;
+  //debug mismatch
   console.log('Month Label:', month); // See what format it is
 
-  const key = `${state}_${month}`;
+  const key = `${norm(f.properties.ste_name)}_${month}`;
+  if (!(key in casesLookup)) {
+  console.warn(`Missing key in casesLookup: ${key}`);
+  }
+  //debug mismatch
   console.log('Constructed Key:', key);
 
   const cases = casesLookup[key] ?? 'No data';
