@@ -87,31 +87,36 @@
   });
 
   // ---------- Load GEOJSON-----------------
-  async function loadGeoJSONs() {
-  // States — standard fetch
-  const stateRes = await fetch('data/us_states.geojson');
-  stateData = await stateRes.json();
+async function loadGeoJSONs() {
+  const stateUrl  = 'data/us_states.geojson';
+  const countyUrl = 'data/counties.geojson';
 
-  // Counties — one fetch, with cache-busting
-  const cacheBuster = Date.now();
-  const countyUrl   = `data/counties.geojson?ts=${cacheBuster}`;
-  const countyRes   = await fetch(countyUrl);
+  // kick off both fetches at once
+  const [stateRes, countyRes] = await Promise.all([
+    fetch(stateUrl),
+    fetch(countyUrl)
+  ]);
 
-  if (!countyRes.ok) {
-    throw new Error(`Failed to load counties.geojson: ${countyRes.status}`);
-  }
+  // guard against 404s, network errors, etc.
+  if (!stateRes.ok)  throw new Error(`Failed to load states: ${stateRes.status}`);
+  if (!countyRes.ok) throw new Error(`Failed to load counties: ${countyRes.status}`);
 
-  const countyText = await countyRes.text();
-  console.log('Raw countyText.length:', countyText.length);
-  console.log('Preview:', countyText.slice(0, 100).replace(/\n/g, ''));
+  // parse both JSONs
+  const [statesJson, countiesJson] = await Promise.all([
+    stateRes.json(),
+    countyRes.json()
+  ]);
 
-  try {
-    countyData = JSON.parse(countyText);
-    console.log('Parsed counties:', countyData.features.length);
-  } catch (e) {
-    console.error('JSON parse error:', e.message);
-  }
- }
+  // store in your globals
+  stateData  = statesJson;
+  countyData = countiesJson;
+
+  console.log(
+    'GeoJSON loaded:',
+    `${stateData.features.length} states,`,
+    `${countyData.features.length} counties`
+  );
+}
 
   // ── Layer Setup ────────────
   function addLayers() {
@@ -167,7 +172,6 @@
 
   // ── Map Init ───────────────
   map.on('load', async () => {
-    console.log('Map loaded — fetching geojsons');
     await loadGeoJSONs();
     addLayers();
     initSlider();
