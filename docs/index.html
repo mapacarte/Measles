@@ -26,6 +26,28 @@
       padding: 5px 10px; border-radius: 3px;
     }
     #dateLabel { margin-left: 10px; font-weight: bold; }
+	
+  .legend {
+    position: absolute;
+    bottom: 60px;
+    left: 10px;
+    background: white;
+    padding: 8px;
+    font-family: sans-serif;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  }
+  
+  .legend-key {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .legend-item {
+    margin-bottom: 4px;
+    line-height: 20px;
+  }
   </style>
 </head>
 <body>
@@ -35,7 +57,7 @@
   <input id="dateSlider" type="range" />
   <span id="dateLabel"></span>
 </div>
-
+<div id="legend" class="legend"></div>
 <script>
   // Mapbox access
   mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
@@ -49,33 +71,44 @@
   });
 
   // Globals
-  let dates = [];
+  let months = [];
   let casesLookup = {};
   let stateData = null;
   const norm = s => String(s ?? '').trim().toUpperCase();
 
-  // Wrap PapaParse in a Promise to load CSV rows
+  // 1) Load CSV, aggregate to months
   function loadCases() {
     return new Promise(resolve => {
       Papa.parse('data/USMeaslesCases.csv', {
         download: true,
         header: true,
         complete: ({ data }) => {
-          const rows = data.filter(r => r.date);
-          resolve(rows);
+          const agg = {};
+          data
+            .filter(r => r.date)
+            .forEach(r => {
+              const month = r.date.slice(0,7); // "YYYY-MM"
+              const key = `${norm(r.state)}_${month}`;
+              agg[key] = (agg[key] || 0) + Number(r.cases);
+            });
+          casesLookup = agg;
+          months = Array.from(
+            new Set(data.filter(r=>r.date).map(r=>r.date.slice(0,7)))
+          ).sort();
+          resolve();
         }
       });
     });
   }
 
-  // Fetch GeoJSON
+  // 2) Fetch GeoJSON
   async function loadStateGeoJSON() {
     const res = await fetch('data/us_states.geojson');
     if (!res.ok) throw new Error(`GeoJSON load failed: ${res.status}`);
-    return await res.json();
+    stateData = await res.json();
   }
 
-  // Add the fill layer (uses coalesce to guard nulls)
+  // 3) Add fill + outline layers
   function addStateLayer() {
     map.addSource('states', { type: 'geojson', data: stateData });
     map.addLayer({
@@ -87,16 +120,14 @@
           'interpolate', ['linear'],
           ['coalesce', ['get','cases'], 0],
           0,  '#ffffff',
-          1,  '#fee5d9',
-          5,  '#fcae91',
-          10, '#fb6a4a',
-          20, '#de2d26',
-          50, '#a50f15'
+          1,  '#deebf7',
+          50, '#9ecae1',
+          100,'#6baed6',
+          500,'#08519c'
         ],
-        'fill-opacity': 0.7
+        'fill-opacity': 0.8
       }
     });
-    // optional outline for visibility
     map.addLayer({
       id: 'state-outline',
       type: 'line',
@@ -105,74 +136,75 @@
     });
   }
 
-  // Assign .cases for a given date and refresh the source
-  function updateMap(date) {
+  // 4) Update features for a given month
+  function updateMap(month) {
     stateData.features.forEach(f => {
-      const key = `${norm(f.properties.ste_name)}_${date}`;
+      const key = `${norm(f.properties.ste_name)}_${month}`;
       f.properties.cases = casesLookup[key] || 0;
     });
     map.getSource('states').setData(stateData);
   }
 
-  // Slider wiring
+  // 5) Slider wiring
   function initSlider() {
     const slider = document.getElementById('dateSlider');
     const label  = document.getElementById('dateLabel');
     slider.min   = 0;
-    slider.max   = dates.length - 1;
+    slider.max   = months.length - 1;
     slider.oninput = e => {
-      const d = dates[e.target.value];
-      label.textContent = d;
-      updateMap(d);
+      const m = months[e.target.value];
+      label.textContent = m;
+      updateMap(m);
     };
   }
 
-  // Boot sequence
+  // 6) Build legend
+  function addLegend() {
+    const legend = document.getElementById('legend');
+    const breaks = ['0', '1–49', '50–99', '100–499', '500+'];
+    const colors = ['#ffffff', '#deebf7', '#9ecae1', '#6baed6', '#08519c'];
+    breaks.forEach((b,i) => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      const key = document.createElement('span');
+      key.className = 'legend-key';
+      key.style.backgroundColor = colors[i];
+      item.appendChild(key);
+      item.appendChild(document.createTextNode(b));
+      legend.appendChild(item);
+    });
+  }
+
+  // 7) Boot
   map.on('load', async () => {
-    // 1) Load both CSV rows and GeoJSON in parallel
-    const [rows, geo] = await Promise.all([loadCases(), loadStateGeoJSON()]);
-    stateData = geo;
+    // load data
+    await Promise.all([loadCases(), loadStateGeoJSON()]);
 
-    // 2) Build dates array and lookup
-    dates = Array.from(new Set(rows.map(r => r.date))).sort();
-    rows.forEach(r => {
-      const key = `${norm(r.state)}_${r.date}`;
-      casesLookup[key] = Number(r.cases) || 0;
-    });
-
-    // 3) Find a date that has some >0 values
-    const firstWithData = dates.find(d =>
-      stateData.features.some(f =>
-        (casesLookup[`${norm(f.properties.ste_name)}_${d}`] || 0) > 0
-      )
-    ) || dates[0];
-    console.log('Drawing first data date:', firstWithData);
-
-    // 4) Prime .cases for that date BEFORE adding the layer
+    // prime for the very first month
+    const firstMonth = months[0];
     stateData.features.forEach(f => {
-      const key = `${norm(f.properties.ste_name)}_${firstWithData}`;
-      f.properties.cases = casesLookup[key] || 0;
+      const k = `${norm(f.properties.ste_name)}_${firstMonth}`;
+      f.properties.cases = casesLookup[k] || 0;
     });
 
-    // 5) Now add the layer and slider
+    // add everything
     addStateLayer();
     initSlider();
+    addLegend();
+    updateMap(firstMonth);
 
-    // 6) Draw for that date & sync slider UI
-    updateMap(firstWithData);
-    const idx = dates.indexOf(firstWithData);
-    document.getElementById('dateSlider').value      = idx;
-    document.getElementById('dateLabel').textContent = firstWithData;
+    // sync slider UI
+    document.getElementById('dateSlider').value      = 0;
+    document.getElementById('dateLabel').textContent = firstMonth;
 
-    // — optional deep debug —
-    const stats = stateData.features.reduce((acc,f) => {
-      const v = f.properties.cases;
-      acc.total++;
-      if (typeof v === 'number') acc.num++;
-      if (v > 0) acc.pos++;
-      return acc;
-    }, { total:0, num:0, pos:0 });
-    console.log('cases stats:', stats);
+    // autoplay
+    let idx = 0;
+    setInterval(() => {
+      idx = (idx + 1) % months.length;
+      document.getElementById('dateSlider').value      = idx;
+      document.getElementById('dateLabel').textContent = months[idx];
+      updateMap(months[idx]);
+    }, 1000);
   });
 </script>
 
