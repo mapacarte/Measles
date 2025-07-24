@@ -221,6 +221,11 @@ input[type="range"]::-moz-range-thumb {
 
   const cases = casesLookup[key] ?? 'No data';
 
+ //debug
+  console.log(norm(["Texas"])); // TEXAS
+  console.log(norm("Texas"));   // TEXAS
+  console.log(norm(null));      // ''
+
   new mapboxgl.Popup()
     .setLngLat(e.lngLat)
     .setHTML(`
