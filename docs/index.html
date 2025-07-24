@@ -186,6 +186,35 @@
       const k = `${norm(f.properties.ste_name)}_${firstMonth}`;
       f.properties.cases = casesLookup[k] || 0;
     });
+	
+	// ——— INSPECT AGGREGATED VALUES ———
+
+// 1) Build an array of { state, month, cases }
+const aggTable = Object.entries(casesLookup).map(([key, value]) => {
+  const [state, month] = key.split('_');
+  return { State: state, Month: month, Cases: value };
+})
+// Sort so highest-case entries bubble to the top
+.sort((a, b) => b.Cases - a.Cases);
+
+// Print as a console table
+console.log('=== State × Month Aggregated Cases ===');
+console.table(aggTable);
+
+// 2) Compute total cases per month (across all states)
+const monthlyTotals = months.map(month => {
+  const total = aggTable
+    .filter(row => row.Month === month)
+    .reduce((sum, row) => sum + row.Cases, 0);
+  return { Month: month, TotalCases: total };
+});
+
+// Print monthly totals
+console.log('=== Total Cases by Month ===');
+console.table(monthlyTotals);
+
+// ——— END INSPECTION ———
+
 
     // add everything
     addStateLayer();
