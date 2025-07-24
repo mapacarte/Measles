@@ -122,8 +122,10 @@ input[type="range"]::-moz-range-thumb {
   let stateData = null;
   let aggTable = [];
   let stateTrends = {};
-  const norm = s => String((Array.isArray(s) ? s[0] : s) ?? '').trim().toUpperCase();
-  
+  const norm = s => {
+   const flat = Array.isArray(s) ? s[0] : s;
+   return String(flat ?? '').trim().toUpperCase();
+   };  
   // 1) Load CSV, aggregate to months
   function loadCases() {
     return new Promise(resolve => {
@@ -218,9 +220,9 @@ input[type="range"]::-moz-range-thumb {
     const cases = casesLookup[key] ?? 'No data';
 
     console.log('Raw State:', rawState);
-    console.log('Normalized State:', state);
 	console.log('Constructed Key:', key);
     console.log('Cases:', cases);
+    console.log('Normalized State:', norm(rawState));
 
     new mapboxgl.Popup()
      .setLngLat(e.lngLat)
