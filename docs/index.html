@@ -92,7 +92,7 @@
       source: 'states',
       paint: {
         'fill-color': [
-          'interpolate', ['linear'], [coalece, ['get', 'cases'],0],
+          'interpolate', ['linear'], ['coalesce', ['get', 'cases'],0],
           0,  '#ffffff',
           1,  '#fee5d9',
           5,  '#fcae91',
