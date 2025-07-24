@@ -1,41 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>US Measles Time Series (States Only)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Mapbox GL JS -->
-  <link
-    href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"
-    rel="stylesheet"
-  />
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
-
-  <!-- PapaParse CSV parser -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-
-  <style>
-    body { margin: 0; padding: 0; font-family: sans-serif; }
-    #map { position: absolute; top: 0; bottom: 50px; width: 100%; }
-    #slider {
-      position: absolute;
-      bottom: 10px; left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,0.8);
-      padding: 5px 10px; border-radius: 3px;
-    }
-    #dateLabel { margin-left: 10px; font-weight: bold; }
-  </style>
-</head>
-<body>
-
-<div id="map"></div>
-<div id="slider">
-  <input id="dateSlider" type="range" />
-  <span id="dateLabel"></span>
-</div>
-
 <script>
   // Mapbox access
   mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
@@ -54,36 +16,28 @@
   let stateData = null;
   const norm = s => String(s ?? '').trim().toUpperCase();
 
-  // 1) Load CSV and build lookup table
-  Papa.parse('data/USMeaslesCases.csv', {
-    download: true,
-    header: true,
-    complete: ({ data }) => {
-      // filter out empty lines, collect unique dates
-      const rows = data.filter(r => r.date);
-      dates = Array.from(new Set(rows.map(r => r.date))).sort();
-      	  
-      // build { "StateCode_YYYY-MM-DD": cases } lookup
-      rows.forEach(r => {
-        const key = `${norm(r.state)}_${r.date}`;   // CSV state already caps, but normalize anyway
-        casesLookup[key] = Number(r.cases) || 0;
+  // Wrap PapaParse in a Promise to load CSV rows
+  function loadCases() {
+    return new Promise(resolve => {
+      Papa.parse('data/USMeaslesCases.csv', {
+        download: true,
+        header: true,
+        complete: ({ data }) => {
+          const rows = data.filter(r => r.date);
+          resolve(rows);
+        }
       });
-    }
-  });
-  
-
-
-  // 2) Fetch state GeoJSON
-  async function loadStateGeoJSON() {
-    const res = await fetch('data/us_states.geojson');
-    if (!res.ok) {
-      throw new Error(`Failed to load states geojson: ${res.status}`);
-    }
-    stateData = await res.json();
-    console.log('Loaded states:', stateData.features.length);
+    });
   }
 
-  // 3) Add state fill layer
+  // Fetch GeoJSON
+  async function loadStateGeoJSON() {
+    const res = await fetch('data/us_states.geojson');
+    if (!res.ok) throw new Error(`GeoJSON load failed: ${res.status}`);
+    return await res.json();
+  }
+
+  // Add the fill layer (uses coalesce to guard nulls)
   function addStateLayer() {
     map.addSource('states', { type: 'geojson', data: stateData });
     map.addLayer({
@@ -92,7 +46,8 @@
       source: 'states',
       paint: {
         'fill-color': [
-          'interpolate', ['linear'], ['coalesce', ['get', 'cases'],0],
+          'interpolate', ['linear'],
+          ['coalesce', ['get','cases'], 0],
           0,  '#ffffff',
           1,  '#fee5d9',
           5,  '#fcae91',
@@ -103,27 +58,30 @@
         'fill-opacity': 0.7
       }
     });
+    // optional outline for visibility
+    map.addLayer({
+      id: 'state-outline',
+      type: 'line',
+      source: 'states',
+      paint: { 'line-color': '#666', 'line-width': 0.8 }
+    });
   }
 
-  // 4) Update state data for given date
+  // Assign .cases for a given date and refresh the source
   function updateMap(date) {
     stateData.features.forEach(f => {
-      const key = `${f.properties.ste_name}_${date}`;
+      const key = `${norm(f.properties.ste_name)}_${date}`;
       f.properties.cases = casesLookup[key] || 0;
     });
     map.getSource('states').setData(stateData);
   }
 
-  // 5) Slider setup
+  // Slider wiring
   function initSlider() {
     const slider = document.getElementById('dateSlider');
     const label  = document.getElementById('dateLabel');
-
     slider.min   = 0;
     slider.max   = dates.length - 1;
-    slider.value = 0;
-    label.textContent = dates[0] || '';
-
     slider.oninput = e => {
       const d = dates[e.target.value];
       label.textContent = d;
@@ -131,56 +89,51 @@
     };
   }
 
-  // 6) Boot sequence
+  // Boot sequence
   map.on('load', async () => {
-    await loadStateGeoJSON();
-    
+    // 1) Load both CSV rows and GeoJSON in parallel
+    const [rows, geo] = await Promise.all([loadCases(), loadStateGeoJSON()]);
+    stateData = geo;
 
-    // wait for CSV parse to finish populating dates
-    const waitForDates = () => new Promise(resolve => {
-      if (dates.length) return resolve();
-      setTimeout(waitForDates, 50);
+    // 2) Build dates array and lookup
+    dates = Array.from(new Set(rows.map(r => r.date))).sort();
+    rows.forEach(r => {
+      const key = `${norm(r.state)}_${r.date}`;
+      casesLookup[key] = Number(r.cases) || 0;
     });
-    await waitForDates();
 
-      /* ================= DEBUG BLOCK ================= */
-     // ——— DEEP DEBUG START ———
-     console.log('Dates preview:', dates.slice(0,5));
-     console.log('Lookup sample keys:', Object.keys(casesLookup).slice(0,5));
+    // 3) Find a date that has some >0 values
+    const firstWithData = dates.find(d =>
+      stateData.features.some(f =>
+        (casesLookup[`${norm(f.properties.ste_name)}_${d}`] || 0) > 0
+      )
+    ) || dates[0];
+    console.log('Drawing first data date:', firstWithData);
 
-     // Inspect the very first feature:
-     console.log('First feature props keys:', Object.keys(stateData.features[0].properties));
-     console.log('First feature full props:', stateData.features[0].properties);
+    // 4) Prime .cases for that date BEFORE adding the layer
+    stateData.features.forEach(f => {
+      const key = `${norm(f.properties.ste_name)}_${firstWithData}`;
+      f.properties.cases = casesLookup[key] || 0;
+    });
 
-     // Stats on how many features got a numeric .cases
-     const stats = stateData.features.reduce((acc, f) => {
+    // 5) Now add the layer and slider
+    addStateLayer();
+    initSlider();
+
+    // 6) Draw for that date & sync slider UI
+    updateMap(firstWithData);
+    const idx = dates.indexOf(firstWithData);
+    document.getElementById('dateSlider').value      = idx;
+    document.getElementById('dateLabel').textContent = firstWithData;
+
+    // — optional deep debug —
+    const stats = stateData.features.reduce((acc,f) => {
       const v = f.properties.cases;
       acc.total++;
       if (typeof v === 'number') acc.num++;
       if (v > 0) acc.pos++;
       return acc;
-     }, { total:0, num:0, pos:0 });
-     console.log('cases stats:', stats);
-
-     // If any positives, list a few:
-     console.log(
-      'Some >0:', 
-      stateData.features
-        .filter(f => f.properties.cases > 0)
-        .map(f => [f.properties.ste_name, f.properties.cases])
-        .slice(0,5)
-     );
-// ——— DEEP DEBUG END ———
-
-
-
-    /* =============================================== */
-	
-	addStateLayer();
-    initSlider();
+    }, { total:0, num:0, pos:0 });
+    console.log('cases stats:', stats);
   });
-
 </script>
-
-</body>
-</html>
