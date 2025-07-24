@@ -52,6 +52,7 @@
   let dates = [];
   let casesLookup = {};
   let stateData = null;
+  const norm = s => s.trim().toUpperCase();
 
   // 1) Load CSV and build lookup table
   Papa.parse('data/USMeaslesCases.csv', {
@@ -61,9 +62,7 @@
       // filter out empty lines, collect unique dates
       const rows = data.filter(r => r.date);
       dates = Array.from(new Set(rows.map(r => r.date))).sort();
-      
-	  const norm = s => s.trim().toUpperCase();
-	  
+      	  
       // build { "StateCode_YYYY-MM-DD": cases } lookup
       rows.forEach(r => {
         const key = `${norm(r.state)}_${r.date}`;   // CSV state already caps, but normalize anyway
@@ -93,7 +92,7 @@
       source: 'states',
       paint: {
         'fill-color': [
-          'interpolate', ['linear'], ['get', 'cases'],
+          'interpolate', ['linear'], [coalece, ['get', 'cases'],0],
           0,  '#ffffff',
           1,  '#fee5d9',
           5,  '#fcae91',
