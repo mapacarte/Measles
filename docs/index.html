@@ -205,16 +205,13 @@ input[type="range"]::-moz-range-thumb {
 
     // Popups
     map.on('click', 'state-fills', e => {
-      const feature = e.features[0];
-  console.log('Clicked state:', feature.properties.ste_name);
-  console.log('Cases property in feature:', feature.properties.cases);
-
-  const state = norm(feature.properties.ste_name); // lookup key, stays uppercased
-  const displayName = feature.properties.ste_name; // for user display
+  const feature = e.features[0];
+  const stateRaw = feature.properties.ste_name;
+  const state = norm(stateRaw);
   const month = document.getElementById('dateLabel').textContent;
   const key = `${state}_${month}`;
-  const cases = casesLookup[key] || 0;
-  
+  const cases = casesLookup[key] ?? 'No data';
+
   new mapboxgl.Popup()
     .setLngLat(e.lngLat)
     .setHTML(`
@@ -223,8 +220,7 @@ input[type="range"]::-moz-range-thumb {
       Cases: ${cases}
     `)
     .addTo(map);
-
-    });
+});
 
     map.addLayer({
       id: 'state-outline',
