@@ -212,7 +212,7 @@ input[type="range"]::-moz-range-thumb {
   //debug mismatch
   console.log('Month Label:', month); // See what format it is
 
-  const key = `${norm(f.properties.ste_name)}_${month}`;
+  const key = `${norm(feature.properties.ste_name)}_${month}`;
   if (!(key in casesLookup)) {
   console.warn(`Missing key in casesLookup: ${key}`);
   }
