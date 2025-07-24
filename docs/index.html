@@ -89,32 +89,32 @@
   // ---------- Load GEOJSON-----------------
 async function loadGeoJSONs() {
   const stateUrl  = 'data/us_states.geojson';
-  const countyUrl = 'data/counties.geojson';
+  // const countyUrl = 'data/counties.geojson';
 
   // kick off both fetches at once
-  const [stateRes, countyRes] = await Promise.all([
-    fetch(stateUrl),
-    fetch(countyUrl)
+  const [stateRes] = await Promise.all([
+    fetch(stateUrl)
+    //fetch(countyUrl)
   ]);
 
   // guard against 404s, network errors, etc.
   if (!stateRes.ok)  throw new Error(`Failed to load states: ${stateRes.status}`);
-  if (!countyRes.ok) throw new Error(`Failed to load counties: ${countyRes.status}`);
+  //if (!countyRes.ok) throw new Error(`Failed to load counties: ${countyRes.status}`);
 
   // parse both JSONs
-  const [statesJson, countiesJson] = await Promise.all([
-    stateRes.json(),
-    countyRes.json()
+  const [statesJson] = await Promise.all([
+    stateRes.json()
+    //countyRes.json()
   ]);
 
   // store in your globals
   stateData  = statesJson;
-  countyData = countiesJson;
+  //countyData = countiesJson;
 
   console.log(
     'GeoJSON loaded:',
-    `${stateData.features.length} states,`,
-    `${countyData.features.length} counties`
+    `${stateData.features.length} states,`
+    //`${countyData.features.length} counties`
   );
 }
 
@@ -144,10 +144,10 @@ async function loadGeoJSONs() {
       });
     }
 
-    if (!map.getSource('counties')) {
-      map.addSource('counties', { type: 'geojson', data: countyData });
-    }
-    if (!map.getLayer('county-fills')) {
+    //if (!map.getSource('counties')) {
+      //map.addSource('counties', { type: 'geojson', data: countyData });
+    //}
+    //if (!map.getLayer('county-fills')) {
       map.addLayer({
         id: 'county-fills',
         type: 'fill',
@@ -205,26 +205,26 @@ async function loadGeoJSONs() {
       map.getSource('states').setData(stateData);
     }
 
-    if (countyData) {
-      countyData.features.forEach(f => {
-        const key = `${f.properties.GEOID}_${date}`;
-        f.properties.cases = casesLookup[key] || 0;
-      });
-      map.getSource('counties').setData(countyData);
-    }
-  }
+    //if (countyData) {
+      //countyData.features.forEach(f => {
+        //const key = `${f.properties.GEOID}_${date}`;
+        //f.properties.cases = casesLookup[key] || 0;
+      //});
+      //map.getSource('counties').setData(countyData);
+    //}
+  //}
 
   // ── Layer Toggle ───────────
-  function setupLayerSwitcher() {
+  //function setupLayerSwitcher() {
     document.getElementById('stateRadio').onclick = () => {
       map.setLayoutProperty('state-fills', 'visibility', 'visible');
-      map.setLayoutProperty('county-fills', 'visibility', 'none');
-    };
-    document.getElementById('countyRadio').onclick = () => {
-      map.setLayoutProperty('state-fills', 'visibility', 'none');
-      map.setLayoutProperty('county-fills', 'visibility', 'visible');
-    };
-  }
+      //map.setLayoutProperty('county-fills', 'visibility', 'none');
+    //};
+    //document.getElementById('countyRadio').onclick = () => {
+     // map.setLayoutProperty('state-fills', 'visibility', 'none');
+     // map.setLayoutProperty('county-fills', 'visibility', 'visible');
+    //};
+  //}
 </script>
 
 </body>
