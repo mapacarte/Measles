@@ -214,19 +214,16 @@ input[type="range"]::-moz-range-thumb {
   const month = document.getElementById('dateLabel').textContent;
   const key = `${state}_${month}`;
   const cases = casesLookup[key] || 0;
-  const monthlyCases = stateTrends[state] || {};
-  const trendSVG = generateTrendSVG(monthlyCases);
   
-
-
-
   new mapboxgl.Popup()
     .setLngLat(e.lngLat)
     .setHTML(`
-      <strong>${displayName}</strong><br>${month}<br>Cases: ${monthlyCases[month] || 0}
-      <div style="margin-top:8px;">${trendSVG}</div>
+      <strong>${stateRaw}</strong><br>
+      ${month}<br>
+      Cases: ${cases}
     `)
     .addTo(map);
+
     });
 
     map.addLayer({
