@@ -134,8 +134,7 @@
   // 6) Boot sequence
   map.on('load', async () => {
     await loadStateGeoJSON();
-    addStateLayer();
-    initSlider();
+    
 
     // wait for CSV parse to finish populating dates
     const waitForDates = () => new Promise(resolve => {
@@ -154,8 +153,10 @@
     }).map(f => f.properties.ste_name);
     console.log('No match for', testDate, missing);
     /* =============================================== */
-
+	
+	addStateLayer();
     updateMap(testDate);
+    initSlider();
   });
 
 </script>
