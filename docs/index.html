@@ -113,13 +113,15 @@ input[type="range"]::-moz-range-thumb {
     center: [-98, 38],
     zoom: 3
   });
-  
+
   map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-  
+
   // Globals
   let months = [];
   let casesLookup = {};
   let stateData = null;
+  let aggTable = [];
+  let stateTrends = {};
   const norm = s => String(s ?? '').trim().toUpperCase();
 
   // 1) Load CSV, aggregate to months
@@ -154,7 +156,7 @@ input[type="range"]::-moz-range-thumb {
     stateData = await res.json();
   }
 
-  // 3) Add fill + outline layers
+  // 3) Add fill + outline layers and popup
   function addStateLayer() {
     map.addSource('states', { type: 'geojson', data: stateData });
     map.addLayer({
@@ -174,61 +176,57 @@ input[type="range"]::-moz-range-thumb {
         'fill-opacity': 0.8
       }
     });
-	
-	function generateTrendSVG(monthlyData) {
-    const monthOrder = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const values = monthOrder
-      .filter(m => monthlyData[m] !== undefined)
-      .map(m => monthlyData[m]);
 
-    const width = 100, height = 40;
-    const max = Math.max(...values, 1); // Avoid divide-by-zero
-    const points = values.map((val, i) => {
-    const x = (i / (values.length - 1)) * width;
-    const y = height - (val / max) * height;
-    return `${x},${y}`;
-  }).join(' ');
-
-  return `
-    <svg width="${width}" height="${height}">
-      <polyline points="${points}" stroke="#0074D9" stroke-width="2" fill="none" />
-    </svg>
-  `;
-}
-	// Popups
-	map.on('click', 'state-fills', e => {
-     const feature = e.features[0];
-     const state = feature.properties.ste_name;
-     const month = document.getElementById('dateLabel').textContent;
-	 const monthlyCases = stateTrends[state] || {};	 
-	 const trendSVG = generateTrendSVG(monthlyCases); 
-	 
-	 //lookup for popup charts
-     const stateTrends = {};
-     aggTable.forEach(row => {
-     const { State, Month, Cases } = row;
-     if (!stateTrends[State]) stateTrends[State] = {};
-     stateTrends[State][Month] = Cases;
-     });
-
-     new mapboxgl.Popup()
-    .setLngLat(e.lngLat)
-    .setHTML(`
-      <strong>${state}</strong><br>${month}<br>Cases: ${monthlyCases[month] || 0}
-      <div style="margin-top:8px;">${trendSVG}</div>
-    `)
-    .addTo(map);
-
+    // Show pointer on hover
+    map.on('mouseenter', 'state-fills', () => {
+      map.getCanvas().style.cursor = 'pointer';
     });
-	
+    map.on('mouseleave', 'state-fills', () => {
+      map.getCanvas().style.cursor = '';
+    });
+
+    // Mini SVG trend chart
+    function generateTrendSVG(monthlyData) {
+      const sortedMonths = months.slice();
+      const values = sortedMonths.map(m => monthlyData[m] !== undefined ? monthlyData[m] : 0);
+      const width = 100, height = 40;
+      const max = Math.max(...values, 1);
+      const points = values.map((val, i) => {
+        const x = (i / (values.length - 1 || 1)) * width;
+        const y = height - (val / max) * height;
+        return `${x},${y}`;
+      }).join(' ');
+      return `
+        <svg width="${width}" height="${height}">
+          <polyline points="${points}" stroke="#0074D9" stroke-width="2" fill="none" />
+        </svg>
+      `;
+    }
+
+    // Popups
+    map.on('click', 'state-fills', e => {
+      const feature = e.features[0];
+      const state = feature.properties.ste_name;
+      const month = document.getElementById('dateLabel').textContent;
+      const monthlyCases = stateTrends[state] || {};
+      const trendSVG = generateTrendSVG(monthlyCases);
+
+      new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(`
+          <strong>${state}</strong><br>${month}<br>Cases: ${monthlyCases[month] || 0}
+          <div style="margin-top:8px;">${trendSVG}</div>
+        `)
+        .addTo(map);
+    });
+
     map.addLayer({
       id: 'state-outline',
       type: 'line',
       source: 'states',
       paint: { 'line-color': '#666', 'line-width': 0.8 }
     });
-}
+  }
 
   // 4) Update features for a given month
   function updateMap(month) {
@@ -256,7 +254,7 @@ input[type="range"]::-moz-range-thumb {
   // 6) Build legend
   function addLegend() {
     const legend = document.getElementById('legend');
-	const title = document.createElement('div');
+    const title = document.createElement('div');
     title.textContent = 'Cases';
     title.style.fontWeight = 'bold';
     title.style.marginBottom = '6px';
@@ -286,79 +284,62 @@ input[type="range"]::-moz-range-thumb {
       const k = `${norm(f.properties.ste_name)}_${firstMonth}`;
       f.properties.cases = casesLookup[k] || 0;
     });
-	
-	//  A) Populate the datalist with month ticks
-const tickList = document.getElementById('monthTicks');
-months.forEach((m, i) => {
-  const opt = document.createElement('option');
-  opt.value = i;
-  opt.label = m;        // some browsers will use this label
-  tickList.appendChild(opt);
-});
 
-//  B) Update slider max to match number of months
-const slider = document.getElementById('dateSlider');
-slider.max = months.length - 1;
+    //  A) Populate the datalist with month ticks
+    const tickList = document.getElementById('monthTicks');
+    months.forEach((m, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.label = m;
+      tickList.appendChild(opt);
+    });
 
-//  C) Set up play/pause & autoplay variables
-let playing     = true;
-const playPause = document.getElementById('playPause');
-const pace       = 2000;   // milliseconds between steps (slower)
-let intervalId;            // will hold our setInterval
+    //  B) Update slider max to match number of months
+    const slider = document.getElementById('dateSlider');
+    slider.max = months.length - 1;
 
-// advance function
-function stepForward() {
-  let idx = Number(slider.value);
-  idx = (idx + 1) % months.length;
-  slider.value = idx;
-  const m = months[idx];
-  document.getElementById('dateLabel').textContent = m;
-  updateMap(m);
-}
+    //  C) Set up play/pause & autoplay variables
+    let playing     = true;
+    const playPause = document.getElementById('playPause');
+    const pace       = 2000;
+    let intervalId;
 
-// start autoplay
-intervalId = setInterval(stepForward, pace);
+    // advance function
+    function stepForward() {
+      let idx = Number(slider.value);
+      idx = (idx + 1) % months.length;
+      slider.value = idx;
+      const m = months[idx];
+      document.getElementById('dateLabel').textContent = m;
+      updateMap(m);
+    }
 
-// toggle play/pause on button click
-playPause.addEventListener('click', () => {
-  if (playing) {
-    clearInterval(intervalId);
-    playPause.textContent = 'Play';
-  } else {
+    // start autoplay
     intervalId = setInterval(stepForward, pace);
-    playPause.textContent = 'Pause';
-  }
-  playing = !playing;
-});
 
+    // toggle play/pause on button click
+    playPause.addEventListener('click', () => {
+      if (playing) {
+        clearInterval(intervalId);
+        playPause.textContent = 'Play';
+      } else {
+        intervalId = setInterval(stepForward, pace);
+        playPause.textContent = 'Pause';
+      }
+      playing = !playing;
+    });
 
-	// ——— INSPECT AGGREGATED VALUES ———
+    // Build aggTable and stateTrends for popups
+    aggTable = Object.entries(casesLookup).map(([key, value]) => {
+      const [state, month] = key.split('_');
+      return { State: state, Month: month, Cases: value };
+    }).sort((a, b) => b.Cases - a.Cases);
 
-// 1) Build an array of { state, month, cases }
-const aggTable = Object.entries(casesLookup).map(([key, value]) => {
-  const [state, month] = key.split('_');
-  return { State: state, Month: month, Cases: value };
-})
-// Sort so highest-case entries bubble to the top
-.sort((a, b) => b.Cases - a.Cases);
-
-// Print as a console table
-console.log('=== State × Month Aggregated Cases ===');
-console.table(aggTable);
-
-// 2) Compute total cases per month (across all states)
-const monthlyTotals = months.map(month => {
-  const total = aggTable
-    .filter(row => row.Month === month)
-    .reduce((sum, row) => sum + row.Cases, 0);
-  return { Month: month, TotalCases: total };
-});
-
-// Print monthly totals
-console.log('=== Total Cases by Month ===');
-console.table(monthlyTotals);
-
-// ——— END INSPECTION ———
+    stateTrends = {};
+    aggTable.forEach(row => {
+      if (!stateTrends[row.State]) stateTrends[row.State] = {};
+      stateTrends[row.State][row.Month] = row.Cases;
+    });
 
     // add everything
     addStateLayer();
@@ -370,7 +351,17 @@ console.table(monthlyTotals);
     document.getElementById('dateSlider').value      = 0;
     document.getElementById('dateLabel').textContent = firstMonth;
 
-    
+    // ---- Console Inspection (optional) ----
+    // console.table(aggTable);
+    // const monthlyTotals = months.map(month => {
+    //   const total = aggTable
+    //     .filter(row => row.Month === month)
+    //     .reduce((sum, row) => sum + row.Cases, 0);
+    //   return { Month: month, TotalCases: total };
+    // });
+    // console.table(monthlyTotals);
+    // ---- END Console Inspection ----
+
   });
 </script>
 
