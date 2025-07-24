@@ -144,21 +144,34 @@
     await waitForDates();
 
       /* ================= DEBUG BLOCK ================= */
-     /* ---------- FIND A DATE THAT HAS DATA (DROP HERE) ---------- */
-     const firstWithData = dates.find(d =>
-       stateData.features.some(f => {
-        const k = `${norm(f.properties.ste_name)}_${d}`;
-        return (casesLookup[k] ?? 0) > 0;
-       })
-     ) ?? dates[0];                     // fallback if none
-     console.log('firstWithData:', firstWithData);
-     /* ----------------------------------------------------------- */
+     // ——— DEEP DEBUG START ———
+     console.log('Dates preview:', dates.slice(0,5));
+     console.log('Lookup sample keys:', Object.keys(casesLookup).slice(0,5));
 
-     // (optional) prime 'cases' for that date before adding the layer
-     stateData.features.forEach(f => {
-       const key = `${norm(f.properties.ste_name)}_${firstWithData}`;
-       f.properties.cases = casesLookup[key] || 0;
-     });
+     // Inspect the very first feature:
+     console.log('First feature props keys:', Object.keys(stateData.features[0].properties));
+     console.log('First feature full props:', stateData.features[0].properties);
+
+     // Stats on how many features got a numeric .cases
+     const stats = stateData.features.reduce((acc, f) => {
+      const v = f.properties.cases;
+      acc.total++;
+      if (typeof v === 'number') acc.num++;
+      if (v > 0) acc.pos++;
+      return acc;
+     }, { total:0, num:0, pos:0 });
+     console.log('cases stats:', stats);
+
+     // If any positives, list a few:
+     console.log(
+      'Some >0:', 
+      stateData.features
+        .filter(f => f.properties.cases > 0)
+        .map(f => [f.properties.ste_name, f.properties.cases])
+        .slice(0,5)
+     );
+// ——— DEEP DEBUG END ———
+
 
 
     /* =============================================== */
