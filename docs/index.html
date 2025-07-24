@@ -113,7 +113,9 @@ input[type="range"]::-moz-range-thumb {
     center: [-98, 38],
     zoom: 3
   });
-
+  
+  map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+  
   // Globals
   let months = [];
   let casesLookup = {};
