@@ -65,6 +65,21 @@ input[type="range"]::-moz-range-thumb {
   </style>
 </head>
 <body>
+<div style="
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.85);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 999;
+">
+  Monthly Measles Cases by State
+</div>
 
 <div id="map"></div>
 <div id="slider" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.8);padding:5px 10px;border-radius:3px;display:flex;align-items:center;gap:8px;">
@@ -191,6 +206,11 @@ input[type="range"]::-moz-range-thumb {
   // 6) Build legend
   function addLegend() {
     const legend = document.getElementById('legend');
+	const title = document.createElement('div');
+    title.textContent = 'Cases';
+    title.style.fontWeight = 'bold';
+    title.style.marginBottom = '6px';
+    legend.appendChild(title);
     const breaks = ['0', '1–49', '50–99', '100–499', '500+'];
     const colors = ['#ffffff', '#deebf7', '#9ecae1', '#6baed6', '#08519c'];
     breaks.forEach((b,i) => {
