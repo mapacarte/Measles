@@ -217,7 +217,9 @@ input[type="range"]::-moz-range-thumb {
     const key = `${state}_${month}`;
     const cases = casesLookup[key] ?? 'No data';
 
-    console.log('Constructed Key:', key);
+    console.log('Raw State:', rawState);
+    console.log('Normalized State:', state);
+	console.log('Constructed Key:', key);
     console.log('Cases:', cases);
 
     new mapboxgl.Popup()
