@@ -71,6 +71,8 @@
       });
     }
   });
+  
+
 
   // 2) Fetch state GeoJSON
   async function loadStateGeoJSON() {
@@ -143,9 +145,20 @@
     });
     await waitForDates();
 
-    // initial draw
-    updateMap(dates[0]);
+      /* ================= DEBUG BLOCK ================= */
+    const testDate = dates[0];
+    console.log('Example lookup keys:', Object.keys(casesLookup).slice(0, 5));
+
+    const missing = stateData.features.filter(f => {
+      const k = `${norm(f.properties.ste_name)}_${testDate}`;
+      return !(k in casesLookup);
+    }).map(f => f.properties.ste_name);
+    console.log('No match for', testDate, missing);
+    /* =============================================== */
+
+    updateMap(testDate);
   });
+
 </script>
 
 </body>
