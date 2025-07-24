@@ -209,7 +209,11 @@ input[type="range"]::-moz-range-thumb {
   const stateRaw = feature.properties.ste_name;
   const state = norm(stateRaw);
   const month = document.getElementById('dateLabel').textContent;
+  console.log('Month Label:', month); // See what format it is
+
   const key = `${state}_${month}`;
+  console.log('Constructed Key:', key);
+
   const cases = casesLookup[key] ?? 'No data';
 
   new mapboxgl.Popup()
