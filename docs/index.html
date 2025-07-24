@@ -301,15 +301,6 @@ console.table(monthlyTotals);
     document.getElementById('dateSlider').value      = 0;
     document.getElementById('dateLabel').textContent = firstMonth;
 
-    // autoplay
-    let idx = 0;
-    setInterval(() => {
-      idx = (idx + 1) % months.length;
-      document.getElementById('dateSlider').value      = idx;
-      document.getElementById('dateLabel').textContent = months[idx];
-      updateMap(months[idx]);
-    }, 1000);
-  });
 </script>
 
 
