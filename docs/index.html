@@ -123,12 +123,15 @@ input[type="range"]::-moz-range-thumb {
   let aggTable = [];
   let stateTrends = {};
   const norm = s => {
-  console.log('Normalizing:', s);
   const flat = Array.isArray(s) ? s.find(x => typeof x === 'string') : s;
   const cleaned = String(flat ?? '').trim().toUpperCase();
+  console.log('Normalizing:', s);
   console.log('Normalized Result:', cleaned);
   return cleaned;
+};
 }; 
+
+
   
   // 1) Load CSV, aggregate to months
   function loadCases() {
