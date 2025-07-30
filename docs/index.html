@@ -231,11 +231,12 @@ input[type="range"]::-moz-range-thumb {
     console.log('Normalized State:', norm(rawState));
 
     new mapboxgl.Popup()
-    .setLngLat(e.lngLat)
-    .setHTML(`
-      <div style="font-weight:bold;">${rawState}</div>
-      <div>${month} — ${cases} case${cases === 1 ? '' : 's'}</div>
-      <div style="margin-top:4px;">${trendSVG}</div>
+     .setLngLat(e.lngLat)
+     .setHTML(`
+       <div><strong>${rawState}</strong><br>
+      ${month}<br>
+       Cases: ${cases}</div>
+	   <div style="margin-top:4px;">${trendSVG}</div>
     `)
     .addTo(map);
     });
