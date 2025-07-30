@@ -1,4 +1,3 @@
-# Measles
 # US Measles Cases Time‑Series Map
 
 This project visualizes monthly U.S. measles case counts at the state level using Mapbox GL JS. The data ingestion pipeline is adapted from Meaghan Batchelor's repository (https://github.com/mmcalend/USMeaslesData), which fetches raw county-level data from the Johns Hopkins University Measles Tracking Team. The map is updated daily at 16:00 UTC. A slider and autoplay controls let you explore trends over time, and popups display both current counts and a mini‐chart of the full time series for each state.
