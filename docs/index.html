@@ -123,9 +123,11 @@ input[type="range"]::-moz-range-thumb {
   let aggTable = [];
   let stateTrends = {};
   const norm = s => {
-  console.log('Normalizing:', s); 
+  console.log('Normalizing:', s);
   const flat = Array.isArray(s) ? s.find(x => typeof x === 'string') : s;
-  return String(flat ?? '').trim().toUpperCase();
+  const cleaned = String(flat ?? '').trim().toUpperCase();
+  console.log('Normalized Result:', cleaned);
+  return cleaned;
 }; 
   
   // 1) Load CSV, aggregate to months
@@ -212,9 +214,8 @@ input[type="range"]::-moz-range-thumb {
     const feature = e.features[0];
 
     // Flatten any stray array structure (even if accidentally nested)
-    const rawState = Array.isArray(feature.properties.ste_name)
-     ? feature.properties.ste_name[0]
-     : feature.properties.ste_name;
+    const rawState = feature.properties.ste_name;
+    const state = norm(rawState);
 
     const state = norm(rawState);
     const month = document.getElementById('dateLabel').textContent;
