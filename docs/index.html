@@ -296,11 +296,12 @@ input[type="range"]::-moz-range-thumb {
     await Promise.all([loadCases(), loadStateGeoJSON()]);
 
     // prime for the very first month
-    const firstMonth = months[0];
     stateData.features.forEach(f => {
-      const k = `${norm(f.properties.ste_name)}_${firstMonth}`;
-      f.properties.cases = casesLookup[k] || 0;
-    });
+    const v = f.properties.ste_name;
+    if (Array.isArray(v) && typeof v[0] === 'string') {
+    f.properties.ste_name = v[0];
+    }
+  });
 
     //  A) Populate the datalist with month ticks
     const tickList = document.getElementById('monthTicks');
