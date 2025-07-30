@@ -5,7 +5,7 @@ This project visualizes monthly U.S. measles case counts at the state level usin
 ## To view this map:
 Go to https://mapacarte.github.io/Measles/
 
-## To replicate this map:
+## To Reproduce:
 
 ### Prerequisites
 
