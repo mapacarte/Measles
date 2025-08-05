@@ -136,7 +136,7 @@ async function loadCases() {
 async function loadGeoJSON() {
   const [s, c] = await Promise.all([
     fetch('data/us_states.geojson').then(r => r.json()),
-    fetch('docs/counties.geojson').then(r => r.json())
+    fetch('data/counties.geojson').then(r => r.json())
   ]);
   stateData = s;
   countyData = c;
@@ -248,4 +248,5 @@ map.on('load', async () => {
 
 </body>
 </html>
+
 
