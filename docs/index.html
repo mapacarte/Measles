@@ -15,77 +15,90 @@
   <style>
     body { margin: 0; padding: 0; font-family: sans-serif; }
     #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-    #slider-container {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,0.8);
-      padding: 5px 10px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 1;
-    }
-    #slider-container input[type="range"] {
-      flex: 1;
-    }
-    #date-label {
-      min-width: 60px;
-      text-align: center;
-      font-weight: bold;
-    }
-    #layer-toggle {
+
+    /* Title bar */
+    #title {
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(255,255,255,0.85);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 3;
+    }
+
+    /* Layer toggle buttons */
+    #layer-toggle {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.85);
       padding: 6px 12px;
       border-radius: 4px;
-      font-weight: bold;
-      font-size: 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      font-size: 14px;
+      z-index: 3;
+    }
+    #layer-toggle button {
+      margin: 0 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
+    /* Slider container */
+    #slider-container {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.8);
+      padding: 6px 12px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       z-index: 2;
     }
+    #slider { flex: 1; }
+    #date-label {
+      min-width: 60px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* Legend */
     #legend {
       position: absolute;
-      bottom: 90px;
+      bottom: 100px;
       left: 10px;
       background: white;
       padding: 8px;
-      font-family: sans-serif;
+      font-size: 12px;
       box-shadow: 0 0 4px rgba(0,0,0,0.3);
-      z-index: 1;
+      z-index: 2;
     }
-    .legend-key {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      margin-right: 4px;
-      vertical-align: middle;
-    }
-    .legend-item { margin-bottom: 4px; line-height: 20px; }
+    .legend-item { margin-bottom: 4px; display: flex; align-items: center; }
+    .legend-key { width: 16px; height: 16px; margin-right: 6px; border: 1px solid #ccc; }
   </style>
 </head>
 <body>
 
+<div id="title">Monthly Measles Cases</div>
 <div id="layer-toggle"></div>
 <div id="map"></div>
 
 <div id="slider-container">
-  <input id="slider" type="range" min="0" max="0" list="monthTicks" />
-  <datalist id="monthTicks"></datalist>
+  <input id="slider" type="range" min="0" max="0" />
   <span id="date-label"></span>
   <button id="playPause">Pause</button>
 </div>
 
-<div id="legend" class="legend"></div>
+<div id="legend"></div>
 
 <script>
-// measles_map.js: Interactive Measles Choropleth by State and County
-
 mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
 const map = new mapboxgl.Map({
   container: 'map',
@@ -95,131 +108,120 @@ const map = new mapboxgl.Map({
 });
 map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
-// ————————————————————— Globals —————————————————————
-let months = [];
-let casesLookup = {};
-let countyByMonth = {};
-let stateData = null;
-let countyData = null;
-let currentMonthKey;
+// — Globals —
+let months = [], casesLookup = {}, countyByMonth = {};
+let stateData, countyData, currentMonthKey;
 
-// Normalize string to uppercase, trimmed
-function norm(str) {
-  return String(str || '').trim().toUpperCase();
-}
+function norm(str) { return String(str||'').trim().toUpperCase(); }
 
-// ————————————————————— Load and Aggregate Cases —————————————————————
+// — Load & Aggregate Cases —
 async function loadCases() {
-  return new Promise((resolve, reject) => {
-    Papa.parse('data/USMeaslesCases.csv', {
-      download: true,
-      header: true,
-      complete: results => {
-        results.data.forEach(r => {
-          if (!r.date) return;
-          const m = r.date.slice(0,7);
-          if (!months.includes(m)) months.push(m);
-          const stKey = `${norm(r.state)}_${m}`;
-          casesLookup[stKey] = (casesLookup[stKey] || 0) + (+r.cases);
-          countyByMonth[m] = countyByMonth[m] || {};
-          const fips = r.location_id;
-          countyByMonth[m][fips] = (countyByMonth[m][fips] || 0) + (+r.cases);
-        });
-        months.sort();
-        resolve();
-      }, error: err => reject(err)
-    });
-  });
+  return new Promise((res, rej) => Papa.parse('data/USMeaslesCases.csv', {
+    download:true, header:true,
+    complete: ({data}) => {
+      data.forEach(r => {
+        if (!r.date) return;
+        const m = r.date.slice(0,7);
+        if (!months.includes(m)) months.push(m);
+        const key = `${norm(r.state)}_${m}`;
+        casesLookup[key] = (casesLookup[key]||0) + (+r.cases);
+        countyByMonth[m] = countyByMonth[m]||{};
+        countyByMonth[m][r.location_id] = (countyByMonth[m][r.location_id]||0) + (+r.cases);
+      });
+      months.sort(); res();
+    }, error: rej
+  }));
 }
 
-// ————————————————————— Load GeoJSON for States & Counties —————————————————————
+// — Load GeoJSON —
 async function loadGeoJSON() {
-  const [s, c] = await Promise.all([
-    fetch('data/us_states.geojson').then(r => r.json()),
-    fetch('data/counties.geojson').then(r => r.json())
+  [stateData, countyData] = await Promise.all([
+    fetch('data/us_states.geojson').then(r=>r.json()),
+    fetch('data/counties.geojson').then(r=>r.json())
   ]);
-  stateData = s;
-  countyData = c;
 }
 
-// ————————————————————— Popup Handlers —————————————————————
+// — Popups —
 function showStatePopup(e) {
-  const props = e.features[0].properties;
-  const cases = props.cases || 0;
+  const p = e.features[0].properties;
   new mapboxgl.Popup().setLngLat(e.lngLat)
-    .setHTML(`<strong>${props.NAME}</strong><br>${cases} case${cases===1?'':'s'}`)
+    .setHTML(`<strong>${p.NAME}</strong><br>${p.cases||0} cases`)
     .addTo(map);
 }
 function showCountyPopup(e) {
-  const props = e.features[0].properties;
-  const cases = e.features[0].state?.cases || props.cases || 0;
+  const f = e.features[0];
+  const p = f.properties;
+  const c = f.state?.cases||p.cases||0;
   new mapboxgl.Popup().setLngLat(e.lngLat)
-    .setHTML(`<strong>${props.NAME}, ${props.STATE_NAME}</strong><br>${cases} case${cases===1?'':'s'}`)
+    .setHTML(`<strong>${p.NAME}, ${p.STATE_NAME}</strong><br>${c} cases`)
     .addTo(map);
 }
 
-// ————————————————————— Update Functions —————————————————————
-function updateStateMap(monthKey) {
+// — Update Layers —
+function updateState(month) {
   stateData.features.forEach(f => {
-    const key = `${norm(f.properties.STATE_NAME)}_${monthKey}`;
-    f.properties.cases = casesLookup[key] || 0;
+    const key = `${norm(f.properties.STATE_NAME)}_${month}`;
+    f.properties.cases = casesLookup[key]||0;
   });
   map.getSource('states').setData(stateData);
 }
-function updateCountyMap(monthKey) {
-  map.querySourceFeatures('counties').forEach(f => {
-    map.setFeatureState({ source: 'counties', id: f.id }, { cases: 0 });
-  });
-  const counts = countyByMonth[monthKey] || {};
-  Object.entries(counts).forEach(([geoid, count]) => {
-    map.setFeatureState({ source: 'counties', id: geoid }, { cases: count });
-  });
+function updateCounty(month) {
+  map.querySourceFeatures('counties').forEach(f =>
+    map.setFeatureState({source:'counties',id:f.id},{cases:0})
+  );
+  Object.entries(countyByMonth[month]||{}).forEach(([id,c]) =>
+    map.setFeatureState({source:'counties',id},{cases:c})
+  );
 }
-function updateLayers(monthKey) {
-  updateStateMap(monthKey);
-  updateCountyMap(monthKey);
+function updateAll(month) {
+  updateState(month);
+  updateCounty(month);
 }
 
-// ————————————————————— Layer Toggle Control —————————————————————
-function addLayerToggle() {
-  const container = document.getElementById('layer-toggle');
-  container.innerHTML = `
-    <button id="btn-states">States</button>
-    <button id="btn-counties">Counties</button>
-  `;
-  document.getElementById('btn-states').addEventListener('click', () => {
+// — UI Controls —
+function addToggle() {
+  const div = document.getElementById('layer-toggle');
+  div.innerHTML = '<button id="btnStates">States</button><button id="btnCounties">Counties</button>';
+  document.getElementById('btnStates').onclick = () => {
     map.setLayoutProperty('state-fills','visibility','visible');
     map.setLayoutProperty('state-outline','visibility','visible');
     map.setLayoutProperty('county-fills','visibility','none');
     map.setLayoutProperty('county-outline','visibility','none');
-  });
-  document.getElementById('btn-counties').addEventListener('click', () => {
+  };
+  document.getElementById('btnCounties').onclick = () => {
     map.setLayoutProperty('state-fills','visibility','none');
     map.setLayoutProperty('state-outline','visibility','none');
     map.setLayoutProperty('county-fills','visibility','visible');
     map.setLayoutProperty('county-outline','visibility','visible');
-  });
+  };
 }
 
-// ————————————————————— Initialize Slider Control —————————————————————
 function initSlider() {
-  const slider = document.getElementById('slider');
-  const label  = document.getElementById('date-label');
-  slider.min = 0;
-  slider.max = months.length - 1;
-  slider.value = 0;
-  slider.addEventListener('input', e => {
-    currentMonthKey = months[+e.target.value];
-    label.textContent = currentMonthKey;
-    updateLayers(currentMonthKey);
+  const s = document.getElementById('slider'), lbl = document.getElementById('date-label');
+  s.min=0; s.max=months.length-1; s.value=0;
+  months.forEach((m,i)=> {
+    const opt = document.createElement('option'); opt.value=i; opt.label=m;
+    document.getElementById('slider').appendChild(opt);
+  });
+  s.oninput = () => {
+    const m = months[+s.value]; lbl.textContent=m;
+    updateAll(m);
+  };
+}
+
+function buildLegend() {
+  const breaks=[0,5,20,50,100], cols=['#f7fbff','#deebf7','#9ecae1','#3182bd','#08519c'];
+  const lg = document.getElementById('legend'); lg.innerHTML='<strong>Cases</strong><br>';
+  breaks.forEach((b,i)=>{
+    const end = i<breaks.length-1?breaks[i+1]-1:'+';
+    const row=document.createElement('div'); row.className='legend-item';
+    row.innerHTML = `<span class='legend-key' style='background:${cols[i]}'></span> ${b}${end}`;
+    lg.appendChild(row);
   });
 }
 
 map.on('load', async () => {
-  await loadCases();
-  await loadGeoJSON();
-
-  // Add sources and layers
+  await loadCases(); await loadGeoJSON();
   map.addSource('states',{type:'geojson',data:stateData});
   map.addLayer({id:'state-fills',type:'fill',source:'states',paint:{
     'fill-color':['interpolate',['linear'],['get','cases'],0,'#f7fbff',5,'#deebf7',20,'#9ecae1',50,'#3182bd',100,'#08519c'],
@@ -232,21 +234,13 @@ map.on('load', async () => {
     'fill-opacity':0.7
   }});
   map.addLayer({id:'county-outline',type:'line',source:'counties',layout:{visibility:'none'},paint:{'line-color':'#fff','line-width':0.5}});
-
-  // Popups
   map.on('click','state-fills',showStatePopup);
   map.on('click','county-fills',showCountyPopup);
-
-  // UI Controls
-  initSlider();
-  addLayerToggle();
+  addToggle(); initSlider(); buildLegend();
   document.getElementById('date-label').textContent = months[0];
-  currentMonthKey = months[0];
-  updateLayers(currentMonthKey);
+  currentMonthKey = months[0]; updateAll(currentMonthKey);
 });
 </script>
 
 </body>
 </html>
-
-
