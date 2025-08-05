@@ -35,7 +35,7 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: pip install pandas
+        run: pip install requests pandas
 
       # Run the measles pipeline 
       - name: Run measles pipeline
