@@ -19,37 +19,33 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Checkout Meaghan's measles‑pipeline repo
-      - name: Checkout measles-pipeline repo
-        uses: actions/checkout@v3
+      
+      - name: Commit raw JHU CSV
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          repository: mmcalend/USMeaslesData
-          path: measles-pipeline
+          commit_message: "chore(data): refresh USMeaslesCases.csv"
+          file_pattern: "docs/data/USMeaslesCases.csv"
 
-      # Set up R to run the pipeline script
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
+
+      # Set up python to run the pipeline script
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
       # Install dependencies
-      - name: Install R dependencies
-        working-directory: measles-pipeline
-        run: |
-          Rscript -e 'install.packages(c("readr", "stringr", "dplyr", "tidyr", "MMWRweek", "jsonlite"))'
+      - name: Install dependencies
+        run: pip install requests
 
-      # Run the measles pipeline and move outputs to Pages site
+      # Run the measles pipeline 
       - name: Run measles pipeline
-        working-directory: measles-pipeline
-        run: |
-          Rscript daily_measles.R
-          mv YearlyComparison.json USMeaslesCases.csv ../docs/data/
+        run: python scripts/fetch_measles_data.py
 
-      # Commit the refreshed data back into Pages repo
-      - name: Commit updated CSVs
+      # Commit the refreshed data back into Pages site
+      - name: Commit updated CSV
         uses: EndBug/add-and-commit@v9
         with:
           author_name: github-actions
           author_email: github-actions@users.noreply.github.com
           message: "chore: update measles data"
-          add: |
-            docs/data/USMeaslesCases.csv
-            docs/data/YearlyComparison.json
+          add: docs/data/USMeaslesCases.csv
