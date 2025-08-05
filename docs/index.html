@@ -2,11 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>US Measles Time Series</title>
+  <title>US Measles Time Series (States Only)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Mapbox GL JS -->
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
+  <link
+    href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"
+    rel="stylesheet"
+  />
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
 
   <!-- PapaParse CSV parser -->
@@ -14,233 +17,376 @@
 
   <style>
     body { margin: 0; padding: 0; font-family: sans-serif; }
-    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-
-    /* Title bar */
-    #title {
+    #map { position: absolute; top: 0; bottom: 50px; width: 100%; }
+    #slider {
       position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,0.85);
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-size: 18px;
-      font-weight: bold;
-      z-index: 3;
-    }
-
-    /* Layer toggle buttons */
-    #layer-toggle {
-      position: absolute;
-      top: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,0.85);
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 14px;
-      z-index: 3;
-    }
-    #layer-toggle button {
-      margin: 0 4px;
-      padding: 4px 8px;
-      cursor: pointer;
-    }
-
-    /* Slider container */
-    #slider-container {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
+      bottom: 10px; left: 50%;
       transform: translateX(-50%);
       background: rgba(255,255,255,0.8);
-      padding: 6px 12px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 2;
+      padding: 5px 10px; border-radius: 3px;
     }
-    #slider { flex: 1; }
-    #date-label {
-      min-width: 60px;
-      text-align: center;
-      font-weight: bold;
-    }
+    #dateLabel { margin-left: 10px; font-weight: bold; }
+	
+  .legend {
+    position: absolute;
+    bottom: 90px;
+    left: 10px;
+    background: white;
+    padding: 8px;
+    font-family: sans-serif;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  }
+  
+  .legend-key {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .legend-item {
+    margin-bottom: 4px;
+    line-height: 20px;
+  }
+  
+  input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  width: 12px; height: 12px; margin-top: -4px;
+}
+input[type="range"]::-moz-range-track {
+  height: 4px;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 12px; height: 12px;
+}
 
-    /* Legend */
-    #legend {
-      position: absolute;
-      bottom: 100px;
-      left: 10px;
-      background: white;
-      padding: 8px;
-      font-size: 12px;
-      box-shadow: 0 0 4px rgba(0,0,0,0.3);
-      z-index: 2;
-    }
-    .legend-item { margin-bottom: 4px; display: flex; align-items: center; }
-    .legend-key { width: 16px; height: 16px; margin-right: 6px; border: 1px solid #ccc; }
   </style>
 </head>
 <body>
-
-<div id="title">Monthly Measles Cases</div>
-<div id="layer-toggle"></div>
-<div id="map"></div>
-
-<div id="slider-container">
-  <input id="slider" type="range" min="0" max="0" />
-  <span id="date-label"></span>
-  <button id="playPause">Pause</button>
+<div style="
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.85);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 999;
+">
+  Monthly Measles Cases by State
 </div>
 
-<div id="legend"></div>
+<div id="map"></div>
+<div id="slider" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.8);padding:5px 10px;border-radius:3px;display:flex;align-items:center;gap:8px;">
+  <!-- range input will pick up ticks from this datalist -->
+  <input 
+    id="dateSlider" 
+    type="range" 
+    min="0" 
+    max="0" 
+    list="monthTicks" 
+    style="flex:1;" />
+  <datalist id="monthTicks"></datalist>
+  
+  <!-- show the current month -->
+  <span id="dateLabel" style="min-width:60px;text-align:center;font-weight:bold;"></span>
 
+  <!-- play/pause control -->
+  <button id="playPause">Pause</button>
+
+</div>
+
+<div id="legend" class="legend"></div>
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
-const map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/light-v10',
-  center: [-98, 38],
-  zoom: 3
-});
-map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+  // Mapbox access
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
 
-// — Globals —
-let months = [], casesLookup = {}, countyByMonth = {};
-let stateData, countyData, currentMonthKey;
+  // Initialize map
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v10',
+    center: [-98, 38],
+    zoom: 3
+  });
 
-function norm(str) { return String(str||'').trim().toUpperCase(); }
+  map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
-// — Load & Aggregate Cases —
-async function loadCases() {
-  return new Promise((res, rej) => Papa.parse('data/USMeaslesCases.csv', {
-    download:true, header:true,
-    complete: ({data}) => {
-      data.forEach(r => {
-        if (!r.date) return;
-        const m = r.date.slice(0,7);
-        if (!months.includes(m)) months.push(m);
-        const key = `${norm(r.state)}_${m}`;
-        casesLookup[key] = (casesLookup[key]||0) + (+r.cases);
-        countyByMonth[m] = countyByMonth[m]||{};
-        countyByMonth[m][r.location_id] = (countyByMonth[m][r.location_id]||0) + (+r.cases);
+  // Globals
+  let months = [];
+  let casesLookup = {};
+  let stateData = null;
+  let aggTable = [];
+  let stateTrends = {};
+  const norm = s => {
+  const flat = Array.isArray(s) ? s.find(x => typeof x === 'string') : s;
+  const cleaned = String(flat ?? '').trim().toUpperCase();
+  console.log('Normalizing:', s);
+  console.log('Normalized Result:', cleaned);
+  return cleaned;
+};
+
+
+  
+  // 1) Load CSV, aggregate to months
+  function loadCases() {
+    return new Promise(resolve => {
+      Papa.parse('data/USMeaslesCases.csv', {
+        download: true,
+        header: true,
+        complete: ({ data }) => {
+          const agg = {};
+          data
+            .filter(r => r.date)
+            .forEach(r => {
+              const month = r.date.slice(0,7); // "YYYY-MM"
+              const key = `${norm(r.state)}_${month}`;
+              agg[key] = (agg[key] || 0) + Number(r.cases);
+            });
+          casesLookup = agg;
+          months = Array.from(
+            new Set(data.filter(r=>r.date).map(r=>r.date.slice(0,7)))
+          ).sort();
+          resolve();
+        }
       });
-      months.sort(); res();
-    }, error: rej
-  }));
-}
+    });
+  }
 
-// — Load GeoJSON —
-async function loadGeoJSON() {
-  [stateData, countyData] = await Promise.all([
-    fetch('data/us_states.geojson').then(r=>r.json()),
-    fetch('data/counties.geojson').then(r=>r.json())
-  ]);
-}
+  // 2) Fetch GeoJSON
+  async function loadStateGeoJSON() {
+    const res = await fetch('data/us_states.geojson');
+    if (!res.ok) throw new Error(`GeoJSON load failed: ${res.status}`);
+    stateData = await res.json();
+  }
 
-// — Popups —
-function showStatePopup(e) {
-  const p = e.features[0].properties;
-  new mapboxgl.Popup().setLngLat(e.lngLat)
-    .setHTML(`<strong>${p.NAME}</strong><br>${p.cases||0} cases`)
+  // 3) Add fill + outline layers and popup
+  function addStateLayer() {
+    map.addSource('states', { type: 'geojson', data: stateData });
+    map.addLayer({
+      id: 'state-fills',
+      type: 'fill',
+      source: 'states',
+      paint: {
+        'fill-color': [
+          'interpolate', ['linear'],
+          ['coalesce', ['get','cases'], 0],
+          0,  '#ffffff',
+          1,  '#deebf7',
+          50, '#9ecae1',
+          100,'#6baed6',
+          500,'#08519c'
+        ],
+        'fill-opacity': 0.8
+      }
+    });
+
+    // Show pointer on hover
+    map.on('mouseenter', 'state-fills', () => {
+      map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'state-fills', () => {
+      map.getCanvas().style.cursor = '';
+    });
+
+    // Mini SVG trend chart
+    function generateTrendSVG(monthlyData) {
+      const sortedMonths = months.slice();
+      const values = sortedMonths.map(m => monthlyData[m] !== undefined ? monthlyData[m] : 0);
+      const width = 100, height = 40;
+      const max = Math.max(...values, 1);
+      const points = values.map((val, i) => {
+        const x = (i / (values.length - 1 || 1)) * width;
+        const y = height - (val / max) * height;
+        return `${x},${y}`;
+      }).join(' ');
+      return `
+        <svg width="${width}" height="${height}">
+          <polyline points="${points}" stroke="#0074D9" stroke-width="2" fill="none" />
+        </svg>
+      `;
+    }
+
+    // Popups
+    map.on('click', 'state-fills', e => {
+    const feature = e.features[0];
+
+    // Flatten any stray array structure (even if accidentally nested)
+    const rawState = feature.properties.ste_name;
+    const state = norm(rawState);
+    const month = document.getElementById('dateLabel').textContent;
+    const key = `${state}_${month}`;
+    const cases = casesLookup[key] ?? 'No data';
+	const trends   = stateTrends[state]  || {};        // monthly counts
+	//generate inline sparkline SVG
+    const trendSVG = generateTrendSVG(trends);
+
+    console.log('Raw State:', rawState);
+	console.log('Constructed Key:', key);
+    console.log('Cases:', cases);
+    console.log('Normalized State:', norm(rawState));
+
+    new mapboxgl.Popup()
+     .setLngLat(e.lngLat)
+     .setHTML(`
+       <div><strong>${rawState}</strong><br>
+      ${month}<br>
+       Cases: ${cases}</div>
+	   <div style="margin-top:4px;">${trendSVG}</div>
+    `)
     .addTo(map);
-}
-function showCountyPopup(e) {
-  const f = e.features[0];
-  const p = f.properties;
-  const c = f.state?.cases||p.cases||0;
-  new mapboxgl.Popup().setLngLat(e.lngLat)
-    .setHTML(`<strong>${p.NAME}, ${p.STATE_NAME}</strong><br>${c} cases`)
-    .addTo(map);
-}
+    });
 
-// — Update Layers —
-function updateState(month) {
-  stateData.features.forEach(f => {
-    const key = `${norm(f.properties.STATE_NAME)}_${month}`;
-    f.properties.cases = casesLookup[key]||0;
+    map.addLayer({
+      id: 'state-outline',
+      type: 'line',
+      source: 'states',
+      paint: { 'line-color': '#666', 'line-width': 0.8 }
+    });
+  }
+
+  // 4) Update features for a given month
+  function updateMap(month) {
+    stateData.features.forEach(f => {
+      const key = `${norm(f.properties.ste_name)}_${month}`;
+      f.properties.cases = casesLookup[key] || 0;
+    });
+    map.getSource('states').setData(stateData);
+  }
+
+  // 5) Slider wiring
+  function initSlider() {
+    const slider = document.getElementById('dateSlider');
+    const label  = document.getElementById('dateLabel');
+    slider.min   = 0;
+    slider.max   = months.length - 1;
+    slider.oninput = e => {
+      const idx = Number(e.target.value);
+      const m   = months[idx];
+      document.getElementById('dateLabel').textContent = m;
+      updateMap(m);
+    };
+  }
+
+  // 6) Build legend
+  function addLegend() {
+    const legend = document.getElementById('legend');
+    const title = document.createElement('div');
+    title.textContent = 'Cases';
+    title.style.fontWeight = 'bold';
+    title.style.marginBottom = '6px';
+    legend.appendChild(title);
+    const breaks = ['0', '1–49', '50–99', '100–499', '500+'];
+    const colors = ['#ffffff', '#deebf7', '#9ecae1', '#6baed6', '#08519c'];
+    breaks.forEach((b,i) => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      const key = document.createElement('span');
+      key.className = 'legend-key';
+      key.style.backgroundColor = colors[i];
+      item.appendChild(key);
+      item.appendChild(document.createTextNode(b));
+      legend.appendChild(item);
+    });
+  }
+
+  // 7) Boot
+  map.on('load', async () => {
+    // load data
+    await Promise.all([loadCases(), loadStateGeoJSON()]);
+
+    // prime for the very first month
+    stateData.features.forEach(f => {
+    const v = f.properties.ste_name;
+    if (Array.isArray(v) && typeof v[0] === 'string') {
+    f.properties.ste_name = v[0];
+    }
   });
-  map.getSource('states').setData(stateData);
-}
-function updateCounty(month) {
-  map.querySourceFeatures('counties').forEach(f =>
-    map.setFeatureState({source:'counties',id:f.id},{cases:0})
-  );
-  Object.entries(countyByMonth[month]||{}).forEach(([id,c]) =>
-    map.setFeatureState({source:'counties',id},{cases:c})
-  );
-}
-function updateAll(month) {
-  updateState(month);
-  updateCounty(month);
-}
 
-// — UI Controls —
-function addToggle() {
-  const div = document.getElementById('layer-toggle');
-  div.innerHTML = '<button id="btnStates">States</button><button id="btnCounties">Counties</button>';
-  document.getElementById('btnStates').onclick = () => {
-    map.setLayoutProperty('state-fills','visibility','visible');
-    map.setLayoutProperty('state-outline','visibility','visible');
-    map.setLayoutProperty('county-fills','visibility','none');
-    map.setLayoutProperty('county-outline','visibility','none');
-  };
-  document.getElementById('btnCounties').onclick = () => {
-    map.setLayoutProperty('state-fills','visibility','none');
-    map.setLayoutProperty('state-outline','visibility','none');
-    map.setLayoutProperty('county-fills','visibility','visible');
-    map.setLayoutProperty('county-outline','visibility','visible');
-  };
-}
+    //  A) Populate the datalist with month ticks
+    const tickList = document.getElementById('monthTicks');
+    months.forEach((m, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.label = m;
+      tickList.appendChild(opt);
+    });
 
-function initSlider() {
-  const s = document.getElementById('slider'), lbl = document.getElementById('date-label');
-  s.min=0; s.max=months.length-1; s.value=0;
-  months.forEach((m,i)=> {
-    const opt = document.createElement('option'); opt.value=i; opt.label=m;
-    document.getElementById('slider').appendChild(opt);
+    //  B) Update slider max to match number of months
+    const slider = document.getElementById('dateSlider');
+    slider.max = months.length - 1;
+
+    //  C) Set up play/pause & autoplay variables
+    let playing     = true;
+    const playPause = document.getElementById('playPause');
+    const pace       = 2000;
+    let intervalId;
+
+    // advance function
+    function stepForward() {
+      let idx = Number(slider.value);
+      idx = (idx + 1) % months.length;
+      slider.value = idx;
+      const m = months[idx];
+      document.getElementById('dateLabel').textContent = m;
+      updateMap(m);
+    }
+
+    // start autoplay
+    intervalId = setInterval(stepForward, pace);
+
+    // toggle play/pause on button click
+    playPause.addEventListener('click', () => {
+      if (playing) {
+        clearInterval(intervalId);
+        playPause.textContent = 'Play';
+      } else {
+        intervalId = setInterval(stepForward, pace);
+        playPause.textContent = 'Pause';
+      }
+      playing = !playing;
+    });
+
+    // Build aggTable and stateTrends for popups
+    aggTable = Object.entries(casesLookup).map(([key, value]) => {
+      const [state, month] = key.split('_');
+      return { State: state, Month: month, Cases: value };
+    }).sort((a, b) => b.Cases - a.Cases);
+
+    stateTrends = {};
+    aggTable.forEach(row => {
+      if (!stateTrends[row.State]) stateTrends[row.State] = {};
+      stateTrends[row.State][row.Month] = row.Cases;
+    });
+
+    // add everything
+    addStateLayer();
+    initSlider();
+    addLegend();
+    updateMap(firstMonth);
+
+    // sync slider UI
+    document.getElementById('dateSlider').value      = 0;
+    document.getElementById('dateLabel').textContent = firstMonth;
+
+    // ---- Console Inspection (optional) ----
+    // console.table(aggTable);
+    // const monthlyTotals = months.map(month => {
+    //   const total = aggTable
+    //     .filter(row => row.Month === month)
+    //     .reduce((sum, row) => sum + row.Cases, 0);
+    //   return { Month: month, TotalCases: total };
+    // });
+    // console.table(monthlyTotals);
+    // ---- END Console Inspection ----
+
   });
-  s.oninput = () => {
-    const m = months[+s.value]; lbl.textContent=m;
-    updateAll(m);
-  };
-}
-
-function buildLegend() {
-  const breaks=[0,5,20,50,100], cols=['#f7fbff','#deebf7','#9ecae1','#3182bd','#08519c'];
-  const lg = document.getElementById('legend'); lg.innerHTML='<strong>Cases</strong><br>';
-  breaks.forEach((b,i)=>{
-    const end = i<breaks.length-1?breaks[i+1]-1:'+';
-    const row=document.createElement('div'); row.className='legend-item';
-    row.innerHTML = `<span class='legend-key' style='background:${cols[i]}'></span> ${b}${end}`;
-    lg.appendChild(row);
-  });
-}
-
-map.on('load', async () => {
-  await loadCases(); await loadGeoJSON();
-  map.addSource('states',{type:'geojson',data:stateData});
-  map.addLayer({id:'state-fills',type:'fill',source:'states',paint:{
-    'fill-color':['interpolate',['linear'],['get','cases'],0,'#f7fbff',5,'#deebf7',20,'#9ecae1',50,'#3182bd',100,'#08519c'],
-    'fill-opacity':0.7
-  }});
-  map.addLayer({id:'state-outline',type:'line',source:'states',paint:{'line-color':'#fff','line-width':0.5}});
-  map.addSource('counties',{type:'geojson',data:countyData,promoteId:'GEOID'});
-  map.addLayer({id:'county-fills',type:'fill',source:'counties',layout:{visibility:'none'},paint:{
-    'fill-color':['interpolate',['linear'],['coalesce',['feature-state','cases'],0],0,'#f7fbff',5,'#deebf7',20,'#9ecae1',50,'#3182bd',100,'#08519c'],
-    'fill-opacity':0.7
-  }});
-  map.addLayer({id:'county-outline',type:'line',source:'counties',layout:{visibility:'none'},paint:{'line-color':'#fff','line-width':0.5}});
-  map.on('click','state-fills',showStatePopup);
-  map.on('click','county-fills',showCountyPopup);
-  addToggle(); initSlider(); buildLegend();
-  document.getElementById('date-label').textContent = months[0];
-  currentMonthKey = months[0]; updateAll(currentMonthKey);
-});
 </script>
+
 
 </body>
 </html>
