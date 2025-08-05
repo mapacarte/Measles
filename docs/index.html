@@ -116,277 +116,195 @@ input[type="range"]::-moz-range-thumb {
 
   map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
-  // Globals
-  let months = [];
-  let casesLookup = {};
-  let stateData = null;
-  let aggTable = [];
-  let stateTrends = {};
-  const norm = s => {
-  const flat = Array.isArray(s) ? s.find(x => typeof x === 'string') : s;
-  const cleaned = String(flat ?? '').trim().toUpperCase();
-  console.log('Normalizing:', s);
-  console.log('Normalized Result:', cleaned);
-  return cleaned;
-};
+ // measles_map.js: Interactive Measles Choropleth by State and County
 
+// ————————————————————— Globals —————————————————————
+let map;
+let months = [];
+let casesLookup = {};
+let countyByMonth = {};
+let stateData = null;
+let countyData = null;
+let currentMonthKey;
 
-  
-  // 1) Load CSV, aggregate to months
-  function loadCases() {
-    return new Promise(resolve => {
-      Papa.parse('data/USMeaslesCases.csv', {
-        download: true,
-        header: true,
-        complete: ({ data }) => {
-          const agg = {};
-          data
-            .filter(r => r.date)
-            .forEach(r => {
-              const month = r.date.slice(0,7); // "YYYY-MM"
-              const key = `${norm(r.state)}_${month}`;
-              agg[key] = (agg[key] || 0) + Number(r.cases);
-            });
-          casesLookup = agg;
-          months = Array.from(
-            new Set(data.filter(r=>r.date).map(r=>r.date.slice(0,7)))
-          ).sort();
-          resolve();
-        }
-      });
+// Normalize string to uppercase, trimmed
+function norm(str) {
+  return String(str || '').trim().toUpperCase();
+}
+
+// ————————————————————— Load and Aggregate Cases —————————————————————
+async function loadCases() {
+  return new Promise((resolve, reject) => {
+    Papa.parse('data/USMeaslesCases.csv', {
+      download: true,
+      header: true,
+      complete: results => {
+        const data = results.data;
+        data.forEach(r => {
+          if (!r.date) return;
+          const m = r.date.slice(0,7);             // "YYYY-MM"
+          if (!months.includes(m)) months.push(m);
+
+          // State-level lookup: STATE_NAME_MM
+          const stKey = `${norm(r.state)}_${m}`;
+          casesLookup[stKey] = (casesLookup[stKey] || 0) + (+r.cases);
+
+          // County-level lookup: FIPS
+          countyByMonth[m] = countyByMonth[m] || {};
+          const fips = r.location_id;
+          countyByMonth[m][fips] = (countyByMonth[m][fips] || 0) + (+r.cases);
+        });
+        months.sort();
+        resolve();
+      },
+      error: err => reject(err)
     });
-  }
+  });
+}
 
-  // 2) Fetch GeoJSON
-  async function loadStateGeoJSON() {
-    const res = await fetch('data/us_states.geojson');
-    if (!res.ok) throw new Error(`GeoJSON load failed: ${res.status}`);
-    stateData = await res.json();
-  }
+// ————————————————————— Load GeoJSON for States & Counties —————————————————————
+async function loadGeoJSON() {
+  const [s, c] = await Promise.all([
+    fetch('data/us_states.geojson').then(r => r.json()),
+    fetch('docs/counties.geojson').then(r => r.json())
+  ]);
+  stateData = s;
+  countyData = c;
+}
 
-  // 3) Add fill + outline layers and popup
-  function addStateLayer() {
-    map.addSource('states', { type: 'geojson', data: stateData });
-    map.addLayer({
-      id: 'state-fills',
-      type: 'fill',
-      source: 'states',
-      paint: {
-        'fill-color': [
-          'interpolate', ['linear'],
-          ['coalesce', ['get','cases'], 0],
-          0,  '#ffffff',
-          1,  '#deebf7',
-          50, '#9ecae1',
-          100,'#6baed6',
-          500,'#08519c'
-        ],
-        'fill-opacity': 0.8
-      }
-    });
-
-    // Show pointer on hover
-    map.on('mouseenter', 'state-fills', () => {
-      map.getCanvas().style.cursor = 'pointer';
-    });
-    map.on('mouseleave', 'state-fills', () => {
-      map.getCanvas().style.cursor = '';
-    });
-
-    // Mini SVG trend chart
-    function generateTrendSVG(monthlyData) {
-      const sortedMonths = months.slice();
-      const values = sortedMonths.map(m => monthlyData[m] !== undefined ? monthlyData[m] : 0);
-      const width = 100, height = 40;
-      const max = Math.max(...values, 1);
-      const points = values.map((val, i) => {
-        const x = (i / (values.length - 1 || 1)) * width;
-        const y = height - (val / max) * height;
-        return `${x},${y}`;
-      }).join(' ');
-      return `
-        <svg width="${width}" height="${height}">
-          <polyline points="${points}" stroke="#0074D9" stroke-width="2" fill="none" />
-        </svg>
-      `;
-    }
-
-    // Popups
-    map.on('click', 'state-fills', e => {
-    const feature = e.features[0];
-
-    // Flatten any stray array structure (even if accidentally nested)
-    const rawState = feature.properties.ste_name;
-    const state = norm(rawState);
-    const month = document.getElementById('dateLabel').textContent;
-    const key = `${state}_${month}`;
-    const cases = casesLookup[key] ?? 'No data';
-	const trends   = stateTrends[state]  || {};        // monthly counts
-	//generate inline sparkline SVG
-    const trendSVG = generateTrendSVG(trends);
-
-    console.log('Raw State:', rawState);
-	console.log('Constructed Key:', key);
-    console.log('Cases:', cases);
-    console.log('Normalized State:', norm(rawState));
-
-    new mapboxgl.Popup()
-     .setLngLat(e.lngLat)
-     .setHTML(`
-       <div><strong>${rawState}</strong><br>
-      ${month}<br>
-       Cases: ${cases}</div>
-	   <div style="margin-top:4px;">${trendSVG}</div>
-    `)
+// ————————————————————— Popup Handlers —————————————————————
+function showStatePopup(e) {
+  const props = e.features[0].properties;
+  const cases = props.cases || 0;
+  new mapboxgl.Popup()
+    .setLngLat(e.lngLat)
+    .setHTML(`<strong>${props.NAME}</strong><br>${cases} case${cases===1?'':'s'}`)
     .addTo(map);
-    });
+}
 
-    map.addLayer({
-      id: 'state-outline',
-      type: 'line',
-      source: 'states',
-      paint: { 'line-color': '#666', 'line-width': 0.8 }
-    });
-  }
+function showCountyPopup(e) {
+  const props = e.features[0].properties;
+  const stateCases = e.features[0].state?.cases;
+  const cases = props.cases || stateCases || 0;
+  new mapboxgl.Popup()
+    .setLngLat(e.lngLat)
+    .setHTML(`<strong>${props.NAME}, ${props.STATE_NAME}</strong><br>${cases} case${cases===1?'':'s'}`)
+    .addTo(map);
+}
 
-  // 4) Update features for a given month
-  function updateMap(month) {
-    stateData.features.forEach(f => {
-      const key = `${norm(f.properties.ste_name)}_${month}`;
-      f.properties.cases = casesLookup[key] || 0;
-    });
-    map.getSource('states').setData(stateData);
-  }
+// ————————————————————— Update Functions —————————————————————
+function updateStateMap(monthKey) {
+  stateData.features.forEach(f => {
+    const key = `${norm(f.properties.STATE_NAME)}_${monthKey}`;
+    f.properties.cases = casesLookup[key] || 0;
+  });
+  map.getSource('states').setData(stateData);
+}
 
-  // 5) Slider wiring
-  function initSlider() {
-    const slider = document.getElementById('dateSlider');
-    const label  = document.getElementById('dateLabel');
-    slider.min   = 0;
-    slider.max   = months.length - 1;
-    slider.oninput = e => {
-      const idx = Number(e.target.value);
-      const m   = months[idx];
-      document.getElementById('dateLabel').textContent = m;
-      updateMap(m);
-    };
-  }
+function updateCountyMap(monthKey) {
+  // Reset all feature-state cases to zero
+  map.querySourceFeatures('counties').forEach(f => {
+    map.setFeatureState({ source: 'counties', id: f.id }, { cases: 0 });
+  });
+  // Set actual counts for this month
+  const counts = countyByMonth[monthKey] || {};
+  Object.entries(counts).forEach(([geoid, count]) => {
+    map.setFeatureState({ source: 'counties', id: geoid }, { cases: count });
+  });
+}
 
-  // 6) Build legend
-  function addLegend() {
-    const legend = document.getElementById('legend');
-    const title = document.createElement('div');
-    title.textContent = 'Cases';
-    title.style.fontWeight = 'bold';
-    title.style.marginBottom = '6px';
-    legend.appendChild(title);
-    const breaks = ['0', '1–49', '50–99', '100–499', '500+'];
-    const colors = ['#ffffff', '#deebf7', '#9ecae1', '#6baed6', '#08519c'];
-    breaks.forEach((b,i) => {
-      const item = document.createElement('div');
-      item.className = 'legend-item';
-      const key = document.createElement('span');
-      key.className = 'legend-key';
-      key.style.backgroundColor = colors[i];
-      item.appendChild(key);
-      item.appendChild(document.createTextNode(b));
-      legend.appendChild(item);
-    });
-  }
+function updateLayers(monthKey) {
+  updateStateMap(monthKey);
+  updateCountyMap(monthKey);
+}
 
-  // 7) Boot
-  map.on('load', async () => {
-    // load data
-    await Promise.all([loadCases(), loadStateGeoJSON()]);
+// ————————————————————— Initialize Slider Control —————————————————————
+function initSlider() {
+  const slider = document.getElementById('slider');
+  const label  = document.getElementById('date-label');
+  slider.setAttribute('min', 0);
+  slider.setAttribute('max', months.length - 1);
+  slider.setAttribute('value', 0);
+  slider.addEventListener('input', e => {
+    const idx = +e.target.value;
+    currentMonthKey = months[idx];
+    label.textContent = currentMonthKey;
+    updateLayers(currentMonthKey);
+  });
+}
 
-    // prime for the very first month
-    stateData.features.forEach(f => {
-    const v = f.properties.ste_name;
-    if (Array.isArray(v) && typeof v[0] === 'string') {
-    f.properties.ste_name = v[0];
+// ————————————————————— Map Initialization & Bootstrapping —————————————————————
+mapboxgl.accessToken = 'YOUR_MAPBOX_TOKEN';
+map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: [-98, 38],
+  zoom: 3
+});
+
+map.on('load', async () => {
+  await loadCases();
+  await loadGeoJSON();
+
+  // Add State Source & Layers
+  map.addSource('states', { type: 'geojson', data: stateData });
+  map.addLayer({
+    id: 'state-fills',
+    type: 'fill',
+    source: 'states',
+    paint: {
+      'fill-color': [
+        'interpolate',['linear'],['get','cases'],
+        0,'#f7fbff', 5,'#deebf7', 20,'#9ecae1', 50,'#3182bd', 100,'#08519c'
+      ],
+      'fill-opacity': 0.7
     }
   });
-
-    //  A) Populate the datalist with month ticks
-    const tickList = document.getElementById('monthTicks');
-    months.forEach((m, i) => {
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.label = m;
-      tickList.appendChild(opt);
-    });
-
-    //  B) Update slider max to match number of months
-    const slider = document.getElementById('dateSlider');
-    slider.max = months.length - 1;
-
-    //  C) Set up play/pause & autoplay variables
-    let playing     = true;
-    const playPause = document.getElementById('playPause');
-    const pace       = 2000;
-    let intervalId;
-
-    // advance function
-    function stepForward() {
-      let idx = Number(slider.value);
-      idx = (idx + 1) % months.length;
-      slider.value = idx;
-      const m = months[idx];
-      document.getElementById('dateLabel').textContent = m;
-      updateMap(m);
-    }
-
-    // start autoplay
-    intervalId = setInterval(stepForward, pace);
-
-    // toggle play/pause on button click
-    playPause.addEventListener('click', () => {
-      if (playing) {
-        clearInterval(intervalId);
-        playPause.textContent = 'Play';
-      } else {
-        intervalId = setInterval(stepForward, pace);
-        playPause.textContent = 'Pause';
-      }
-      playing = !playing;
-    });
-
-    // Build aggTable and stateTrends for popups
-    aggTable = Object.entries(casesLookup).map(([key, value]) => {
-      const [state, month] = key.split('_');
-      return { State: state, Month: month, Cases: value };
-    }).sort((a, b) => b.Cases - a.Cases);
-
-    stateTrends = {};
-    aggTable.forEach(row => {
-      if (!stateTrends[row.State]) stateTrends[row.State] = {};
-      stateTrends[row.State][row.Month] = row.Cases;
-    });
-
-    // add everything
-    addStateLayer();
-    initSlider();
-    addLegend();
-    updateMap(firstMonth);
-
-    // sync slider UI
-    document.getElementById('dateSlider').value      = 0;
-    document.getElementById('dateLabel').textContent = firstMonth;
-
-    // ---- Console Inspection (optional) ----
-    // console.table(aggTable);
-    // const monthlyTotals = months.map(month => {
-    //   const total = aggTable
-    //     .filter(row => row.Month === month)
-    //     .reduce((sum, row) => sum + row.Cases, 0);
-    //   return { Month: month, TotalCases: total };
-    // });
-    // console.table(monthlyTotals);
-    // ---- END Console Inspection ----
-
+  map.addLayer({
+    id: 'state-outline',
+    type: 'line',
+    source: 'states',
+    paint: { 'line-color':'#fff','line-width':0.5 }
   });
+
+  // Add County Source & Layers (with promoteId)
+  map.addSource('counties', {
+    type: 'geojson',
+    data: countyData,
+    promoteId: 'GEOID'
+  });
+  map.addLayer({
+    id: 'county-fills',
+    type: 'fill',
+    source: 'counties',
+    paint: {
+      'fill-color': [
+        'interpolate',['linear'], ['coalesce',['feature-state','cases'],0],
+        0,'#f7fbff', 5,'#deebf7', 20,'#9ecae1', 50,'#3182bd', 100,'#08519c'
+      ],
+      'fill-opacity': 0.7
+    }
+  });
+  map.addLayer({
+    id: 'county-outline',
+    type: 'line',
+    source: 'counties',
+    paint: { 'line-color':'#fff','line-width':0.5 }
+  });
+
+  // Popups
+  map.on('click', 'state-fills', showStatePopup);
+  map.on('click', 'county-fills', showCountyPopup);
+
+  // UI Controls
+  initSlider();
+  document.getElementById('date-label').textContent = months[0];
+  currentMonthKey = months[0];
+  updateLayers(currentMonthKey);
+});
 </script>
 
 
 </body>
 </html>
+
