@@ -2,14 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>US Measles Time Series (States Only)</title>
+  <title>US Measles Time Series</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Mapbox GL JS -->
-  <link
-    href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"
-    rel="stylesheet"
-  />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
 
   <!-- PapaParse CSV parser -->
@@ -17,106 +14,86 @@
 
   <style>
     body { margin: 0; padding: 0; font-family: sans-serif; }
-    #map { position: absolute; top: 0; bottom: 50px; width: 100%; }
-    #slider {
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    #slider-container {
       position: absolute;
-      bottom: 10px; left: 50%;
+      bottom: 10px;
+      left: 50%;
       transform: translateX(-50%);
       background: rgba(255,255,255,0.8);
-      padding: 5px 10px; border-radius: 3px;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1;
     }
-    #dateLabel { margin-left: 10px; font-weight: bold; }
-	
-  .legend {
-    position: absolute;
-    bottom: 90px;
-    left: 10px;
-    background: white;
-    padding: 8px;
-    font-family: sans-serif;
-    box-shadow: 0 0 4px rgba(0,0,0,0.3);
-  }
-  
-  .legend-key {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-    vertical-align: middle;
-  }
-  .legend-item {
-    margin-bottom: 4px;
-    line-height: 20px;
-  }
-  
-  input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
-}
-input[type="range"]::-webkit-slider-thumb {
-  width: 12px; height: 12px; margin-top: -4px;
-}
-input[type="range"]::-moz-range-track {
-  height: 4px;
-}
-input[type="range"]::-moz-range-thumb {
-  width: 12px; height: 12px;
-}
-
+    #slider-container input[type="range"] {
+      flex: 1;
+    }
+    #date-label {
+      min-width: 60px;
+      text-align: center;
+      font-weight: bold;
+    }
+    #layer-toggle {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.85);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+    #legend {
+      position: absolute;
+      bottom: 90px;
+      left: 10px;
+      background: white;
+      padding: 8px;
+      font-family: sans-serif;
+      box-shadow: 0 0 4px rgba(0,0,0,0.3);
+      z-index: 1;
+    }
+    .legend-key {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+    .legend-item { margin-bottom: 4px; line-height: 20px; }
   </style>
 </head>
 <body>
-<div style="
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255,255,255,0.85);
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 18px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  z-index: 999;
-">
-  Monthly Measles Cases by State
-</div>
 
+<div id="layer-toggle"></div>
 <div id="map"></div>
-<div id="slider" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.8);padding:5px 10px;border-radius:3px;display:flex;align-items:center;gap:8px;">
-  <!-- range input will pick up ticks from this datalist -->
-  <input 
-    id="dateSlider" 
-    type="range" 
-    min="0" 
-    max="0" 
-    list="monthTicks" 
-    style="flex:1;" />
+
+<div id="slider-container">
+  <input id="slider" type="range" min="0" max="0" list="monthTicks" />
   <datalist id="monthTicks"></datalist>
-  
-  <!-- show the current month -->
-  <span id="dateLabel" style="min-width:60px;text-align:center;font-weight:bold;"></span>
-
-  <!-- play/pause control -->
+  <span id="date-label"></span>
   <button id="playPause">Pause</button>
-
 </div>
 
 <div id="legend" class="legend"></div>
+
 <script>
-  // Mapbox access
-  mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWg4aW11YiJ9.HdgP-3PazrYIUhRAmc-b5w';
+// measles_map.js: Interactive Measles Choropleth by State and County
 
-  // Initialize map
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/light-v10',
-    center: [-98, 38],
-    zoom: 3
-  });
-
-  map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-
- // measles_map.js: Interactive Measles Choropleth by State and County
+mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWdheWxvcmQiLCJhIjoiY21kN3NpZ2JkMG4zZDJpcG5pbWluZSJ9.HdgP-3PazrYIUhRAmc-b5w';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: [-98, 38],
+  zoom: 3
+});
+map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
 // ————————————————————— Globals —————————————————————
 let months = [];
@@ -138,25 +115,19 @@ async function loadCases() {
       download: true,
       header: true,
       complete: results => {
-        const data = results.data;
-        data.forEach(r => {
+        results.data.forEach(r => {
           if (!r.date) return;
-          const m = r.date.slice(0,7);             // "YYYY-MM"
+          const m = r.date.slice(0,7);
           if (!months.includes(m)) months.push(m);
-
-          // State-level lookup: STATE_NAME_MM
           const stKey = `${norm(r.state)}_${m}`;
           casesLookup[stKey] = (casesLookup[stKey] || 0) + (+r.cases);
-
-          // County-level lookup: FIPS
           countyByMonth[m] = countyByMonth[m] || {};
           const fips = r.location_id;
           countyByMonth[m][fips] = (countyByMonth[m][fips] || 0) + (+r.cases);
         });
         months.sort();
         resolve();
-      },
-      error: err => reject(err)
+      }, error: err => reject(err)
     });
   });
 }
@@ -165,7 +136,7 @@ async function loadCases() {
 async function loadGeoJSON() {
   const [s, c] = await Promise.all([
     fetch('data/us_states.geojson').then(r => r.json()),
-    fetch('data/counties.geojson').then(r => r.json())
+    fetch('docs/counties.geojson').then(r => r.json())
   ]);
   stateData = s;
   countyData = c;
@@ -175,18 +146,14 @@ async function loadGeoJSON() {
 function showStatePopup(e) {
   const props = e.features[0].properties;
   const cases = props.cases || 0;
-  new mapboxgl.Popup()
-    .setLngLat(e.lngLat)
+  new mapboxgl.Popup().setLngLat(e.lngLat)
     .setHTML(`<strong>${props.NAME}</strong><br>${cases} case${cases===1?'':'s'}`)
     .addTo(map);
 }
-
 function showCountyPopup(e) {
   const props = e.features[0].properties;
-  const stateCases = e.features[0].state?.cases;
-  const cases = props.cases || stateCases || 0;
-  new mapboxgl.Popup()
-    .setLngLat(e.lngLat)
+  const cases = e.features[0].state?.cases || props.cases || 0;
+  new mapboxgl.Popup().setLngLat(e.lngLat)
     .setHTML(`<strong>${props.NAME}, ${props.STATE_NAME}</strong><br>${cases} case${cases===1?'':'s'}`)
     .addTo(map);
 }
@@ -199,104 +166,85 @@ function updateStateMap(monthKey) {
   });
   map.getSource('states').setData(stateData);
 }
-
 function updateCountyMap(monthKey) {
-  // Reset all feature-state cases to zero
   map.querySourceFeatures('counties').forEach(f => {
     map.setFeatureState({ source: 'counties', id: f.id }, { cases: 0 });
   });
-  // Set actual counts for this month
   const counts = countyByMonth[monthKey] || {};
   Object.entries(counts).forEach(([geoid, count]) => {
     map.setFeatureState({ source: 'counties', id: geoid }, { cases: count });
   });
 }
-
 function updateLayers(monthKey) {
   updateStateMap(monthKey);
   updateCountyMap(monthKey);
 }
 
+// ————————————————————— Layer Toggle Control —————————————————————
+function addLayerToggle() {
+  const container = document.getElementById('layer-toggle');
+  container.innerHTML = `
+    <button id="btn-states">States</button>
+    <button id="btn-counties">Counties</button>
+  `;
+  document.getElementById('btn-states').addEventListener('click', () => {
+    map.setLayoutProperty('state-fills','visibility','visible');
+    map.setLayoutProperty('state-outline','visibility','visible');
+    map.setLayoutProperty('county-fills','visibility','none');
+    map.setLayoutProperty('county-outline','visibility','none');
+  });
+  document.getElementById('btn-counties').addEventListener('click', () => {
+    map.setLayoutProperty('state-fills','visibility','none');
+    map.setLayoutProperty('state-outline','visibility','none');
+    map.setLayoutProperty('county-fills','visibility','visible');
+    map.setLayoutProperty('county-outline','visibility','visible');
+  });
+}
+
 // ————————————————————— Initialize Slider Control —————————————————————
 function initSlider() {
   const slider = document.getElementById('slider');
-  const label  = document.getElementById('dateLabel');
-  slider.setAttribute('min', 0);
-  slider.setAttribute('max', months.length - 1);
-  slider.setAttribute('value', 0);
+  const label  = document.getElementById('date-label');
+  slider.min = 0;
+  slider.max = months.length - 1;
+  slider.value = 0;
   slider.addEventListener('input', e => {
-    const idx = +e.target.value;
-    currentMonthKey = months[idx];
+    currentMonthKey = months[+e.target.value];
     label.textContent = currentMonthKey;
     updateLayers(currentMonthKey);
   });
 }
 
-
 map.on('load', async () => {
   await loadCases();
   await loadGeoJSON();
 
-  // Add State Source & Layers
-  map.addSource('states', { type: 'geojson', data: stateData });
-  map.addLayer({
-    id: 'state-fills',
-    type: 'fill',
-    source: 'states',
-    paint: {
-      'fill-color': [
-        'interpolate',['linear'],['get','cases'],
-        0,'#f7fbff', 5,'#deebf7', 20,'#9ecae1', 50,'#3182bd', 100,'#08519c'
-      ],
-      'fill-opacity': 0.7
-    }
-  });
-  map.addLayer({
-    id: 'state-outline',
-    type: 'line',
-    source: 'states',
-    paint: { 'line-color':'#fff','line-width':0.5 }
-  });
-
-  // Add County Source & Layers (with promoteId)
-  map.addSource('counties', {
-    type: 'geojson',
-    data: countyData,
-    promoteId: 'GEOID'
-  });
-  map.addLayer({
-    id: 'county-fills',
-    type: 'fill',
-    source: 'counties',
-    paint: {
-      'fill-color': [
-        'interpolate',['linear'], ['coalesce',['feature-state','cases'],0],
-        0,'#f7fbff', 5,'#deebf7', 20,'#9ecae1', 50,'#3182bd', 100,'#08519c'
-      ],
-      'fill-opacity': 0.7
-    }
-  });
-  map.addLayer({
-    id: 'county-outline',
-    type: 'line',
-    source: 'counties',
-    paint: { 'line-color':'#fff','line-width':0.5 }
-  });
+  // Add sources and layers
+  map.addSource('states',{type:'geojson',data:stateData});
+  map.addLayer({id:'state-fills',type:'fill',source:'states',paint:{
+    'fill-color':['interpolate',['linear'],['get','cases'],0,'#f7fbff',5,'#deebf7',20,'#9ecae1',50,'#3182bd',100,'#08519c'],
+    'fill-opacity':0.7
+  }});
+  map.addLayer({id:'state-outline',type:'line',source:'states',paint:{'line-color':'#fff','line-width':0.5}});
+  map.addSource('counties',{type:'geojson',data:countyData,promoteId:'GEOID'});
+  map.addLayer({id:'county-fills',type:'fill',source:'counties',layout:{visibility:'none'},paint:{
+    'fill-color':['interpolate',['linear'],['coalesce',['feature-state','cases'],0],0,'#f7fbff',5,'#deebf7',20,'#9ecae1',50,'#3182bd',100,'#08519c'],
+    'fill-opacity':0.7
+  }});
+  map.addLayer({id:'county-outline',type:'line',source:'counties',layout:{visibility:'none'},paint:{'line-color':'#fff','line-width':0.5}});
 
   // Popups
-  map.on('click', 'state-fills', showStatePopup);
-  map.on('click', 'county-fills', showCountyPopup);
+  map.on('click','state-fills',showStatePopup);
+  map.on('click','county-fills',showCountyPopup);
 
   // UI Controls
   initSlider();
-  document.getElementById('dateLabel').textContent = months[0];
+  addLayerToggle();
+  document.getElementById('date-label').textContent = months[0];
   currentMonthKey = months[0];
   updateLayers(currentMonthKey);
 });
 </script>
 
-
 </body>
 </html>
-
-
