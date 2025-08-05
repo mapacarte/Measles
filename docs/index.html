@@ -221,7 +221,7 @@ function updateLayers(monthKey) {
 // ————————————————————— Initialize Slider Control —————————————————————
 function initSlider() {
   const slider = document.getElementById('slider');
-  const label  = document.getElementById('date-label');
+  const label  = document.getElementById('dateLabel');
   slider.setAttribute('min', 0);
   slider.setAttribute('max', months.length - 1);
   slider.setAttribute('value', 0);
@@ -233,14 +233,6 @@ function initSlider() {
   });
 }
 
-// ————————————————————— Map Initialization & Bootstrapping —————————————————————
-mapboxgl.accessToken = 'YOUR_MAPBOX_TOKEN';
-map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/light-v10',
-  center: [-98, 38],
-  zoom: 3
-});
 
 map.on('load', async () => {
   await loadCases();
@@ -298,7 +290,7 @@ map.on('load', async () => {
 
   // UI Controls
   initSlider();
-  document.getElementById('date-label').textContent = months[0];
+  document.getElementById('dateLabel').textContent = months[0];
   currentMonthKey = months[0];
   updateLayers(currentMonthKey);
 });
@@ -307,4 +299,3 @@ map.on('load', async () => {
 
 </body>
 </html>
-
