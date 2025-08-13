@@ -30,6 +30,7 @@ BENTON,ARKANSAS,5007,2025-06-16,case_lab-confirmed,1
 BERGEN,NEW JERSEY,34003,2025-02-14,case_lab-confirmed,1
 BERGEN,NEW JERSEY,34003,2025-02-17,case_lab-confirmed,2
 BEXAR,TEXAS,48029,2025-07-01,case_lab-confirmed,1
+BEXAR,TEXAS,48029,2025-08-12,case_lab-confirmed,1
 BORDEN,TEXAS,48033,2025-04-08,case_lab-confirmed,1
 BOULDER,COLORADO,8013,2025-06-13,case_lab-confirmed,1
 BRAZORIA,TEXAS,48039,2025-04-18,case_lab-confirmed,1
@@ -271,6 +272,7 @@ KNOX,OHIO,39083,2025-03-31,case_lab-confirmed,6
 KNOX,OHIO,39083,2025-04-02,case_lab-confirmed,1
 KNOX,OHIO,39083,2025-04-06,case_lab-confirmed,1
 KNOX,OHIO,39083,2025-04-09,case_lab-confirmed,6
+KOOTENAI,IDAHO,16055,2025-08-12,case_lab-confirmed,1
 LAMAR,TEXAS,48277,2025-03-20,case_lab-confirmed,10
 LAMAR,TEXAS,48277,2025-04-04,case_lab-confirmed,1
 LAMAR,TEXAS,48277,2025-04-25,case_lab-confirmed,3
@@ -346,6 +348,7 @@ MIDLAND,TEXAS,48329,2025-04-23,case_lab-confirmed,1
 MIDLAND,TEXAS,48329,2025-05-23,case_lab-confirmed,2
 MIDLAND,TEXAS,48329,2025-06-10,case_lab-confirmed,1
 MIDLAND,TEXAS,48329,2025-08-07,case_lab-confirmed,1
+MOHAVE,ARIZONA,4015,2025-08-12,case_lab-confirmed,1
 MONTCALM,MICHIGAN,26117,2025-04-10,case_lab-confirmed,1
 MONTCALM,MICHIGAN,26117,2025-04-17,case_lab-confirmed,2
 MONTCALM,MICHIGAN,26117,2025-04-23,case_lab-confirmed,1
@@ -400,6 +403,7 @@ ROCKWALL,TEXAS,48397,2025-03-20,case_lab-confirmed,1
 ROCKWALL,TEXAS,48397,2025-04-23,case_lab-confirmed,1
 SACRAMENTO,CALIFORNIA,6067,2025-06-16,case_lab-confirmed,1
 SALINE,ARKANSAS,5125,2025-04-10,case_lab-confirmed,1
+SAN DIEGO,CALIFORNIA,6073,2025-08-11,case_lab-confirmed,1
 SAN JUAN,NEW MEXICO,35045,2025-06-03,case_lab-confirmed,1
 SAN MATEO,CALIFORNIA,6081,2025-03-31,case_lab-confirmed,1
 SANDOVAL,NEW MEXICO,35043,2025-05-16,case_lab-confirmed,2
