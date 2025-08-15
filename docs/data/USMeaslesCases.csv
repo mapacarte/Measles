@@ -1,4 +1,5 @@
 county,state,location_id,date,outcome_type,cases
+ADAMS,COLORADO,8001,2025-08-13,case_lab-confirmed,1
 ALLEGAN,MICHIGAN,26005,2025-06-06,case_lab-confirmed,1
 ALLEN,INDIANA,18003,2025-04-07,case_lab-confirmed,1
 ALLEN,INDIANA,18003,2025-04-09,case_lab-confirmed,5
@@ -411,6 +412,7 @@ SANDOVAL,NEW MEXICO,35043,2025-05-23,case_lab-confirmed,4
 SANTA CLARA,CALIFORNIA,6085,2025-05-25,case_lab-confirmed,1
 SANTA FE,NEW MEXICO,35049,2025-07-22,case_lab-confirmed,1
 SANTA FE,NEW MEXICO,35049,2025-07-28,case_lab-confirmed,1
+SANTA FE,NEW MEXICO,35049,2025-08-10,case_lab-confirmed,3
 SCURRY,TEXAS,48415,2025-05-23,case_lab-confirmed,1
 SHACKELFORD,TEXAS,48417,2025-04-29,case_lab-confirmed,1
 SHERIDAN,NEBRASKA,31161,2025-05-28,case_lab-confirmed,1
