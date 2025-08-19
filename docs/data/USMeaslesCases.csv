@@ -1,5 +1,6 @@
 county,state,location_id,date,outcome_type,cases
 ADAMS,COLORADO,8001,2025-08-13,case_lab-confirmed,1
+ADAMS,COLORADO,8001,2025-08-15,case_lab-confirmed,2
 ALLEGAN,MICHIGAN,26005,2025-06-06,case_lab-confirmed,1
 ALLEN,INDIANA,18003,2025-04-07,case_lab-confirmed,1
 ALLEN,INDIANA,18003,2025-04-09,case_lab-confirmed,5
@@ -42,6 +43,7 @@ BUCKS,PENNSYLVANIA,42017,2025-03-27,case_lab-confirmed,1
 BURKE,NORTH DAKOTA,38013,2025-05-27,case_lab-confirmed,1
 CARBON,WYOMING,56007,2025-07-22,case_lab-confirmed,1
 CARBON,WYOMING,56007,2025-08-02,case_lab-confirmed,4
+CARBON,WYOMING,56007,2025-08-15,case_lab-confirmed,1
 CARSON,TEXAS,48065,2025-05-13,case_lab-confirmed,1
 CASCADE,MONTANA,30013,2025-07-16,case_lab-confirmed,1
 CASS,NORTH DAKOTA,38017,2025-05-01,case_lab-confirmed,1
@@ -303,6 +305,7 @@ LEA,NEW MEXICO,35025,2025-05-27,case_lab-confirmed,1
 LEA,NEW MEXICO,35025,2025-06-03,case_lab-confirmed,1
 LEON,FLORIDA,12073,2025-06-07,case_lab-confirmed,1
 LEON,FLORIDA,12073,2025-06-28,case_lab-confirmed,1
+LEWIS AND CLARK,MONTANA,30049,2025-08-12,case_lab-confirmed,1
 LINCOLN,SOUTH DAKOTA,46083,2025-06-21,case_lab-confirmed,2
 LINCOLN,SOUTH DAKOTA,46083,2025-06-28,case_lab-confirmed,6
 LOS ANGELES,CALIFORNIA,6037,2025-03-11,case_lab-confirmed,1
@@ -340,6 +343,7 @@ MCLENNAN,TEXAS,48309,2025-05-30,case_lab-confirmed,7
 MCLENNAN,TEXAS,48309,2025-06-17,case_lab-confirmed,1
 MEADE,SOUTH DAKOTA,46093,2025-06-02,case_lab-confirmed,1
 MEADE,SOUTH DAKOTA,46093,2025-06-14,case_lab-confirmed,1
+MESA,COLORADO,8077,2025-08-15,case_lab-confirmed,1
 MIAMI-DADE,FLORIDA,12086,2025-03-06,case_lab-confirmed,1
 MID-CUMBERLAND REGION,TENNESSEE,0,2025-03-17,case_lab-confirmed,1
 MID-CUMBERLAND REGION,TENNESSEE,0,2025-03-28,case_lab-confirmed,1
@@ -451,6 +455,7 @@ TULARE,CALIFORNIA,6107,2025-07-22,case_lab-confirmed,1
 TULARE,CALIFORNIA,6107,2025-07-24,case_lab-confirmed,1
 TUOLUMNE,CALIFORNIA,6109,2025-03-19,case_lab-confirmed,2
 UNKNOWN COUNTY,CALIFORNIA,6,2025-06-16,case_lab-confirmed,1
+UNKNOWN COUNTY,COLORADO,8,2025-08-18,case_lab-confirmed,1
 UNKNOWN COUNTY,KANSAS,20,2025-03-31,case_lab-confirmed,9
 UNKNOWN COUNTY,KANSAS,20,2025-04-05,case_lab-confirmed,1
 UNKNOWN COUNTY,KANSAS,20,2025-04-09,case_lab-confirmed,2
