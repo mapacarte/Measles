@@ -27,6 +27,7 @@ df[["county", "state"]] = df.location_name.str.split(", ", expand=True)
 df["county"] = df["county"].str.upper().str.strip()
 df["state"]  = df["state"].str.upper().str.strip()
 df["state"] = df["state"].str.title()
+df['state'] = df['state'].str.replace('District Of Columbia', 'District of Columbia')
 
 # 5) rename & select columns
 df = (
