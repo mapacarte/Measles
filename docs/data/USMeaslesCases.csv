@@ -1,614 +1,614 @@
 county,state,location_id,date,outcome_type,cases
-ADAMS,COLORADO,8001,2025-08-13,case_lab-confirmed,1
-ADAMS,COLORADO,8001,2025-08-15,case_lab-confirmed,2
-ADAMS,COLORADO,8001,2025-08-28,case_lab-confirmed,1
-ALLEGAN,MICHIGAN,26005,2025-06-06,case_lab-confirmed,1
-ALLEN,INDIANA,18003,2025-04-07,case_lab-confirmed,1
-ALLEN,INDIANA,18003,2025-04-09,case_lab-confirmed,5
-ALLEN,INDIANA,18003,2025-04-23,case_lab-confirmed,2
-ALLEN,OHIO,39003,2025-03-14,case_lab-confirmed,1
-ANCHORAGE,ALASKA,2020,2025-01-16,case_lab-confirmed,1
-ANCHORAGE,ALASKA,2020,2025-05-22,case_lab-confirmed,1
-ANDREWS,TEXAS,48003,2025-03-20,case_lab-confirmed,1
-ANDREWS,TEXAS,48003,2025-04-15,case_lab-confirmed,1
-ANDREWS,TEXAS,48003,2025-04-25,case_lab-confirmed,1
-ARAPAHOE,COLORADO,8005,2025-05-13,case_lab-confirmed,1
-ARAPAHOE,COLORADO,8005,2025-05-28,case_lab-confirmed,1
-ARAPAHOE,COLORADO,8005,2025-05-30,case_lab-confirmed,1
-ARAPAHOE,COLORADO,8005,2025-06-02,case_lab-confirmed,1
-ARAPAHOE,COLORADO,8005,2025-06-09,case_lab-confirmed,1
-ARCHULETA,COLORADO,8007,2025-04-09,case_lab-confirmed,1
-ASHTABULA,OHIO,39007,2025-02-24,case_lab-confirmed,1
-ASHTABULA,OHIO,39007,2025-02-25,case_lab-confirmed,1
-ASHTABULA,OHIO,39007,2025-03-07,case_lab-confirmed,1
-ASHTABULA,OHIO,39007,2025-03-08,case_lab-confirmed,1
-ASHTABULA,OHIO,39007,2025-03-09,case_lab-confirmed,6
-ASHTABULA,OHIO,39007,2025-04-01,case_lab-confirmed,1
-ASHTABULA,OHIO,39007,2025-04-11,case_lab-confirmed,3
-ASHTABULA,OHIO,39007,2025-04-12,case_lab-confirmed,2
-ATASCOSA,TEXAS,48013,2025-04-25,case_lab-confirmed,1
-BAILEY,TEXAS,48017,2025-04-23,case_lab-confirmed,2
-BEAR RIVER,UTAH,0,2025-09-22,case_lab-confirmed,1
-BEAR RIVER,UTAH,0,2025-09-25,case_lab-confirmed,3
-BELL,TEXAS,48027,2025-06-17,case_lab-confirmed,1
-BENTON,ARKANSAS,5007,2025-06-16,case_lab-confirmed,1
-BERGEN,NEW JERSEY,34003,2025-02-14,case_lab-confirmed,1
-BERGEN,NEW JERSEY,34003,2025-02-17,case_lab-confirmed,2
-BERGEN,NEW JERSEY,34003,2025-09-03,case_lab-confirmed,1
-BEXAR,TEXAS,48029,2025-07-01,case_lab-confirmed,1
-BEXAR,TEXAS,48029,2025-08-12,case_lab-confirmed,1
-BONNER,IDAHO,16017,2025-08-20,case_lab-confirmed,1
-BONNEVILLE,IDAHO,16019,2025-08-07,case_lab-confirmed,2
-BONNEVILLE,IDAHO,16019,2025-09-13,case_lab-confirmed,4
-BORDEN,TEXAS,48033,2025-04-08,case_lab-confirmed,1
-BOULDER,COLORADO,8013,2025-06-13,case_lab-confirmed,1
-BRAZORIA,TEXAS,48039,2025-04-18,case_lab-confirmed,1
-BREWSTER,TEXAS,48043,2025-05-23,case_lab-confirmed,1
-BROWARD,FLORIDA,12011,2025-04-22,case_lab-confirmed,1
-BROWARD,FLORIDA,12011,2025-08-16,case_lab-confirmed,1
-BROWN,TEXAS,48049,2025-04-04,case_lab-confirmed,1
-BUCKS,PENNSYLVANIA,42017,2025-03-27,case_lab-confirmed,1
-BURKE,NORTH DAKOTA,38013,2025-05-27,case_lab-confirmed,1
-CARBON,WYOMING,56007,2025-07-22,case_lab-confirmed,1
-CARBON,WYOMING,56007,2025-08-02,case_lab-confirmed,4
-CARBON,WYOMING,56007,2025-08-15,case_lab-confirmed,1
-CARBON,WYOMING,56007,2025-08-26,case_lab-confirmed,1
-CARSON,TEXAS,48065,2025-05-13,case_lab-confirmed,1
-CASCADE,MONTANA,30013,2025-07-16,case_lab-confirmed,1
-CASS,NORTH DAKOTA,38017,2025-05-01,case_lab-confirmed,1
-CASS,NORTH DAKOTA,38017,2025-05-06,case_lab-confirmed,2
-CASS,NORTH DAKOTA,38017,2025-05-12,case_lab-confirmed,1
-CASS,NORTH DAKOTA,38017,2025-05-14,case_lab-confirmed,1
-CASS,NORTH DAKOTA,38017,2025-05-15,case_lab-confirmed,1
-CASS,NORTH DAKOTA,38017,2025-05-17,case_lab-confirmed,1
-CASSIA,IDAHO,16031,2025-05-27,case_lab-confirmed,1
-CEDAR,MISSOURI,29039,2025-06-23,case_lab-confirmed,1
-CEDAR,MISSOURI,29039,2025-07-01,case_lab-confirmed,1
-CEDAR,MISSOURI,29039,2025-07-03,case_lab-confirmed,3
-CENTRAL,IOWA,19,2025-05-23,case_lab-confirmed,1
-CHAVES,NEW MEXICO,35005,2025-04-08,case_lab-confirmed,1
-COCHRAN,TEXAS,48079,2025-03-18,case_lab-confirmed,7
-COCHRAN,TEXAS,48079,2025-03-20,case_lab-confirmed,1
-COCHRAN,TEXAS,48079,2025-04-04,case_lab-confirmed,1
-COCHRAN,TEXAS,48079,2025-04-08,case_lab-confirmed,1
-COCHRAN,TEXAS,48079,2025-04-11,case_lab-confirmed,1
-COCHRAN,TEXAS,48079,2025-04-15,case_lab-confirmed,1
-COCHRAN,TEXAS,48079,2025-04-25,case_lab-confirmed,2
-COLLIN,TEXAS,48085,2025-04-25,case_lab-confirmed,1
-COLLIN,TEXAS,48085,2025-05-16,case_lab-confirmed,1
-COLLIN,TEXAS,48085,2025-06-02,case_lab-confirmed,1
-COLLIN,TEXAS,48085,2025-06-03,case_lab-confirmed,1
-COOK,ILLINOIS,17031,2025-04-25,case_lab-confirmed,1
-COOK,ILLINOIS,17031,2025-04-28,case_lab-confirmed,1
-COOK,ILLINOIS,17031,2025-05-02,case_lab-confirmed,4
-COOK,ILLINOIS,17031,2025-09-16,case_lab-confirmed,1
-COOK,ILLINOIS,17031,2025-09-30,case_lab-confirmed,1
-CURRY,NEW MEXICO,35009,2025-05-09,case_lab-confirmed,1
-CUYAHOGA,OHIO,39035,2025-04-28,case_lab-confirmed,1
-DAKOTA,MINNESOTA,27037,2025-06-02,case_lab-confirmed,1
-DALLAM,TEXAS,48111,2025-02-25,case_lab-confirmed,4
-DALLAM,TEXAS,48111,2025-03-18,case_lab-confirmed,2
-DALLAM,TEXAS,48111,2025-03-20,case_lab-confirmed,1
-DALLAS,TEXAS,48113,2025-06-24,case_lab-confirmed,1
-DAWSON,TEXAS,48115,2025-02-21,case_lab-confirmed,6
-DAWSON,TEXAS,48115,2025-02-25,case_lab-confirmed,1
-DAWSON,TEXAS,48115,2025-02-28,case_lab-confirmed,1
-DAWSON,TEXAS,48115,2025-03-18,case_lab-confirmed,3
-DAWSON,TEXAS,48115,2025-03-20,case_lab-confirmed,3
-DAWSON,TEXAS,48115,2025-04-04,case_lab-confirmed,6
-DAWSON,TEXAS,48115,2025-04-11,case_lab-confirmed,1
-DAWSON,TEXAS,48115,2025-04-18,case_lab-confirmed,3
-DAWSON,TEXAS,48115,2025-04-25,case_lab-confirmed,1
-DAWSON,TEXAS,48115,2025-05-02,case_lab-confirmed,1
-DEFIANCE,OHIO,39039,2025-04-13,case_lab-confirmed,1
-DENTON,TEXAS,48121,2025-05-02,case_lab-confirmed,1
-DENTON,TEXAS,48121,2025-05-23,case_lab-confirmed,1
-DENVER,COLORADO,8031,2025-04-07,case_lab-confirmed,1
-DENVER,COLORADO,8031,2025-04-23,case_lab-confirmed,1
-DENVER,COLORADO,8031,2025-04-25,case_lab-confirmed,1
-DENVER,COLORADO,8031,2025-06-04,case_lab-confirmed,1
-DONA ANA,NEW MEXICO,35013,2025-04-15,case_lab-confirmed,1
-DONA ANA,NEW MEXICO,35013,2025-05-02,case_lab-confirmed,1
-DUVAL,FLORIDA,12031,2025-08-16,case_lab-confirmed,1
-EASTERN REGION,VIRGINIA,0,2025-09-03,case_lab-confirmed,1
-EASTERN,IOWA,19,2025-06-09,case_lab-confirmed,1
-EASTERN,IOWA,19,2025-06-11,case_lab-confirmed,1
-EASTERN,IOWA,19,2025-06-12,case_lab-confirmed,3
-EASTERN,IOWA,19,2025-07-14,case_lab-confirmed,1
-EASTLAND,TEXAS,48133,2025-05-02,case_lab-confirmed,2
-ECTOR,TEXAS,48135,2025-02-21,case_lab-confirmed,1
-ECTOR,TEXAS,48135,2025-02-25,case_lab-confirmed,1
-ECTOR,TEXAS,48135,2025-03-20,case_lab-confirmed,2
-ECTOR,TEXAS,48135,2025-04-02,case_lab-confirmed,1
-ECTOR,TEXAS,48135,2025-04-04,case_lab-confirmed,3
-ECTOR,TEXAS,48135,2025-04-18,case_lab-confirmed,1
-ECTOR,TEXAS,48135,2025-04-23,case_lab-confirmed,1
-ECTOR,TEXAS,48135,2025-05-02,case_lab-confirmed,1
-ECTOR,TEXAS,48135,2025-05-30,case_lab-confirmed,1
-EDDY,NEW MEXICO,35015,2025-03-31,case_lab-confirmed,1
-EDDY,NEW MEXICO,35015,2025-04-04,case_lab-confirmed,1
-EDDY,NEW MEXICO,35015,2025-04-25,case_lab-confirmed,1
-EL PASO,COLORADO,8041,2025-06-02,case_lab-confirmed,3
-EL PASO,COLORADO,8041,2025-06-09,case_lab-confirmed,1
-EL PASO,TEXAS,48141,2025-04-09,case_lab-confirmed,2
-EL PASO,TEXAS,48141,2025-04-10,case_lab-confirmed,1
-EL PASO,TEXAS,48141,2025-04-15,case_lab-confirmed,4
-EL PASO,TEXAS,48141,2025-04-18,case_lab-confirmed,11
-EL PASO,TEXAS,48141,2025-04-23,case_lab-confirmed,2
-EL PASO,TEXAS,48141,2025-04-25,case_lab-confirmed,2
-EL PASO,TEXAS,48141,2025-04-29,case_lab-confirmed,10
-EL PASO,TEXAS,48141,2025-05-02,case_lab-confirmed,6
-EL PASO,TEXAS,48141,2025-05-06,case_lab-confirmed,6
-EL PASO,TEXAS,48141,2025-05-09,case_lab-confirmed,6
-EL PASO,TEXAS,48141,2025-05-13,case_lab-confirmed,2
-EL PASO,TEXAS,48141,2025-05-20,case_lab-confirmed,2
-EL PASO,TEXAS,48141,2025-05-23,case_lab-confirmed,2
-EL PASO,TEXAS,48141,2025-05-27,case_lab-confirmed,1
-EL PASO,TEXAS,48141,2025-05-30,case_lab-confirmed,2
-EL PASO,TEXAS,48141,2025-06-10,case_lab-confirmed,1
-EL PASO,TEXAS,48141,2025-07-01,case_lab-confirmed,1
-ERATH,TEXAS,48143,2025-03-20,case_lab-confirmed,1
-ERIE,PENNSYLVANIA,42049,2025-03-25,case_lab-confirmed,2
-ERIE,PENNSYLVANIA,42049,2025-03-30,case_lab-confirmed,1
-ERIE,PENNSYLVANIA,42049,2025-04-15,case_lab-confirmed,2
-ERIE,PENNSYLVANIA,42049,2025-05-09,case_lab-confirmed,3
-FANNIN,TEXAS,48147,2025-07-15,case_lab-confirmed,4
-FAULKNER,ARKANSAS,5045,2025-04-10,case_lab-confirmed,1
-FAULKNER,ARKANSAS,5045,2025-04-29,case_lab-confirmed,1
-FAULKNER,ARKANSAS,5045,2025-05-09,case_lab-confirmed,2
-FAULKNER,ARKANSAS,5045,2025-05-20,case_lab-confirmed,1
-FAULKNER,ARKANSAS,5045,2025-05-27,case_lab-confirmed,1
-FAYETTE,KENTUCKY,21067,2025-06-30,case_lab-confirmed,1
-FAYETTE,KENTUCKY,21067,2025-07-07,case_lab-confirmed,4
-FAYETTE,KENTUCKY,21067,2025-07-10,case_lab-confirmed,1
-FLATHEAD,MONTANA,30029,2025-05-21,case_lab-confirmed,1
-FLATHEAD,MONTANA,30029,2025-05-29,case_lab-confirmed,1
-FORT BEND,TEXAS,48157,2025-04-02,case_lab-confirmed,1
-FRANKLIN,KENTUCKY,21073,2025-02-26,case_lab-confirmed,1
-FRANKLIN,OHIO,39049,2025-05-20,case_lab-confirmed,1
-FRANKLIN,OHIO,39049,2025-09-15,case_lab-confirmed,1
-FRANKLIN,OHIO,39049,2025-09-24,case_lab-confirmed,1
-FRANKLIN,OHIO,39049,2025-09-29,case_lab-confirmed,2
-FRANKLIN,OHIO,39049,2025-10-08,case_lab-confirmed,1
-FRESNO,CALIFORNIA,6019,2025-03-11,case_lab-confirmed,1
-FRESNO,CALIFORNIA,6019,2025-03-19,case_lab-confirmed,1
-FULTON,GEORGIA,13121,2025-01-28,case_lab-confirmed,1
-FULTON,GEORGIA,13121,2025-03-31,case_lab-confirmed,2
-FULTON,GEORGIA,13121,2025-05-19,case_lab-confirmed,1
-FULTON,GEORGIA,13121,2025-06-06,case_lab-confirmed,1
-FULTON,GEORGIA,13121,2025-06-18,case_lab-confirmed,1
-FULTON,GEORGIA,13121,2025-09-12,case_lab-confirmed,1
-FULTON,GEORGIA,13121,2025-09-23,case_lab-confirmed,3
-GAINES,TEXAS,48165,2025-02-05,case_lab-confirmed,6
-GAINES,TEXAS,48165,2025-02-11,case_lab-confirmed,18
-GAINES,TEXAS,48165,2025-02-14,case_lab-confirmed,18
-GAINES,TEXAS,48165,2025-02-18,case_lab-confirmed,3
-GAINES,TEXAS,48165,2025-02-21,case_lab-confirmed,12
-GAINES,TEXAS,48165,2025-02-25,case_lab-confirmed,23
-GAINES,TEXAS,48165,2025-02-28,case_lab-confirmed,18
-GAINES,TEXAS,48165,2025-03-04,case_lab-confirmed,9
-GAINES,TEXAS,48165,2025-03-11,case_lab-confirmed,49
-GAINES,TEXAS,48165,2025-03-18,case_lab-confirmed,35
-GAINES,TEXAS,48165,2025-03-20,case_lab-confirmed,79
-GAINES,TEXAS,48165,2025-04-02,case_lab-confirmed,10
-GAINES,TEXAS,48165,2025-04-04,case_lab-confirmed,35
-GAINES,TEXAS,48165,2025-04-08,case_lab-confirmed,13
-GAINES,TEXAS,48165,2025-04-11,case_lab-confirmed,27
-GAINES,TEXAS,48165,2025-04-15,case_lab-confirmed,9
-GAINES,TEXAS,48165,2025-04-18,case_lab-confirmed,7
-GAINES,TEXAS,48165,2025-04-23,case_lab-confirmed,15
-GAINES,TEXAS,48165,2025-04-25,case_lab-confirmed,7
-GAINES,TEXAS,48165,2025-04-29,case_lab-confirmed,3
-GAINES,TEXAS,48165,2025-05-06,case_lab-confirmed,7
-GAINES,TEXAS,48165,2025-05-13,case_lab-confirmed,2
-GAINES,TEXAS,48165,2025-05-16,case_lab-confirmed,1
-GAINES,TEXAS,48165,2025-05-23,case_lab-confirmed,2
-GAINES,TEXAS,48165,2025-05-30,case_lab-confirmed,1
-GAINES,TEXAS,48165,2025-06-03,case_lab-confirmed,2
-GAINES,TEXAS,48165,2025-06-17,case_lab-confirmed,2
-GAINES,TEXAS,48165,2025-07-01,case_lab-confirmed,1
-GALLATIN,MONTANA,30031,2025-04-17,case_lab-confirmed,5
-GALLATIN,MONTANA,30031,2025-04-29,case_lab-confirmed,2
-GALLATIN,MONTANA,30031,2025-05-05,case_lab-confirmed,1
-GALLATIN,MONTANA,30031,2025-05-23,case_lab-confirmed,1
-GALLATIN,MONTANA,30031,2025-05-28,case_lab-confirmed,1
-GALLATIN,MONTANA,30031,2025-06-05,case_lab-confirmed,1
-GALLATIN,MONTANA,30031,2025-06-09,case_lab-confirmed,1
-GALLATIN,MONTANA,30031,2025-06-10,case_lab-confirmed,1
-GALLATIN,MONTANA,30031,2025-06-15,case_lab-confirmed,3
-GALLATIN,MONTANA,30031,2025-06-22,case_lab-confirmed,1
-GALLATIN,MONTANA,30031,2025-07-20,case_lab-confirmed,2
-GARZA,TEXAS,48169,2025-03-20,case_lab-confirmed,1
-GARZA,TEXAS,48169,2025-04-02,case_lab-confirmed,1
-GRAND FORKS,NORTH DAKOTA,38035,2025-05-16,case_lab-confirmed,1
-GRAND FORKS,NORTH DAKOTA,38035,2025-05-17,case_lab-confirmed,1
-GRAND FORKS,NORTH DAKOTA,38035,2025-05-20,case_lab-confirmed,1
-GRAND FORKS,NORTH DAKOTA,38035,2025-05-22,case_lab-confirmed,1
-GRAND FORKS,NORTH DAKOTA,38035,2025-05-25,case_lab-confirmed,2
-GRAND FORKS,NORTH DAKOTA,38035,2025-05-26,case_lab-confirmed,1
-GRAND FORKS,NORTH DAKOTA,38035,2025-05-28,case_lab-confirmed,2
-GRAND FORKS,NORTH DAKOTA,38035,2025-05-30,case_lab-confirmed,1
-GRAND TRAVERSE,MICHIGAN,26055,2025-06-18,case_lab-confirmed,1
-GRAND TRAVERSE,MICHIGAN,26055,2025-06-20,case_lab-confirmed,1
-GRAND TRAVERSE,MICHIGAN,26055,2025-06-23,case_lab-confirmed,1
-GRAND TRAVERSE,MICHIGAN,26055,2025-07-02,case_lab-confirmed,1
-GRAY,KANSAS,20069,2025-04-30,case_lab-confirmed,15
-GRAY,KANSAS,20069,2025-05-14,case_lab-confirmed,6
-GRAY,KANSAS,20069,2025-05-28,case_lab-confirmed,3
-GRAY,KANSAS,20069,2025-06-02,case_lab-confirmed,1
-GRAY,KANSAS,20069,2025-06-11,case_lab-confirmed,1
-GRAY,KANSAS,20069,2025-07-02,case_lab-confirmed,2
-GRAY,KANSAS,20069,2025-07-14,case_lab-confirmed,1
-GREENVILLE,SOUTH CAROLINA,45045,2025-10-09,case_lab-confirmed,1
-GUILFORD,NORTH CAROLINA,37081,2025-06-24,case_lab-confirmed,1
-HALE,TEXAS,48189,2025-03-20,case_lab-confirmed,1
-HALE,TEXAS,48189,2025-04-04,case_lab-confirmed,2
-HALE,TEXAS,48189,2025-04-08,case_lab-confirmed,2
-HARDEMAN,TEXAS,48197,2025-05-02,case_lab-confirmed,1
-HARRIS,TEXAS,48201,2025-01-23,case_lab-confirmed,2
-HARRIS,TEXAS,48201,2025-03-20,case_lab-confirmed,1
-HARRIS,TEXAS,48201,2025-07-15,case_lab-confirmed,1
-HARRIS,TEXAS,48201,2025-08-07,case_lab-confirmed,1
-HARRISON,TEXAS,48203,2025-05-20,case_lab-confirmed,1
-HASKELL,KANSAS,20081,2025-04-09,case_lab-confirmed,8
-HASKELL,KANSAS,20081,2025-05-21,case_lab-confirmed,2
-HASKELL,KANSAS,20081,2025-06-02,case_lab-confirmed,1
-HASKELL,KANSAS,20081,2025-06-09,case_lab-confirmed,1
-HASKELL,KANSAS,20081,2025-06-11,case_lab-confirmed,3
-HASKELL,KANSAS,20081,2025-06-16,case_lab-confirmed,1
-HASKELL,KANSAS,20081,2025-06-18,case_lab-confirmed,1
-HASKELL,KANSAS,20081,2025-07-02,case_lab-confirmed,1
-HASKELL,KANSAS,20081,2025-07-07,case_lab-confirmed,1
-HASKELL,KANSAS,20081,2025-07-09,case_lab-confirmed,1
-HASKELL,KANSAS,20081,2025-07-14,case_lab-confirmed,1
-HAYS,TEXAS,48209,2025-05-23,case_lab-confirmed,1
-HENNEPIN,MINNESOTA,27053,2025-03-24,case_lab-confirmed,1
-HENNEPIN,MINNESOTA,27053,2025-04-23,case_lab-confirmed,1
-HILL,MONTANA,30041,2025-05-22,case_lab-confirmed,1
-HILL,MONTANA,30041,2025-06-02,case_lab-confirmed,2
-HILL,MONTANA,30041,2025-06-06,case_lab-confirmed,1
-HOCKLEY,TEXAS,48219,2025-03-20,case_lab-confirmed,1
-HOCKLEY,TEXAS,48219,2025-03-31,case_lab-confirmed,1
-HOCKLEY,TEXAS,48219,2025-04-04,case_lab-confirmed,1
-HOCKLEY,TEXAS,48219,2025-04-18,case_lab-confirmed,2
-HOCKLEY,TEXAS,48219,2025-05-02,case_lab-confirmed,1
-HOCKLEY,TEXAS,48219,2025-08-07,case_lab-confirmed,1
-HOLMES,OHIO,39075,2025-04-02,case_lab-confirmed,1
-HONOLULU,HAWAII,15003,2025-04-08,case_lab-confirmed,1
-HONOLULU,HAWAII,15003,2025-04-17,case_lab-confirmed,1
-HOWARD,MARYLAND,24027,2025-03-09,case_lab-confirmed,1
-HUDSON,NEW JERSEY,34017,2025-07-03,case_lab-confirmed,1
-HUDSON,NEW JERSEY,34017,2025-08-22,case_lab-confirmed,1
-INGHAM,MICHIGAN,26065,2025-04-15,case_lab-confirmed,1
-JEFFERSON,KENTUCKY,21111,2025-07-14,case_lab-confirmed,1
-JEFFERSON,KENTUCKY,21111,2025-07-28,case_lab-confirmed,1
-KENAI PENINSULA,ALASKA,2122,2025-01-21,case_lab-confirmed,1
-KENT,MICHIGAN,26081,2025-04-04,case_lab-confirmed,1
-KENT,MICHIGAN,26081,2025-07-02,case_lab-confirmed,1
-KENT,MICHIGAN,26081,2025-07-24,case_lab-confirmed,2
-KING,WASHINGTON,53033,2025-02-27,case_lab-confirmed,1
-KING,WASHINGTON,53033,2025-04-11,case_lab-confirmed,1
-KING,WASHINGTON,53033,2025-04-24,case_lab-confirmed,1
-KING,WASHINGTON,53033,2025-05-20,case_lab-confirmed,1
-KING,WASHINGTON,53033,2025-06-24,case_lab-confirmed,2
-KIOWA,KANSAS,20097,2025-03-31,case_lab-confirmed,6
-KNOX,OHIO,39083,2025-03-31,case_lab-confirmed,6
-KNOX,OHIO,39083,2025-04-02,case_lab-confirmed,1
-KNOX,OHIO,39083,2025-04-06,case_lab-confirmed,1
-KNOX,OHIO,39083,2025-04-09,case_lab-confirmed,6
-KOOTENAI,IDAHO,16055,2025-08-12,case_lab-confirmed,1
-LAKE,INDIANA,18089,2025-10-17,case_lab-confirmed,1
-LAMAR,TEXAS,48277,2025-03-20,case_lab-confirmed,10
-LAMAR,TEXAS,48277,2025-04-04,case_lab-confirmed,1
-LAMAR,TEXAS,48277,2025-04-25,case_lab-confirmed,3
-LAMAR,TEXAS,48277,2025-04-29,case_lab-confirmed,3
-LAMAR,TEXAS,48277,2025-05-06,case_lab-confirmed,1
-LAMAR,TEXAS,48277,2025-05-09,case_lab-confirmed,1
-LAMAR,TEXAS,48277,2025-05-23,case_lab-confirmed,1
-LAMAR,TEXAS,48277,2025-06-03,case_lab-confirmed,1
-LAMAR,TEXAS,48277,2025-06-17,case_lab-confirmed,2
-LAMAR,TEXAS,48277,2025-07-01,case_lab-confirmed,3
-LAMAR,TEXAS,48277,2025-07-08,case_lab-confirmed,2
-LAMB,TEXAS,48279,2025-03-20,case_lab-confirmed,1
-LAMOILLE,VERMONT,50015,2025-03-11,case_lab-confirmed,1
-LANCASTER,PENNSYLVANIA,42071,2025-04-15,case_lab-confirmed,1
-LEA,NEW MEXICO,35025,2025-02-11,case_lab-confirmed,1
-LEA,NEW MEXICO,35025,2025-02-14,case_lab-confirmed,2
-LEA,NEW MEXICO,35025,2025-03-07,case_lab-confirmed,27
-LEA,NEW MEXICO,35025,2025-03-11,case_lab-confirmed,2
-LEA,NEW MEXICO,35025,2025-04-04,case_lab-confirmed,20
-LEA,NEW MEXICO,35025,2025-04-08,case_lab-confirmed,1
-LEA,NEW MEXICO,35025,2025-04-11,case_lab-confirmed,2
-LEA,NEW MEXICO,35025,2025-04-15,case_lab-confirmed,4
-LEA,NEW MEXICO,35025,2025-04-23,case_lab-confirmed,2
-LEA,NEW MEXICO,35025,2025-05-09,case_lab-confirmed,3
-LEA,NEW MEXICO,35025,2025-05-16,case_lab-confirmed,1
-LEA,NEW MEXICO,35025,2025-05-27,case_lab-confirmed,1
-LEA,NEW MEXICO,35025,2025-06-03,case_lab-confirmed,1
-LEON,FLORIDA,12073,2025-06-07,case_lab-confirmed,1
-LEON,FLORIDA,12073,2025-06-28,case_lab-confirmed,1
-LEWIS AND CLARK,MONTANA,30049,2025-08-12,case_lab-confirmed,1
-LEWIS AND CLARK,MONTANA,30049,2025-08-24,case_lab-confirmed,1
-LINCOLN,SOUTH DAKOTA,46083,2025-06-21,case_lab-confirmed,2
-LINCOLN,SOUTH DAKOTA,46083,2025-06-28,case_lab-confirmed,6
-LOS ANGELES,CALIFORNIA,6037,2025-03-11,case_lab-confirmed,1
-LOS ANGELES,CALIFORNIA,6037,2025-04-25,case_lab-confirmed,1
-LOS ANGELES,CALIFORNIA,6037,2025-05-07,case_lab-confirmed,1
-LOS ANGELES,CALIFORNIA,6037,2025-06-06,case_lab-confirmed,1
-LOS ANGELES,CALIFORNIA,6037,2025-06-12,case_lab-confirmed,1
-LUBBOCK,TEXAS,48303,2025-02-18,case_lab-confirmed,1
-LUBBOCK,TEXAS,48303,2025-02-28,case_lab-confirmed,1
-LUBBOCK,TEXAS,48303,2025-03-18,case_lab-confirmed,3
-LUBBOCK,TEXAS,48303,2025-03-20,case_lab-confirmed,18
-LUBBOCK,TEXAS,48303,2025-04-02,case_lab-confirmed,4
-LUBBOCK,TEXAS,48303,2025-04-04,case_lab-confirmed,6
-LUBBOCK,TEXAS,48303,2025-04-08,case_lab-confirmed,3
-LUBBOCK,TEXAS,48303,2025-04-11,case_lab-confirmed,2
-LUBBOCK,TEXAS,48303,2025-04-15,case_lab-confirmed,3
-LUBBOCK,TEXAS,48303,2025-04-18,case_lab-confirmed,1
-LUBBOCK,TEXAS,48303,2025-04-23,case_lab-confirmed,5
-LUBBOCK,TEXAS,48303,2025-04-29,case_lab-confirmed,1
-LUBBOCK,TEXAS,48303,2025-05-02,case_lab-confirmed,2
-LUBBOCK,TEXAS,48303,2025-05-06,case_lab-confirmed,1
-LUBBOCK,TEXAS,48303,2025-05-13,case_lab-confirmed,1
-LUNA,NEW MEXICO,35029,2025-06-27,case_lab-confirmed,5
-LUNA,NEW MEXICO,35029,2025-07-01,case_lab-confirmed,8
-LUNA,NEW MEXICO,35029,2025-07-03,case_lab-confirmed,1
-LYNN,TEXAS,48305,2025-02-14,case_lab-confirmed,1
-LYNN,TEXAS,48305,2025-02-28,case_lab-confirmed,1
-MACOMB,MICHIGAN,26099,2025-04-04,case_lab-confirmed,1
-MACOMB,MICHIGAN,26099,2025-06-11,case_lab-confirmed,1
-MARQUETTE,MICHIGAN,26103,2025-05-30,case_lab-confirmed,1
-MARQUETTE,MICHIGAN,26103,2025-06-02,case_lab-confirmed,1
-MARTIN,TEXAS,48317,2025-02-25,case_lab-confirmed,3
-MCLENNAN,TEXAS,48309,2025-05-23,case_lab-confirmed,1
-MCLENNAN,TEXAS,48309,2025-05-30,case_lab-confirmed,7
-MCLENNAN,TEXAS,48309,2025-06-17,case_lab-confirmed,1
-MEADE,SOUTH DAKOTA,46093,2025-06-02,case_lab-confirmed,1
-MEADE,SOUTH DAKOTA,46093,2025-06-14,case_lab-confirmed,1
-MESA,COLORADO,8077,2025-08-15,case_lab-confirmed,1
-MESA,COLORADO,8077,2025-08-18,case_lab-confirmed,1
-MESA,COLORADO,8077,2025-08-30,case_lab-confirmed,5
-MESA,COLORADO,8077,2025-10-15,case_lab-confirmed,4
-MIAMI-DADE,FLORIDA,12086,2025-03-06,case_lab-confirmed,1
-MID-CUMBERLAND REGION,TENNESSEE,0,2025-03-17,case_lab-confirmed,1
-MID-CUMBERLAND REGION,TENNESSEE,0,2025-03-28,case_lab-confirmed,1
-MID-CUMBERLAND REGION,TENNESSEE,0,2025-09-08,case_lab-confirmed,1
-MIDLAND,TEXAS,48329,2025-03-20,case_lab-confirmed,1
-MIDLAND,TEXAS,48329,2025-04-15,case_lab-confirmed,1
-MIDLAND,TEXAS,48329,2025-04-23,case_lab-confirmed,1
-MIDLAND,TEXAS,48329,2025-05-23,case_lab-confirmed,2
-MIDLAND,TEXAS,48329,2025-06-10,case_lab-confirmed,1
-MIDLAND,TEXAS,48329,2025-08-07,case_lab-confirmed,1
-MOHAVE,ARIZONA,4015,2025-08-12,case_lab-confirmed,1
-MOHAVE,ARIZONA,4015,2025-08-19,case_lab-confirmed,8
-MOHAVE,ARIZONA,4015,2025-08-26,case_lab-confirmed,3
-MOHAVE,ARIZONA,4015,2025-09-02,case_lab-confirmed,12
-MOHAVE,ARIZONA,4015,2025-09-09,case_lab-confirmed,6
-MOHAVE,ARIZONA,4015,2025-09-16,case_lab-confirmed,12
-MOHAVE,ARIZONA,4015,2025-09-23,case_lab-confirmed,6
-MOHAVE,ARIZONA,4015,2025-09-30,case_lab-confirmed,7
-MOHAVE,ARIZONA,4015,2025-10-07,case_lab-confirmed,4
-MOHAVE,ARIZONA,4015,2025-10-14,case_lab-confirmed,14
-MOHAVE,ARIZONA,4015,2025-10-21,case_lab-confirmed,7
-MONTCALM,MICHIGAN,26117,2025-04-10,case_lab-confirmed,1
-MONTCALM,MICHIGAN,26117,2025-04-17,case_lab-confirmed,2
-MONTCALM,MICHIGAN,26117,2025-04-23,case_lab-confirmed,1
-MONTGOMERY,PENNSYLVANIA,42091,2025-03-02,case_lab-confirmed,1
-MULTNOMAH,OREGON,41051,2025-06-24,case_lab-confirmed,1
-MUSKEGON,MICHIGAN,26121,2025-06-26,case_lab-confirmed,1
-MUSKEGON,MICHIGAN,26121,2025-10-09,case_lab-confirmed,1
-MUSKEGON,MICHIGAN,26121,2025-10-23,case_lab-confirmed,1
-MUSKINGUM,OHIO,39119,2025-08-29,case_lab-confirmed,3
-NATRONA,WYOMING,56025,2025-07-01,case_lab-confirmed,1
-NAVAJO,ARIZONA,4017,2025-06-09,case_lab-confirmed,4
-NEW MADRID,MISSOURI,29143,2025-05-06,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-01-31,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-02-26,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-03-20,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-05-16,case_lab-confirmed,3
-NEW YORK CITY,NEW YORK,36061,2025-07-11,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-08-01,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-08-18,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-09-08,case_lab-confirmed,3
-NEW YORK CITY,NEW YORK,36061,2025-09-12,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-09-19,case_lab-confirmed,2
-NEW YORK CITY,NEW YORK,36061,2025-09-26,case_lab-confirmed,1
-NEW YORK CITY,NEW YORK,36061,2025-10-17,case_lab-confirmed,2
-NIOBRARA,WYOMING,56027,2025-07-11,case_lab-confirmed,1
-NORTH,ALABAMA,1,2025-08-25,case_lab-confirmed,1
-NORTHWEST REGION,VIRGINIA,0,2025-04-15,case_lab-confirmed,1
-NORTHWEST REGION,VIRGINIA,0,2025-06-05,case_lab-confirmed,2
-OAKLAND,MICHIGAN,26125,2025-03-14,case_lab-confirmed,1
-OCEAN,NEW JERSEY,34029,2025-07-10,case_lab-confirmed,1
-OCONTO,WISCONSIN,55083,2025-07-13,case_lab-confirmed,1
-OCONTO,WISCONSIN,55083,2025-07-20,case_lab-confirmed,4
-OCONTO,WISCONSIN,55083,2025-07-27,case_lab-confirmed,4
-OCONTO,WISCONSIN,55083,2025-08-10,case_lab-confirmed,2
-OCONTO,WISCONSIN,55083,2025-08-17,case_lab-confirmed,13
-OCONTO,WISCONSIN,55083,2025-08-24,case_lab-confirmed,3
-OCONTO,WISCONSIN,55083,2025-08-31,case_lab-confirmed,8
-OCONTO,WISCONSIN,55083,2025-09-07,case_lab-confirmed,1
-OLMSTED,MINNESOTA,27109,2025-10-17,case_lab-confirmed,1
-ONTARIO,NEW YORK,36069,2025-05-27,case_lab-confirmed,1
-ORANGE,CALIFORNIA,6059,2025-02-25,case_lab-confirmed,1
-ORANGE,CALIFORNIA,6059,2025-09-29,case_lab-confirmed,1
-ORANGE,NEW YORK,36071,2025-05-10,case_lab-confirmed,3
-ORANGE,NEW YORK,36071,2025-05-27,case_lab-confirmed,1
-ORLEANS,LOUISIANA,22071,2025-04-19,case_lab-confirmed,1
-ORLEANS,LOUISIANA,22071,2025-04-22,case_lab-confirmed,1
-OSCEOLA,MICHIGAN,26133,2025-07-24,case_lab-confirmed,2
-OSCEOLA,MICHIGAN,26133,2025-07-31,case_lab-confirmed,5
-PARMER,TEXAS,48369,2025-04-18,case_lab-confirmed,4
-PARMER,TEXAS,48369,2025-05-06,case_lab-confirmed,1
-PASSAIC,NEW JERSEY,34031,2025-08-02,case_lab-confirmed,1
-PAWNEE,KANSAS,20145,2025-06-02,case_lab-confirmed,7
-PENNINGTON,SOUTH DAKOTA,46103,2025-05-31,case_lab-confirmed,1
-PENNINGTON,SOUTH DAKOTA,46103,2025-06-07,case_lab-confirmed,1
-PHILADELPHIA,PENNSYLVANIA,42101,2025-03-31,case_lab-confirmed,1
-PHILADELPHIA,PENNSYLVANIA,42101,2025-04-11,case_lab-confirmed,1
-PLACER,CALIFORNIA,6061,2025-03-31,case_lab-confirmed,1
-POTTER,TEXAS,48375,2025-04-18,case_lab-confirmed,1
-PRINCE GEORGE'S,MARYLAND,24033,2025-03-10,case_lab-confirmed,2
-PROVIDENCE,RHODE ISLAND,44007,2025-01-18,case_lab-confirmed,1
-PUEBLO,COLORADO,8101,2025-03-31,case_lab-confirmed,1
-PUTNAM,INDIANA,18133,2025-07-08,case_lab-confirmed,1
-PUTNAM,NEW YORK,36079,2025-06-03,case_lab-confirmed,1
-RAINS,TEXAS,48379,2025-09-04,case_lab-confirmed,1
-RANDALL,TEXAS,48381,2025-04-08,case_lab-confirmed,1
-RANDALL,TEXAS,48381,2025-05-20,case_lab-confirmed,1
-RANDALL,TEXAS,48381,2025-05-23,case_lab-confirmed,1
-REEVES,TEXAS,48389,2025-04-15,case_lab-confirmed,1
-REEVES,TEXAS,48389,2025-05-30,case_lab-confirmed,1
-RIVERSIDE,CALIFORNIA,6065,2025-04-03,case_lab-confirmed,1
-ROCKLAND,NEW YORK,36087,2025-08-25,case_lab-confirmed,1
-ROCKWALL,TEXAS,48397,2025-03-20,case_lab-confirmed,1
-ROCKWALL,TEXAS,48397,2025-04-23,case_lab-confirmed,1
-SACRAMENTO,CALIFORNIA,6067,2025-06-16,case_lab-confirmed,1
-SALINE,ARKANSAS,5125,2025-04-10,case_lab-confirmed,1
-SAN DIEGO,CALIFORNIA,6073,2025-08-11,case_lab-confirmed,1
-SAN JUAN,NEW MEXICO,35045,2025-06-03,case_lab-confirmed,1
-SAN MATEO,CALIFORNIA,6081,2025-03-31,case_lab-confirmed,1
-SANDOVAL,NEW MEXICO,35043,2025-05-16,case_lab-confirmed,2
-SANDOVAL,NEW MEXICO,35043,2025-05-23,case_lab-confirmed,4
-SANTA CLARA,CALIFORNIA,6085,2025-05-25,case_lab-confirmed,1
-SANTA FE,NEW MEXICO,35049,2025-07-22,case_lab-confirmed,1
-SANTA FE,NEW MEXICO,35049,2025-07-28,case_lab-confirmed,1
-SANTA FE,NEW MEXICO,35049,2025-08-10,case_lab-confirmed,3
-SCURRY,TEXAS,48415,2025-05-23,case_lab-confirmed,1
-SHACKELFORD,TEXAS,48417,2025-04-29,case_lab-confirmed,1
-SHERIDAN,NEBRASKA,31161,2025-05-28,case_lab-confirmed,1
-SNOHOMISH,WASHINGTON,53061,2025-03-18,case_lab-confirmed,1
-SNOHOMISH,WASHINGTON,53061,2025-04-02,case_lab-confirmed,1
-SOUTHEAST HEALTH DISTRICT,UTAH,0,2025-09-08,case_lab-confirmed,1
-SOUTHEAST HEALTH DISTRICT,UTAH,0,2025-09-11,case_lab-confirmed,2
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-06-24,case_lab-confirmed,1
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-06-26,case_lab-confirmed,1
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-07-16,case_lab-confirmed,1
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-07-22,case_lab-confirmed,1
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-08-22,case_lab-confirmed,2
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-08-28,case_lab-confirmed,1
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-09-04,case_lab-confirmed,3
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-09-08,case_lab-confirmed,4
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-09-11,case_lab-confirmed,1
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-09-12,case_lab-confirmed,5
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-09-16,case_lab-confirmed,1
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-09-22,case_lab-confirmed,4
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-09-25,case_lab-confirmed,5
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-10-03,case_lab-confirmed,3
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-10-09,case_lab-confirmed,10
-SOUTHWEST HEALTH DISTRICT,UTAH,0,2025-10-23,case_lab-confirmed,4
-SPARTANBURG,SOUTH CAROLINA,45083,2025-09-08,case_lab-confirmed,1
-SPARTANBURG,SOUTH CAROLINA,45083,2025-09-26,case_lab-confirmed,1
-SPARTANBURG,SOUTH CAROLINA,45083,2025-10-02,case_lab-confirmed,4
-SPARTANBURG,SOUTH CAROLINA,45083,2025-10-07,case_lab-confirmed,2
-SPARTANBURG,SOUTH CAROLINA,45083,2025-10-14,case_lab-confirmed,4
-SPARTANBURG,SOUTH CAROLINA,45083,2025-10-17,case_lab-confirmed,3
-SPARTANBURG,SOUTH CAROLINA,45083,2025-10-21,case_lab-confirmed,4
-SPARTANBURG,SOUTH CAROLINA,45083,2025-10-24,case_lab-confirmed,2
-SPOKANE,WASHINGTON,53063,2025-08-25,case_lab-confirmed,1
-STEVENS,KANSAS,20189,2025-03-31,case_lab-confirmed,6
-STEVENS,KANSAS,20189,2025-04-09,case_lab-confirmed,1
-STEVENS,KANSAS,20189,2025-07-07,case_lab-confirmed,2
-STEVENS,KANSAS,20189,2025-07-16,case_lab-confirmed,1
-SUFFOLK,NEW YORK,36103,2025-03-11,case_lab-confirmed,1
-TANEY,MISSOURI,29213,2025-04-18,case_lab-confirmed,1
-TARRANT,TEXAS,48439,2025-05-06,case_lab-confirmed,2
-TARRANT,TEXAS,48439,2025-05-27,case_lab-confirmed,2
-TERRY,TEXAS,48445,2025-02-14,case_lab-confirmed,3
-TERRY,TEXAS,48445,2025-02-18,case_lab-confirmed,6
-TERRY,TEXAS,48445,2025-02-21,case_lab-confirmed,11
-TERRY,TEXAS,48445,2025-02-25,case_lab-confirmed,1
-TERRY,TEXAS,48445,2025-03-18,case_lab-confirmed,15
-TERRY,TEXAS,48445,2025-03-20,case_lab-confirmed,2
-TERRY,TEXAS,48445,2025-04-02,case_lab-confirmed,3
-TERRY,TEXAS,48445,2025-04-04,case_lab-confirmed,2
-TERRY,TEXAS,48445,2025-04-08,case_lab-confirmed,3
-TERRY,TEXAS,48445,2025-04-11,case_lab-confirmed,1
-TERRY,TEXAS,48445,2025-04-18,case_lab-confirmed,5
-TERRY,TEXAS,48445,2025-04-23,case_lab-confirmed,2
-TERRY,TEXAS,48445,2025-04-25,case_lab-confirmed,5
-TERRY,TEXAS,48445,2025-05-06,case_lab-confirmed,1
-TODD,KENTUCKY,21219,2025-06-30,case_lab-confirmed,1
-TRAVIS,TEXAS,48453,2025-03-20,case_lab-confirmed,1
-TRAVIS,TEXAS,48453,2025-05-02,case_lab-confirmed,1
-TULARE,CALIFORNIA,6107,2025-07-22,case_lab-confirmed,1
-TULARE,CALIFORNIA,6107,2025-07-24,case_lab-confirmed,1
-TUOLUMNE,CALIFORNIA,6109,2025-03-19,case_lab-confirmed,2
-TWIN CITIES METRO AREA,MINNESOTA,27,2025-10-01,case_lab-confirmed,10
-UNKNOWN COUNTY,CALIFORNIA,6,2025-06-16,case_lab-confirmed,1
-UNKNOWN COUNTY,CALIFORNIA,6,2025-10-13,case_lab-confirmed,1
-UNKNOWN COUNTY,ILLINOIS,17,2025-10-22,case_lab-confirmed,2
-UNKNOWN COUNTY,KANSAS,20,2025-03-31,case_lab-confirmed,9
-UNKNOWN COUNTY,KANSAS,20,2025-04-05,case_lab-confirmed,1
-UNKNOWN COUNTY,KANSAS,20,2025-04-09,case_lab-confirmed,2
-UNKNOWN COUNTY,KANSAS,20,2025-04-16,case_lab-confirmed,3
-UNKNOWN COUNTY,KANSAS,20,2025-06-16,case_lab-confirmed,2
-UNKNOWN COUNTY,KENTUCKY,21,2025-06-30,case_lab-confirmed,1
-UNKNOWN COUNTY,MINNESOTA,27,2025-06-11,case_lab-confirmed,1
-UNKNOWN COUNTY,MINNESOTA,27,2025-09-25,case_lab-confirmed,3
-UNKNOWN COUNTY,MINNESOTA,27,2025-10-09,case_lab-confirmed,2
-UNKNOWN COUNTY,NEW JERSEY,34,2025-08-29,case_lab-confirmed,2
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-03-25,case_lab-confirmed,7
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-04-02,case_lab-confirmed,1
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-04-15,case_lab-confirmed,1
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-04-23,case_lab-confirmed,1
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-04-25,case_lab-confirmed,2
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-05-02,case_lab-confirmed,1
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-05-06,case_lab-confirmed,1
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-06-03,case_lab-confirmed,1
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-06-06,case_lab-confirmed,1
-UNKNOWN COUNTY,OKLAHOMA,40109,2025-06-13,case_lab-confirmed,1
-UNKNOWN COUNTY,SOUTH CAROLINA,0,2025-10-14,case_lab-confirmed,1
-UPPER CUMBERLAND REGION,TENNESSEE,0,2025-03-30,case_lab-confirmed,1
-UPPER CUMBERLAND REGION,TENNESSEE,0,2025-03-31,case_lab-confirmed,1
-UPPER CUMBERLAND REGION,TENNESSEE,0,2025-04-14,case_lab-confirmed,1
-UPPER CUMBERLAND REGION,TENNESSEE,0,2025-04-16,case_lab-confirmed,1
-UPSHUR,TEXAS,48459,2025-04-18,case_lab-confirmed,1
-UPSHUR,TEXAS,48459,2025-04-25,case_lab-confirmed,1
-UPSHUR,TEXAS,48459,2025-05-02,case_lab-confirmed,3
-UPSTATE,SOUTH CAROLINA,0,2025-07-09,case_lab-confirmed,1
-UPSTATE,SOUTH CAROLINA,0,2025-07-16,case_lab-confirmed,1
-UTAH,UTAH,49049,2025-06-20,case_lab-confirmed,1
-UTAH,UTAH,49049,2025-06-24,case_lab-confirmed,1
-UTAH,UTAH,49049,2025-06-26,case_lab-confirmed,1
-UTAH,UTAH,49049,2025-06-27,case_lab-confirmed,2
-UTAH,UTAH,49049,2025-07-01,case_lab-confirmed,2
-WASHINGTON,DISTRICT OF COLUMBIA,11001,2025-06-14,case_lab-confirmed,1
-WASHINGTON,MINNESOTA,27163,2025-06-02,case_lab-confirmed,1
-WESTERN,IOWA,19,2025-07-22,case_lab-confirmed,1
-WHATCOM,WASHINGTON,53073,2025-06-20,case_lab-confirmed,1
-WHATCOM,WASHINGTON,53073,2025-06-23,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-04-29,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-05-02,case_lab-confirmed,2
-WILLIAMS,NORTH DAKOTA,38105,2025-05-03,case_lab-confirmed,2
-WILLIAMS,NORTH DAKOTA,38105,2025-05-04,case_lab-confirmed,3
-WILLIAMS,NORTH DAKOTA,38105,2025-05-06,case_lab-confirmed,2
-WILLIAMS,NORTH DAKOTA,38105,2025-05-07,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-05-10,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-05-11,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-05-16,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-05-18,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-05-28,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-07-01,case_lab-confirmed,1
-WILLIAMS,NORTH DAKOTA,38105,2025-07-14,case_lab-confirmed,1
-WILLIAMSON,ILLINOIS,17199,2025-04-23,case_lab-confirmed,1
-WILLIAMSON,ILLINOIS,17199,2025-05-05,case_lab-confirmed,3
-WILLIAMSON,TEXAS,48491,2025-05-30,case_lab-confirmed,6
-WILLIAMSON,TEXAS,48491,2025-08-07,case_lab-confirmed,2
-WOODFORD,KENTUCKY,21239,2025-06-30,case_lab-confirmed,3
-YELLOWSTONE,MONTANA,30111,2025-06-01,case_lab-confirmed,2
-YELLOWSTONE,MONTANA,30111,2025-07-13,case_lab-confirmed,1
-YELLOWSTONE,MONTANA,30111,2025-07-20,case_lab-confirmed,1
-YOAKUM,TEXAS,48501,2025-02-14,case_lab-confirmed,2
-YOAKUM,TEXAS,48501,2025-02-21,case_lab-confirmed,2
-YOAKUM,TEXAS,48501,2025-02-25,case_lab-confirmed,1
-YOAKUM,TEXAS,48501,2025-02-28,case_lab-confirmed,1
-YOAKUM,TEXAS,48501,2025-03-18,case_lab-confirmed,5
-YOAKUM,TEXAS,48501,2025-03-20,case_lab-confirmed,4
-YOAKUM,TEXAS,48501,2025-04-02,case_lab-confirmed,1
-YOAKUM,TEXAS,48501,2025-04-04,case_lab-confirmed,1
-YOAKUM,TEXAS,48501,2025-04-11,case_lab-confirmed,1
-YOAKUM,TEXAS,48501,2025-04-18,case_lab-confirmed,1
-YOAKUM,TEXAS,48501,2025-05-06,case_lab-confirmed,1
-YOLO,CALIFORNIA,6113,2025-06-06,case_lab-confirmed,1
+ADAMS,Colorado,8001,2025-08-13,case_lab-confirmed,1
+ADAMS,Colorado,8001,2025-08-15,case_lab-confirmed,2
+ADAMS,Colorado,8001,2025-08-28,case_lab-confirmed,1
+ALLEGAN,Michigan,26005,2025-06-06,case_lab-confirmed,1
+ALLEN,Indiana,18003,2025-04-07,case_lab-confirmed,1
+ALLEN,Indiana,18003,2025-04-09,case_lab-confirmed,5
+ALLEN,Indiana,18003,2025-04-23,case_lab-confirmed,2
+ALLEN,Ohio,39003,2025-03-14,case_lab-confirmed,1
+ANCHORAGE,Alaska,2020,2025-01-16,case_lab-confirmed,1
+ANCHORAGE,Alaska,2020,2025-05-22,case_lab-confirmed,1
+ANDREWS,Texas,48003,2025-03-20,case_lab-confirmed,1
+ANDREWS,Texas,48003,2025-04-15,case_lab-confirmed,1
+ANDREWS,Texas,48003,2025-04-25,case_lab-confirmed,1
+ARAPAHOE,Colorado,8005,2025-05-13,case_lab-confirmed,1
+ARAPAHOE,Colorado,8005,2025-05-28,case_lab-confirmed,1
+ARAPAHOE,Colorado,8005,2025-05-30,case_lab-confirmed,1
+ARAPAHOE,Colorado,8005,2025-06-02,case_lab-confirmed,1
+ARAPAHOE,Colorado,8005,2025-06-09,case_lab-confirmed,1
+ARCHULETA,Colorado,8007,2025-04-09,case_lab-confirmed,1
+ASHTABULA,Ohio,39007,2025-02-24,case_lab-confirmed,1
+ASHTABULA,Ohio,39007,2025-02-25,case_lab-confirmed,1
+ASHTABULA,Ohio,39007,2025-03-07,case_lab-confirmed,1
+ASHTABULA,Ohio,39007,2025-03-08,case_lab-confirmed,1
+ASHTABULA,Ohio,39007,2025-03-09,case_lab-confirmed,6
+ASHTABULA,Ohio,39007,2025-04-01,case_lab-confirmed,1
+ASHTABULA,Ohio,39007,2025-04-11,case_lab-confirmed,3
+ASHTABULA,Ohio,39007,2025-04-12,case_lab-confirmed,2
+ATASCOSA,Texas,48013,2025-04-25,case_lab-confirmed,1
+BAILEY,Texas,48017,2025-04-23,case_lab-confirmed,2
+BEAR RIVER,Utah,0,2025-09-22,case_lab-confirmed,1
+BEAR RIVER,Utah,0,2025-09-25,case_lab-confirmed,3
+BELL,Texas,48027,2025-06-17,case_lab-confirmed,1
+BENTON,Arkansas,5007,2025-06-16,case_lab-confirmed,1
+BERGEN,New Jersey,34003,2025-02-14,case_lab-confirmed,1
+BERGEN,New Jersey,34003,2025-02-17,case_lab-confirmed,2
+BERGEN,New Jersey,34003,2025-09-03,case_lab-confirmed,1
+BEXAR,Texas,48029,2025-07-01,case_lab-confirmed,1
+BEXAR,Texas,48029,2025-08-12,case_lab-confirmed,1
+BONNER,Idaho,16017,2025-08-20,case_lab-confirmed,1
+BONNEVILLE,Idaho,16019,2025-08-07,case_lab-confirmed,2
+BONNEVILLE,Idaho,16019,2025-09-13,case_lab-confirmed,4
+BORDEN,Texas,48033,2025-04-08,case_lab-confirmed,1
+BOULDER,Colorado,8013,2025-06-13,case_lab-confirmed,1
+BRAZORIA,Texas,48039,2025-04-18,case_lab-confirmed,1
+BREWSTER,Texas,48043,2025-05-23,case_lab-confirmed,1
+BROWARD,Florida,12011,2025-04-22,case_lab-confirmed,1
+BROWARD,Florida,12011,2025-08-16,case_lab-confirmed,1
+BROWN,Texas,48049,2025-04-04,case_lab-confirmed,1
+BUCKS,Pennsylvania,42017,2025-03-27,case_lab-confirmed,1
+BURKE,North Dakota,38013,2025-05-27,case_lab-confirmed,1
+CARBON,Wyoming,56007,2025-07-22,case_lab-confirmed,1
+CARBON,Wyoming,56007,2025-08-02,case_lab-confirmed,4
+CARBON,Wyoming,56007,2025-08-15,case_lab-confirmed,1
+CARBON,Wyoming,56007,2025-08-26,case_lab-confirmed,1
+CARSON,Texas,48065,2025-05-13,case_lab-confirmed,1
+CASCADE,Montana,30013,2025-07-16,case_lab-confirmed,1
+CASS,North Dakota,38017,2025-05-01,case_lab-confirmed,1
+CASS,North Dakota,38017,2025-05-06,case_lab-confirmed,2
+CASS,North Dakota,38017,2025-05-12,case_lab-confirmed,1
+CASS,North Dakota,38017,2025-05-14,case_lab-confirmed,1
+CASS,North Dakota,38017,2025-05-15,case_lab-confirmed,1
+CASS,North Dakota,38017,2025-05-17,case_lab-confirmed,1
+CASSIA,Idaho,16031,2025-05-27,case_lab-confirmed,1
+CEDAR,Missouri,29039,2025-06-23,case_lab-confirmed,1
+CEDAR,Missouri,29039,2025-07-01,case_lab-confirmed,1
+CEDAR,Missouri,29039,2025-07-03,case_lab-confirmed,3
+CENTRAL,Iowa,19,2025-05-23,case_lab-confirmed,1
+CHAVES,New Mexico,35005,2025-04-08,case_lab-confirmed,1
+COCHRAN,Texas,48079,2025-03-18,case_lab-confirmed,7
+COCHRAN,Texas,48079,2025-03-20,case_lab-confirmed,1
+COCHRAN,Texas,48079,2025-04-04,case_lab-confirmed,1
+COCHRAN,Texas,48079,2025-04-08,case_lab-confirmed,1
+COCHRAN,Texas,48079,2025-04-11,case_lab-confirmed,1
+COCHRAN,Texas,48079,2025-04-15,case_lab-confirmed,1
+COCHRAN,Texas,48079,2025-04-25,case_lab-confirmed,2
+COLLIN,Texas,48085,2025-04-25,case_lab-confirmed,1
+COLLIN,Texas,48085,2025-05-16,case_lab-confirmed,1
+COLLIN,Texas,48085,2025-06-02,case_lab-confirmed,1
+COLLIN,Texas,48085,2025-06-03,case_lab-confirmed,1
+COOK,Illinois,17031,2025-04-25,case_lab-confirmed,1
+COOK,Illinois,17031,2025-04-28,case_lab-confirmed,1
+COOK,Illinois,17031,2025-05-02,case_lab-confirmed,4
+COOK,Illinois,17031,2025-09-16,case_lab-confirmed,1
+COOK,Illinois,17031,2025-09-30,case_lab-confirmed,1
+CURRY,New Mexico,35009,2025-05-09,case_lab-confirmed,1
+CUYAHOGA,Ohio,39035,2025-04-28,case_lab-confirmed,1
+DAKOTA,Minnesota,27037,2025-06-02,case_lab-confirmed,1
+DALLAM,Texas,48111,2025-02-25,case_lab-confirmed,4
+DALLAM,Texas,48111,2025-03-18,case_lab-confirmed,2
+DALLAM,Texas,48111,2025-03-20,case_lab-confirmed,1
+DALLAS,Texas,48113,2025-06-24,case_lab-confirmed,1
+DAWSON,Texas,48115,2025-02-21,case_lab-confirmed,6
+DAWSON,Texas,48115,2025-02-25,case_lab-confirmed,1
+DAWSON,Texas,48115,2025-02-28,case_lab-confirmed,1
+DAWSON,Texas,48115,2025-03-18,case_lab-confirmed,3
+DAWSON,Texas,48115,2025-03-20,case_lab-confirmed,3
+DAWSON,Texas,48115,2025-04-04,case_lab-confirmed,6
+DAWSON,Texas,48115,2025-04-11,case_lab-confirmed,1
+DAWSON,Texas,48115,2025-04-18,case_lab-confirmed,3
+DAWSON,Texas,48115,2025-04-25,case_lab-confirmed,1
+DAWSON,Texas,48115,2025-05-02,case_lab-confirmed,1
+DEFIANCE,Ohio,39039,2025-04-13,case_lab-confirmed,1
+DENTON,Texas,48121,2025-05-02,case_lab-confirmed,1
+DENTON,Texas,48121,2025-05-23,case_lab-confirmed,1
+DENVER,Colorado,8031,2025-04-07,case_lab-confirmed,1
+DENVER,Colorado,8031,2025-04-23,case_lab-confirmed,1
+DENVER,Colorado,8031,2025-04-25,case_lab-confirmed,1
+DENVER,Colorado,8031,2025-06-04,case_lab-confirmed,1
+DONA ANA,New Mexico,35013,2025-04-15,case_lab-confirmed,1
+DONA ANA,New Mexico,35013,2025-05-02,case_lab-confirmed,1
+DUVAL,Florida,12031,2025-08-16,case_lab-confirmed,1
+EASTERN REGION,Virginia,0,2025-09-03,case_lab-confirmed,1
+EASTERN,Iowa,19,2025-06-09,case_lab-confirmed,1
+EASTERN,Iowa,19,2025-06-11,case_lab-confirmed,1
+EASTERN,Iowa,19,2025-06-12,case_lab-confirmed,3
+EASTERN,Iowa,19,2025-07-14,case_lab-confirmed,1
+EASTLAND,Texas,48133,2025-05-02,case_lab-confirmed,2
+ECTOR,Texas,48135,2025-02-21,case_lab-confirmed,1
+ECTOR,Texas,48135,2025-02-25,case_lab-confirmed,1
+ECTOR,Texas,48135,2025-03-20,case_lab-confirmed,2
+ECTOR,Texas,48135,2025-04-02,case_lab-confirmed,1
+ECTOR,Texas,48135,2025-04-04,case_lab-confirmed,3
+ECTOR,Texas,48135,2025-04-18,case_lab-confirmed,1
+ECTOR,Texas,48135,2025-04-23,case_lab-confirmed,1
+ECTOR,Texas,48135,2025-05-02,case_lab-confirmed,1
+ECTOR,Texas,48135,2025-05-30,case_lab-confirmed,1
+EDDY,New Mexico,35015,2025-03-31,case_lab-confirmed,1
+EDDY,New Mexico,35015,2025-04-04,case_lab-confirmed,1
+EDDY,New Mexico,35015,2025-04-25,case_lab-confirmed,1
+EL PASO,Colorado,8041,2025-06-02,case_lab-confirmed,3
+EL PASO,Colorado,8041,2025-06-09,case_lab-confirmed,1
+EL PASO,Texas,48141,2025-04-09,case_lab-confirmed,2
+EL PASO,Texas,48141,2025-04-10,case_lab-confirmed,1
+EL PASO,Texas,48141,2025-04-15,case_lab-confirmed,4
+EL PASO,Texas,48141,2025-04-18,case_lab-confirmed,11
+EL PASO,Texas,48141,2025-04-23,case_lab-confirmed,2
+EL PASO,Texas,48141,2025-04-25,case_lab-confirmed,2
+EL PASO,Texas,48141,2025-04-29,case_lab-confirmed,10
+EL PASO,Texas,48141,2025-05-02,case_lab-confirmed,6
+EL PASO,Texas,48141,2025-05-06,case_lab-confirmed,6
+EL PASO,Texas,48141,2025-05-09,case_lab-confirmed,6
+EL PASO,Texas,48141,2025-05-13,case_lab-confirmed,2
+EL PASO,Texas,48141,2025-05-20,case_lab-confirmed,2
+EL PASO,Texas,48141,2025-05-23,case_lab-confirmed,2
+EL PASO,Texas,48141,2025-05-27,case_lab-confirmed,1
+EL PASO,Texas,48141,2025-05-30,case_lab-confirmed,2
+EL PASO,Texas,48141,2025-06-10,case_lab-confirmed,1
+EL PASO,Texas,48141,2025-07-01,case_lab-confirmed,1
+ERATH,Texas,48143,2025-03-20,case_lab-confirmed,1
+ERIE,Pennsylvania,42049,2025-03-25,case_lab-confirmed,2
+ERIE,Pennsylvania,42049,2025-03-30,case_lab-confirmed,1
+ERIE,Pennsylvania,42049,2025-04-15,case_lab-confirmed,2
+ERIE,Pennsylvania,42049,2025-05-09,case_lab-confirmed,3
+FANNIN,Texas,48147,2025-07-15,case_lab-confirmed,4
+FAULKNER,Arkansas,5045,2025-04-10,case_lab-confirmed,1
+FAULKNER,Arkansas,5045,2025-04-29,case_lab-confirmed,1
+FAULKNER,Arkansas,5045,2025-05-09,case_lab-confirmed,2
+FAULKNER,Arkansas,5045,2025-05-20,case_lab-confirmed,1
+FAULKNER,Arkansas,5045,2025-05-27,case_lab-confirmed,1
+FAYETTE,Kentucky,21067,2025-06-30,case_lab-confirmed,1
+FAYETTE,Kentucky,21067,2025-07-07,case_lab-confirmed,4
+FAYETTE,Kentucky,21067,2025-07-10,case_lab-confirmed,1
+FLATHEAD,Montana,30029,2025-05-21,case_lab-confirmed,1
+FLATHEAD,Montana,30029,2025-05-29,case_lab-confirmed,1
+FORT BEND,Texas,48157,2025-04-02,case_lab-confirmed,1
+FRANKLIN,Kentucky,21073,2025-02-26,case_lab-confirmed,1
+FRANKLIN,Ohio,39049,2025-05-20,case_lab-confirmed,1
+FRANKLIN,Ohio,39049,2025-09-15,case_lab-confirmed,1
+FRANKLIN,Ohio,39049,2025-09-24,case_lab-confirmed,1
+FRANKLIN,Ohio,39049,2025-09-29,case_lab-confirmed,2
+FRANKLIN,Ohio,39049,2025-10-08,case_lab-confirmed,1
+FRESNO,California,6019,2025-03-11,case_lab-confirmed,1
+FRESNO,California,6019,2025-03-19,case_lab-confirmed,1
+FULTON,Georgia,13121,2025-01-28,case_lab-confirmed,1
+FULTON,Georgia,13121,2025-03-31,case_lab-confirmed,2
+FULTON,Georgia,13121,2025-05-19,case_lab-confirmed,1
+FULTON,Georgia,13121,2025-06-06,case_lab-confirmed,1
+FULTON,Georgia,13121,2025-06-18,case_lab-confirmed,1
+FULTON,Georgia,13121,2025-09-12,case_lab-confirmed,1
+FULTON,Georgia,13121,2025-09-23,case_lab-confirmed,3
+GAINES,Texas,48165,2025-02-05,case_lab-confirmed,6
+GAINES,Texas,48165,2025-02-11,case_lab-confirmed,18
+GAINES,Texas,48165,2025-02-14,case_lab-confirmed,18
+GAINES,Texas,48165,2025-02-18,case_lab-confirmed,3
+GAINES,Texas,48165,2025-02-21,case_lab-confirmed,12
+GAINES,Texas,48165,2025-02-25,case_lab-confirmed,23
+GAINES,Texas,48165,2025-02-28,case_lab-confirmed,18
+GAINES,Texas,48165,2025-03-04,case_lab-confirmed,9
+GAINES,Texas,48165,2025-03-11,case_lab-confirmed,49
+GAINES,Texas,48165,2025-03-18,case_lab-confirmed,35
+GAINES,Texas,48165,2025-03-20,case_lab-confirmed,79
+GAINES,Texas,48165,2025-04-02,case_lab-confirmed,10
+GAINES,Texas,48165,2025-04-04,case_lab-confirmed,35
+GAINES,Texas,48165,2025-04-08,case_lab-confirmed,13
+GAINES,Texas,48165,2025-04-11,case_lab-confirmed,27
+GAINES,Texas,48165,2025-04-15,case_lab-confirmed,9
+GAINES,Texas,48165,2025-04-18,case_lab-confirmed,7
+GAINES,Texas,48165,2025-04-23,case_lab-confirmed,15
+GAINES,Texas,48165,2025-04-25,case_lab-confirmed,7
+GAINES,Texas,48165,2025-04-29,case_lab-confirmed,3
+GAINES,Texas,48165,2025-05-06,case_lab-confirmed,7
+GAINES,Texas,48165,2025-05-13,case_lab-confirmed,2
+GAINES,Texas,48165,2025-05-16,case_lab-confirmed,1
+GAINES,Texas,48165,2025-05-23,case_lab-confirmed,2
+GAINES,Texas,48165,2025-05-30,case_lab-confirmed,1
+GAINES,Texas,48165,2025-06-03,case_lab-confirmed,2
+GAINES,Texas,48165,2025-06-17,case_lab-confirmed,2
+GAINES,Texas,48165,2025-07-01,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-04-17,case_lab-confirmed,5
+GALLATIN,Montana,30031,2025-04-29,case_lab-confirmed,2
+GALLATIN,Montana,30031,2025-05-05,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-05-23,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-05-28,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-06-05,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-06-09,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-06-10,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-06-15,case_lab-confirmed,3
+GALLATIN,Montana,30031,2025-06-22,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-07-20,case_lab-confirmed,2
+GARZA,Texas,48169,2025-03-20,case_lab-confirmed,1
+GARZA,Texas,48169,2025-04-02,case_lab-confirmed,1
+GRAND FORKS,North Dakota,38035,2025-05-16,case_lab-confirmed,1
+GRAND FORKS,North Dakota,38035,2025-05-17,case_lab-confirmed,1
+GRAND FORKS,North Dakota,38035,2025-05-20,case_lab-confirmed,1
+GRAND FORKS,North Dakota,38035,2025-05-22,case_lab-confirmed,1
+GRAND FORKS,North Dakota,38035,2025-05-25,case_lab-confirmed,2
+GRAND FORKS,North Dakota,38035,2025-05-26,case_lab-confirmed,1
+GRAND FORKS,North Dakota,38035,2025-05-28,case_lab-confirmed,2
+GRAND FORKS,North Dakota,38035,2025-05-30,case_lab-confirmed,1
+GRAND TRAVERSE,Michigan,26055,2025-06-18,case_lab-confirmed,1
+GRAND TRAVERSE,Michigan,26055,2025-06-20,case_lab-confirmed,1
+GRAND TRAVERSE,Michigan,26055,2025-06-23,case_lab-confirmed,1
+GRAND TRAVERSE,Michigan,26055,2025-07-02,case_lab-confirmed,1
+GRAY,Kansas,20069,2025-04-30,case_lab-confirmed,15
+GRAY,Kansas,20069,2025-05-14,case_lab-confirmed,6
+GRAY,Kansas,20069,2025-05-28,case_lab-confirmed,3
+GRAY,Kansas,20069,2025-06-02,case_lab-confirmed,1
+GRAY,Kansas,20069,2025-06-11,case_lab-confirmed,1
+GRAY,Kansas,20069,2025-07-02,case_lab-confirmed,2
+GRAY,Kansas,20069,2025-07-14,case_lab-confirmed,1
+GREENVILLE,South Carolina,45045,2025-10-09,case_lab-confirmed,1
+GUILFORD,North Carolina,37081,2025-06-24,case_lab-confirmed,1
+HALE,Texas,48189,2025-03-20,case_lab-confirmed,1
+HALE,Texas,48189,2025-04-04,case_lab-confirmed,2
+HALE,Texas,48189,2025-04-08,case_lab-confirmed,2
+HARDEMAN,Texas,48197,2025-05-02,case_lab-confirmed,1
+HARRIS,Texas,48201,2025-01-23,case_lab-confirmed,2
+HARRIS,Texas,48201,2025-03-20,case_lab-confirmed,1
+HARRIS,Texas,48201,2025-07-15,case_lab-confirmed,1
+HARRIS,Texas,48201,2025-08-07,case_lab-confirmed,1
+HARRISON,Texas,48203,2025-05-20,case_lab-confirmed,1
+HASKELL,Kansas,20081,2025-04-09,case_lab-confirmed,8
+HASKELL,Kansas,20081,2025-05-21,case_lab-confirmed,2
+HASKELL,Kansas,20081,2025-06-02,case_lab-confirmed,1
+HASKELL,Kansas,20081,2025-06-09,case_lab-confirmed,1
+HASKELL,Kansas,20081,2025-06-11,case_lab-confirmed,3
+HASKELL,Kansas,20081,2025-06-16,case_lab-confirmed,1
+HASKELL,Kansas,20081,2025-06-18,case_lab-confirmed,1
+HASKELL,Kansas,20081,2025-07-02,case_lab-confirmed,1
+HASKELL,Kansas,20081,2025-07-07,case_lab-confirmed,1
+HASKELL,Kansas,20081,2025-07-09,case_lab-confirmed,1
+HASKELL,Kansas,20081,2025-07-14,case_lab-confirmed,1
+HAYS,Texas,48209,2025-05-23,case_lab-confirmed,1
+HENNEPIN,Minnesota,27053,2025-03-24,case_lab-confirmed,1
+HENNEPIN,Minnesota,27053,2025-04-23,case_lab-confirmed,1
+HILL,Montana,30041,2025-05-22,case_lab-confirmed,1
+HILL,Montana,30041,2025-06-02,case_lab-confirmed,2
+HILL,Montana,30041,2025-06-06,case_lab-confirmed,1
+HOCKLEY,Texas,48219,2025-03-20,case_lab-confirmed,1
+HOCKLEY,Texas,48219,2025-03-31,case_lab-confirmed,1
+HOCKLEY,Texas,48219,2025-04-04,case_lab-confirmed,1
+HOCKLEY,Texas,48219,2025-04-18,case_lab-confirmed,2
+HOCKLEY,Texas,48219,2025-05-02,case_lab-confirmed,1
+HOCKLEY,Texas,48219,2025-08-07,case_lab-confirmed,1
+HOLMES,Ohio,39075,2025-04-02,case_lab-confirmed,1
+HONOLULU,Hawaii,15003,2025-04-08,case_lab-confirmed,1
+HONOLULU,Hawaii,15003,2025-04-17,case_lab-confirmed,1
+HOWARD,Maryland,24027,2025-03-09,case_lab-confirmed,1
+HUDSON,New Jersey,34017,2025-07-03,case_lab-confirmed,1
+HUDSON,New Jersey,34017,2025-08-22,case_lab-confirmed,1
+INGHAM,Michigan,26065,2025-04-15,case_lab-confirmed,1
+JEFFERSON,Kentucky,21111,2025-07-14,case_lab-confirmed,1
+JEFFERSON,Kentucky,21111,2025-07-28,case_lab-confirmed,1
+KENAI PENINSULA,Alaska,2122,2025-01-21,case_lab-confirmed,1
+KENT,Michigan,26081,2025-04-04,case_lab-confirmed,1
+KENT,Michigan,26081,2025-07-02,case_lab-confirmed,1
+KENT,Michigan,26081,2025-07-24,case_lab-confirmed,2
+KING,Washington,53033,2025-02-27,case_lab-confirmed,1
+KING,Washington,53033,2025-04-11,case_lab-confirmed,1
+KING,Washington,53033,2025-04-24,case_lab-confirmed,1
+KING,Washington,53033,2025-05-20,case_lab-confirmed,1
+KING,Washington,53033,2025-06-24,case_lab-confirmed,2
+KIOWA,Kansas,20097,2025-03-31,case_lab-confirmed,6
+KNOX,Ohio,39083,2025-03-31,case_lab-confirmed,6
+KNOX,Ohio,39083,2025-04-02,case_lab-confirmed,1
+KNOX,Ohio,39083,2025-04-06,case_lab-confirmed,1
+KNOX,Ohio,39083,2025-04-09,case_lab-confirmed,6
+KOOTENAI,Idaho,16055,2025-08-12,case_lab-confirmed,1
+LAKE,Indiana,18089,2025-10-17,case_lab-confirmed,1
+LAMAR,Texas,48277,2025-03-20,case_lab-confirmed,10
+LAMAR,Texas,48277,2025-04-04,case_lab-confirmed,1
+LAMAR,Texas,48277,2025-04-25,case_lab-confirmed,3
+LAMAR,Texas,48277,2025-04-29,case_lab-confirmed,3
+LAMAR,Texas,48277,2025-05-06,case_lab-confirmed,1
+LAMAR,Texas,48277,2025-05-09,case_lab-confirmed,1
+LAMAR,Texas,48277,2025-05-23,case_lab-confirmed,1
+LAMAR,Texas,48277,2025-06-03,case_lab-confirmed,1
+LAMAR,Texas,48277,2025-06-17,case_lab-confirmed,2
+LAMAR,Texas,48277,2025-07-01,case_lab-confirmed,3
+LAMAR,Texas,48277,2025-07-08,case_lab-confirmed,2
+LAMB,Texas,48279,2025-03-20,case_lab-confirmed,1
+LAMOILLE,Vermont,50015,2025-03-11,case_lab-confirmed,1
+LANCASTER,Pennsylvania,42071,2025-04-15,case_lab-confirmed,1
+LEA,New Mexico,35025,2025-02-11,case_lab-confirmed,1
+LEA,New Mexico,35025,2025-02-14,case_lab-confirmed,2
+LEA,New Mexico,35025,2025-03-07,case_lab-confirmed,27
+LEA,New Mexico,35025,2025-03-11,case_lab-confirmed,2
+LEA,New Mexico,35025,2025-04-04,case_lab-confirmed,20
+LEA,New Mexico,35025,2025-04-08,case_lab-confirmed,1
+LEA,New Mexico,35025,2025-04-11,case_lab-confirmed,2
+LEA,New Mexico,35025,2025-04-15,case_lab-confirmed,4
+LEA,New Mexico,35025,2025-04-23,case_lab-confirmed,2
+LEA,New Mexico,35025,2025-05-09,case_lab-confirmed,3
+LEA,New Mexico,35025,2025-05-16,case_lab-confirmed,1
+LEA,New Mexico,35025,2025-05-27,case_lab-confirmed,1
+LEA,New Mexico,35025,2025-06-03,case_lab-confirmed,1
+LEON,Florida,12073,2025-06-07,case_lab-confirmed,1
+LEON,Florida,12073,2025-06-28,case_lab-confirmed,1
+LEWIS AND CLARK,Montana,30049,2025-08-12,case_lab-confirmed,1
+LEWIS AND CLARK,Montana,30049,2025-08-24,case_lab-confirmed,1
+LINCOLN,South Dakota,46083,2025-06-21,case_lab-confirmed,2
+LINCOLN,South Dakota,46083,2025-06-28,case_lab-confirmed,6
+LOS ANGELES,California,6037,2025-03-11,case_lab-confirmed,1
+LOS ANGELES,California,6037,2025-04-25,case_lab-confirmed,1
+LOS ANGELES,California,6037,2025-05-07,case_lab-confirmed,1
+LOS ANGELES,California,6037,2025-06-06,case_lab-confirmed,1
+LOS ANGELES,California,6037,2025-06-12,case_lab-confirmed,1
+LUBBOCK,Texas,48303,2025-02-18,case_lab-confirmed,1
+LUBBOCK,Texas,48303,2025-02-28,case_lab-confirmed,1
+LUBBOCK,Texas,48303,2025-03-18,case_lab-confirmed,3
+LUBBOCK,Texas,48303,2025-03-20,case_lab-confirmed,18
+LUBBOCK,Texas,48303,2025-04-02,case_lab-confirmed,4
+LUBBOCK,Texas,48303,2025-04-04,case_lab-confirmed,6
+LUBBOCK,Texas,48303,2025-04-08,case_lab-confirmed,3
+LUBBOCK,Texas,48303,2025-04-11,case_lab-confirmed,2
+LUBBOCK,Texas,48303,2025-04-15,case_lab-confirmed,3
+LUBBOCK,Texas,48303,2025-04-18,case_lab-confirmed,1
+LUBBOCK,Texas,48303,2025-04-23,case_lab-confirmed,5
+LUBBOCK,Texas,48303,2025-04-29,case_lab-confirmed,1
+LUBBOCK,Texas,48303,2025-05-02,case_lab-confirmed,2
+LUBBOCK,Texas,48303,2025-05-06,case_lab-confirmed,1
+LUBBOCK,Texas,48303,2025-05-13,case_lab-confirmed,1
+LUNA,New Mexico,35029,2025-06-27,case_lab-confirmed,5
+LUNA,New Mexico,35029,2025-07-01,case_lab-confirmed,8
+LUNA,New Mexico,35029,2025-07-03,case_lab-confirmed,1
+LYNN,Texas,48305,2025-02-14,case_lab-confirmed,1
+LYNN,Texas,48305,2025-02-28,case_lab-confirmed,1
+MACOMB,Michigan,26099,2025-04-04,case_lab-confirmed,1
+MACOMB,Michigan,26099,2025-06-11,case_lab-confirmed,1
+MARQUETTE,Michigan,26103,2025-05-30,case_lab-confirmed,1
+MARQUETTE,Michigan,26103,2025-06-02,case_lab-confirmed,1
+MARTIN,Texas,48317,2025-02-25,case_lab-confirmed,3
+MCLENNAN,Texas,48309,2025-05-23,case_lab-confirmed,1
+MCLENNAN,Texas,48309,2025-05-30,case_lab-confirmed,7
+MCLENNAN,Texas,48309,2025-06-17,case_lab-confirmed,1
+MEADE,South Dakota,46093,2025-06-02,case_lab-confirmed,1
+MEADE,South Dakota,46093,2025-06-14,case_lab-confirmed,1
+MESA,Colorado,8077,2025-08-15,case_lab-confirmed,1
+MESA,Colorado,8077,2025-08-18,case_lab-confirmed,1
+MESA,Colorado,8077,2025-08-30,case_lab-confirmed,5
+MESA,Colorado,8077,2025-10-15,case_lab-confirmed,4
+MIAMI-DADE,Florida,12086,2025-03-06,case_lab-confirmed,1
+MID-CUMBERLAND REGION,Tennessee,0,2025-03-17,case_lab-confirmed,1
+MID-CUMBERLAND REGION,Tennessee,0,2025-03-28,case_lab-confirmed,1
+MID-CUMBERLAND REGION,Tennessee,0,2025-09-08,case_lab-confirmed,1
+MIDLAND,Texas,48329,2025-03-20,case_lab-confirmed,1
+MIDLAND,Texas,48329,2025-04-15,case_lab-confirmed,1
+MIDLAND,Texas,48329,2025-04-23,case_lab-confirmed,1
+MIDLAND,Texas,48329,2025-05-23,case_lab-confirmed,2
+MIDLAND,Texas,48329,2025-06-10,case_lab-confirmed,1
+MIDLAND,Texas,48329,2025-08-07,case_lab-confirmed,1
+MOHAVE,Arizona,4015,2025-08-12,case_lab-confirmed,1
+MOHAVE,Arizona,4015,2025-08-19,case_lab-confirmed,8
+MOHAVE,Arizona,4015,2025-08-26,case_lab-confirmed,3
+MOHAVE,Arizona,4015,2025-09-02,case_lab-confirmed,12
+MOHAVE,Arizona,4015,2025-09-09,case_lab-confirmed,6
+MOHAVE,Arizona,4015,2025-09-16,case_lab-confirmed,12
+MOHAVE,Arizona,4015,2025-09-23,case_lab-confirmed,6
+MOHAVE,Arizona,4015,2025-09-30,case_lab-confirmed,7
+MOHAVE,Arizona,4015,2025-10-07,case_lab-confirmed,4
+MOHAVE,Arizona,4015,2025-10-14,case_lab-confirmed,14
+MOHAVE,Arizona,4015,2025-10-21,case_lab-confirmed,7
+MONTCALM,Michigan,26117,2025-04-10,case_lab-confirmed,1
+MONTCALM,Michigan,26117,2025-04-17,case_lab-confirmed,2
+MONTCALM,Michigan,26117,2025-04-23,case_lab-confirmed,1
+MONTGOMERY,Pennsylvania,42091,2025-03-02,case_lab-confirmed,1
+MULTNOMAH,Oregon,41051,2025-06-24,case_lab-confirmed,1
+MUSKEGON,Michigan,26121,2025-06-26,case_lab-confirmed,1
+MUSKEGON,Michigan,26121,2025-10-09,case_lab-confirmed,1
+MUSKEGON,Michigan,26121,2025-10-23,case_lab-confirmed,1
+MUSKINGUM,Ohio,39119,2025-08-29,case_lab-confirmed,3
+NATRONA,Wyoming,56025,2025-07-01,case_lab-confirmed,1
+NAVAJO,Arizona,4017,2025-06-09,case_lab-confirmed,4
+NEW MADRID,Missouri,29143,2025-05-06,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-01-31,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-02-26,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-03-20,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-05-16,case_lab-confirmed,3
+NEW YORK CITY,New York,36061,2025-07-11,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-08-01,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-08-18,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-09-08,case_lab-confirmed,3
+NEW YORK CITY,New York,36061,2025-09-12,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-09-19,case_lab-confirmed,2
+NEW YORK CITY,New York,36061,2025-09-26,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-10-17,case_lab-confirmed,2
+NIOBRARA,Wyoming,56027,2025-07-11,case_lab-confirmed,1
+NORTH,Alabama,1,2025-08-25,case_lab-confirmed,1
+NORTHWEST REGION,Virginia,0,2025-04-15,case_lab-confirmed,1
+NORTHWEST REGION,Virginia,0,2025-06-05,case_lab-confirmed,2
+OAKLAND,Michigan,26125,2025-03-14,case_lab-confirmed,1
+OCEAN,New Jersey,34029,2025-07-10,case_lab-confirmed,1
+OCONTO,Wisconsin,55083,2025-07-13,case_lab-confirmed,1
+OCONTO,Wisconsin,55083,2025-07-20,case_lab-confirmed,4
+OCONTO,Wisconsin,55083,2025-07-27,case_lab-confirmed,4
+OCONTO,Wisconsin,55083,2025-08-10,case_lab-confirmed,2
+OCONTO,Wisconsin,55083,2025-08-17,case_lab-confirmed,13
+OCONTO,Wisconsin,55083,2025-08-24,case_lab-confirmed,3
+OCONTO,Wisconsin,55083,2025-08-31,case_lab-confirmed,8
+OCONTO,Wisconsin,55083,2025-09-07,case_lab-confirmed,1
+OLMSTED,Minnesota,27109,2025-10-17,case_lab-confirmed,1
+ONTARIO,New York,36069,2025-05-27,case_lab-confirmed,1
+ORANGE,California,6059,2025-02-25,case_lab-confirmed,1
+ORANGE,California,6059,2025-09-29,case_lab-confirmed,1
+ORANGE,New York,36071,2025-05-10,case_lab-confirmed,3
+ORANGE,New York,36071,2025-05-27,case_lab-confirmed,1
+ORLEANS,Louisiana,22071,2025-04-19,case_lab-confirmed,1
+ORLEANS,Louisiana,22071,2025-04-22,case_lab-confirmed,1
+OSCEOLA,Michigan,26133,2025-07-24,case_lab-confirmed,2
+OSCEOLA,Michigan,26133,2025-07-31,case_lab-confirmed,5
+PARMER,Texas,48369,2025-04-18,case_lab-confirmed,4
+PARMER,Texas,48369,2025-05-06,case_lab-confirmed,1
+PASSAIC,New Jersey,34031,2025-08-02,case_lab-confirmed,1
+PAWNEE,Kansas,20145,2025-06-02,case_lab-confirmed,7
+PENNINGTON,South Dakota,46103,2025-05-31,case_lab-confirmed,1
+PENNINGTON,South Dakota,46103,2025-06-07,case_lab-confirmed,1
+PHILADELPHIA,Pennsylvania,42101,2025-03-31,case_lab-confirmed,1
+PHILADELPHIA,Pennsylvania,42101,2025-04-11,case_lab-confirmed,1
+PLACER,California,6061,2025-03-31,case_lab-confirmed,1
+POTTER,Texas,48375,2025-04-18,case_lab-confirmed,1
+PRINCE GEORGE'S,Maryland,24033,2025-03-10,case_lab-confirmed,2
+PROVIDENCE,Rhode Island,44007,2025-01-18,case_lab-confirmed,1
+PUEBLO,Colorado,8101,2025-03-31,case_lab-confirmed,1
+PUTNAM,Indiana,18133,2025-07-08,case_lab-confirmed,1
+PUTNAM,New York,36079,2025-06-03,case_lab-confirmed,1
+RAINS,Texas,48379,2025-09-04,case_lab-confirmed,1
+RANDALL,Texas,48381,2025-04-08,case_lab-confirmed,1
+RANDALL,Texas,48381,2025-05-20,case_lab-confirmed,1
+RANDALL,Texas,48381,2025-05-23,case_lab-confirmed,1
+REEVES,Texas,48389,2025-04-15,case_lab-confirmed,1
+REEVES,Texas,48389,2025-05-30,case_lab-confirmed,1
+RIVERSIDE,California,6065,2025-04-03,case_lab-confirmed,1
+ROCKLAND,New York,36087,2025-08-25,case_lab-confirmed,1
+ROCKWALL,Texas,48397,2025-03-20,case_lab-confirmed,1
+ROCKWALL,Texas,48397,2025-04-23,case_lab-confirmed,1
+SACRAMENTO,California,6067,2025-06-16,case_lab-confirmed,1
+SALINE,Arkansas,5125,2025-04-10,case_lab-confirmed,1
+SAN DIEGO,California,6073,2025-08-11,case_lab-confirmed,1
+SAN JUAN,New Mexico,35045,2025-06-03,case_lab-confirmed,1
+SAN MATEO,California,6081,2025-03-31,case_lab-confirmed,1
+SANDOVAL,New Mexico,35043,2025-05-16,case_lab-confirmed,2
+SANDOVAL,New Mexico,35043,2025-05-23,case_lab-confirmed,4
+SANTA CLARA,California,6085,2025-05-25,case_lab-confirmed,1
+SANTA FE,New Mexico,35049,2025-07-22,case_lab-confirmed,1
+SANTA FE,New Mexico,35049,2025-07-28,case_lab-confirmed,1
+SANTA FE,New Mexico,35049,2025-08-10,case_lab-confirmed,3
+SCURRY,Texas,48415,2025-05-23,case_lab-confirmed,1
+SHACKELFORD,Texas,48417,2025-04-29,case_lab-confirmed,1
+SHERIDAN,Nebraska,31161,2025-05-28,case_lab-confirmed,1
+SNOHOMISH,Washington,53061,2025-03-18,case_lab-confirmed,1
+SNOHOMISH,Washington,53061,2025-04-02,case_lab-confirmed,1
+SOUTHEAST HEALTH DISTRICT,Utah,0,2025-09-08,case_lab-confirmed,1
+SOUTHEAST HEALTH DISTRICT,Utah,0,2025-09-11,case_lab-confirmed,2
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-06-24,case_lab-confirmed,1
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-06-26,case_lab-confirmed,1
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-07-16,case_lab-confirmed,1
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-07-22,case_lab-confirmed,1
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-08-22,case_lab-confirmed,2
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-08-28,case_lab-confirmed,1
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-09-04,case_lab-confirmed,3
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-09-08,case_lab-confirmed,4
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-09-11,case_lab-confirmed,1
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-09-12,case_lab-confirmed,5
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-09-16,case_lab-confirmed,1
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-09-22,case_lab-confirmed,4
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-09-25,case_lab-confirmed,5
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-10-03,case_lab-confirmed,3
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-10-09,case_lab-confirmed,10
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-10-23,case_lab-confirmed,4
+SPARTANBURG,South Carolina,45083,2025-09-08,case_lab-confirmed,1
+SPARTANBURG,South Carolina,45083,2025-09-26,case_lab-confirmed,1
+SPARTANBURG,South Carolina,45083,2025-10-02,case_lab-confirmed,4
+SPARTANBURG,South Carolina,45083,2025-10-07,case_lab-confirmed,2
+SPARTANBURG,South Carolina,45083,2025-10-14,case_lab-confirmed,4
+SPARTANBURG,South Carolina,45083,2025-10-17,case_lab-confirmed,3
+SPARTANBURG,South Carolina,45083,2025-10-21,case_lab-confirmed,4
+SPARTANBURG,South Carolina,45083,2025-10-24,case_lab-confirmed,2
+SPOKANE,Washington,53063,2025-08-25,case_lab-confirmed,1
+STEVENS,Kansas,20189,2025-03-31,case_lab-confirmed,6
+STEVENS,Kansas,20189,2025-04-09,case_lab-confirmed,1
+STEVENS,Kansas,20189,2025-07-07,case_lab-confirmed,2
+STEVENS,Kansas,20189,2025-07-16,case_lab-confirmed,1
+SUFFOLK,New York,36103,2025-03-11,case_lab-confirmed,1
+TANEY,Missouri,29213,2025-04-18,case_lab-confirmed,1
+TARRANT,Texas,48439,2025-05-06,case_lab-confirmed,2
+TARRANT,Texas,48439,2025-05-27,case_lab-confirmed,2
+TERRY,Texas,48445,2025-02-14,case_lab-confirmed,3
+TERRY,Texas,48445,2025-02-18,case_lab-confirmed,6
+TERRY,Texas,48445,2025-02-21,case_lab-confirmed,11
+TERRY,Texas,48445,2025-02-25,case_lab-confirmed,1
+TERRY,Texas,48445,2025-03-18,case_lab-confirmed,15
+TERRY,Texas,48445,2025-03-20,case_lab-confirmed,2
+TERRY,Texas,48445,2025-04-02,case_lab-confirmed,3
+TERRY,Texas,48445,2025-04-04,case_lab-confirmed,2
+TERRY,Texas,48445,2025-04-08,case_lab-confirmed,3
+TERRY,Texas,48445,2025-04-11,case_lab-confirmed,1
+TERRY,Texas,48445,2025-04-18,case_lab-confirmed,5
+TERRY,Texas,48445,2025-04-23,case_lab-confirmed,2
+TERRY,Texas,48445,2025-04-25,case_lab-confirmed,5
+TERRY,Texas,48445,2025-05-06,case_lab-confirmed,1
+TODD,Kentucky,21219,2025-06-30,case_lab-confirmed,1
+TRAVIS,Texas,48453,2025-03-20,case_lab-confirmed,1
+TRAVIS,Texas,48453,2025-05-02,case_lab-confirmed,1
+TULARE,California,6107,2025-07-22,case_lab-confirmed,1
+TULARE,California,6107,2025-07-24,case_lab-confirmed,1
+TUOLUMNE,California,6109,2025-03-19,case_lab-confirmed,2
+TWIN CITIES METRO AREA,Minnesota,27,2025-10-01,case_lab-confirmed,10
+UNKNOWN COUNTY,California,6,2025-06-16,case_lab-confirmed,1
+UNKNOWN COUNTY,California,6,2025-10-13,case_lab-confirmed,1
+UNKNOWN COUNTY,Illinois,17,2025-10-22,case_lab-confirmed,2
+UNKNOWN COUNTY,Kansas,20,2025-03-31,case_lab-confirmed,9
+UNKNOWN COUNTY,Kansas,20,2025-04-05,case_lab-confirmed,1
+UNKNOWN COUNTY,Kansas,20,2025-04-09,case_lab-confirmed,2
+UNKNOWN COUNTY,Kansas,20,2025-04-16,case_lab-confirmed,3
+UNKNOWN COUNTY,Kansas,20,2025-06-16,case_lab-confirmed,2
+UNKNOWN COUNTY,Kentucky,21,2025-06-30,case_lab-confirmed,1
+UNKNOWN COUNTY,Minnesota,27,2025-06-11,case_lab-confirmed,1
+UNKNOWN COUNTY,Minnesota,27,2025-09-25,case_lab-confirmed,3
+UNKNOWN COUNTY,Minnesota,27,2025-10-09,case_lab-confirmed,2
+UNKNOWN COUNTY,New Jersey,34,2025-08-29,case_lab-confirmed,2
+UNKNOWN COUNTY,Oklahoma,40109,2025-03-25,case_lab-confirmed,7
+UNKNOWN COUNTY,Oklahoma,40109,2025-04-02,case_lab-confirmed,1
+UNKNOWN COUNTY,Oklahoma,40109,2025-04-15,case_lab-confirmed,1
+UNKNOWN COUNTY,Oklahoma,40109,2025-04-23,case_lab-confirmed,1
+UNKNOWN COUNTY,Oklahoma,40109,2025-04-25,case_lab-confirmed,2
+UNKNOWN COUNTY,Oklahoma,40109,2025-05-02,case_lab-confirmed,1
+UNKNOWN COUNTY,Oklahoma,40109,2025-05-06,case_lab-confirmed,1
+UNKNOWN COUNTY,Oklahoma,40109,2025-06-03,case_lab-confirmed,1
+UNKNOWN COUNTY,Oklahoma,40109,2025-06-06,case_lab-confirmed,1
+UNKNOWN COUNTY,Oklahoma,40109,2025-06-13,case_lab-confirmed,1
+UNKNOWN COUNTY,South Carolina,0,2025-10-14,case_lab-confirmed,1
+UPPER CUMBERLAND REGION,Tennessee,0,2025-03-30,case_lab-confirmed,1
+UPPER CUMBERLAND REGION,Tennessee,0,2025-03-31,case_lab-confirmed,1
+UPPER CUMBERLAND REGION,Tennessee,0,2025-04-14,case_lab-confirmed,1
+UPPER CUMBERLAND REGION,Tennessee,0,2025-04-16,case_lab-confirmed,1
+UPSHUR,Texas,48459,2025-04-18,case_lab-confirmed,1
+UPSHUR,Texas,48459,2025-04-25,case_lab-confirmed,1
+UPSHUR,Texas,48459,2025-05-02,case_lab-confirmed,3
+UPSTATE,South Carolina,0,2025-07-09,case_lab-confirmed,1
+UPSTATE,South Carolina,0,2025-07-16,case_lab-confirmed,1
+UTAH,Utah,49049,2025-06-20,case_lab-confirmed,1
+UTAH,Utah,49049,2025-06-24,case_lab-confirmed,1
+UTAH,Utah,49049,2025-06-26,case_lab-confirmed,1
+UTAH,Utah,49049,2025-06-27,case_lab-confirmed,2
+UTAH,Utah,49049,2025-07-01,case_lab-confirmed,2
+WASHINGTON,District Of Columbia,11001,2025-06-14,case_lab-confirmed,1
+WASHINGTON,Minnesota,27163,2025-06-02,case_lab-confirmed,1
+WESTERN,Iowa,19,2025-07-22,case_lab-confirmed,1
+WHATCOM,Washington,53073,2025-06-20,case_lab-confirmed,1
+WHATCOM,Washington,53073,2025-06-23,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-04-29,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-05-02,case_lab-confirmed,2
+WILLIAMS,North Dakota,38105,2025-05-03,case_lab-confirmed,2
+WILLIAMS,North Dakota,38105,2025-05-04,case_lab-confirmed,3
+WILLIAMS,North Dakota,38105,2025-05-06,case_lab-confirmed,2
+WILLIAMS,North Dakota,38105,2025-05-07,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-05-10,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-05-11,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-05-16,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-05-18,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-05-28,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-07-01,case_lab-confirmed,1
+WILLIAMS,North Dakota,38105,2025-07-14,case_lab-confirmed,1
+WILLIAMSON,Illinois,17199,2025-04-23,case_lab-confirmed,1
+WILLIAMSON,Illinois,17199,2025-05-05,case_lab-confirmed,3
+WILLIAMSON,Texas,48491,2025-05-30,case_lab-confirmed,6
+WILLIAMSON,Texas,48491,2025-08-07,case_lab-confirmed,2
+WOODFORD,Kentucky,21239,2025-06-30,case_lab-confirmed,3
+YELLOWSTONE,Montana,30111,2025-06-01,case_lab-confirmed,2
+YELLOWSTONE,Montana,30111,2025-07-13,case_lab-confirmed,1
+YELLOWSTONE,Montana,30111,2025-07-20,case_lab-confirmed,1
+YOAKUM,Texas,48501,2025-02-14,case_lab-confirmed,2
+YOAKUM,Texas,48501,2025-02-21,case_lab-confirmed,2
+YOAKUM,Texas,48501,2025-02-25,case_lab-confirmed,1
+YOAKUM,Texas,48501,2025-02-28,case_lab-confirmed,1
+YOAKUM,Texas,48501,2025-03-18,case_lab-confirmed,5
+YOAKUM,Texas,48501,2025-03-20,case_lab-confirmed,4
+YOAKUM,Texas,48501,2025-04-02,case_lab-confirmed,1
+YOAKUM,Texas,48501,2025-04-04,case_lab-confirmed,1
+YOAKUM,Texas,48501,2025-04-11,case_lab-confirmed,1
+YOAKUM,Texas,48501,2025-04-18,case_lab-confirmed,1
+YOAKUM,Texas,48501,2025-05-06,case_lab-confirmed,1
+YOLO,California,6113,2025-06-06,case_lab-confirmed,1
