@@ -8,8 +8,8 @@ from datetime import datetime
 print("Connecting to ArcGIS Online...")
 gis = GIS(
     "https://www.arcgis.com",
-    username=os.environ.get("ARCGIS_USERNAME"),
-    password=os.environ.get("ARCGIS_PASSWORD")
+    username=os.environ.get("ARCGIS_CLIENT_ID"),
+    password=os.environ.get("ARCGIS_CLIENT_SECRET")
 )
 print(f"Connected as {gis.properties.user.username}")
 
@@ -105,4 +105,5 @@ state_month_item.update(
 print("\n✅ All ArcGIS layers updated successfully!")
 print(f"   - County records: {len(df)}")
 print(f"   - State-month records: {len(agg_df)}")
+
 print(f"   - Updated at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
