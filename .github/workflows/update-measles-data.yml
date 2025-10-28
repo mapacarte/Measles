@@ -5,6 +5,7 @@ on:
     # every day at 16:00 UTC
     - cron: '0 16 * * *'
   workflow_dispatch:
+
 permissions:
   contents: write
   
@@ -19,27 +20,28 @@ jobs:
         with:
           fetch-depth: 0
 
-      
-      - name: Commit raw JHU CSV
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "chore(data): refresh USMeaslesCases.csv"
-          file_pattern: "docs/data/USMeaslesCases.csv"
-
-
       # Set up python to run the pipeline script
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      # Install dependencies
+      # Install dependencies (added arcgis package)
       - name: Install dependencies
-        run: pip install requests pandas
+        run: pip install requests pandas arcgis
 
       # Run the measles pipeline 
       - name: Run measles pipeline
         run: python scripts/fetch_measles_data.py
+
+      # NEW: Update ArcGIS Online layers
+      - name: Update ArcGIS Online layers
+        env:
+          ARCGIS_USERNAME: ${{ secrets.ARCGIS_USERNAME }}
+          ARCGIS_PASSWORD: ${{ secrets.ARCGIS_PASSWORD }}
+          ARCGIS_COUNTY_LAYER_ID: ${{ secrets.ARCGIS_COUNTY_LAYER_ID }}
+          ARCGIS_STATE_MONTH_LAYER_ID: ${{ secrets.ARCGIS_STATE_MONTH_LAYER_ID }}
+        run: python scripts/update_arcgis.py
 
       # Commit the refreshed data back into Pages site
       - name: Commit updated CSV
