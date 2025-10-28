@@ -37,10 +37,10 @@ jobs:
       # NEW: Update ArcGIS Online layers
       - name: Update ArcGIS Online layers
         env:
-          ARCGIS_USERNAME: ${{ secrets.ARCGIS_USERNAME }}
-          ARCGIS_PASSWORD: ${{ secrets.ARCGIS_PASSWORD }}
-          ARCGIS_COUNTY_LAYER_ID: ${{ secrets.ARCGIS_COUNTY_LAYER_ID }}
-          ARCGIS_STATE_MONTH_LAYER_ID: ${{ secrets.ARCGIS_STATE_MONTH_LAYER_ID }}
+          ARCGIS_CLIENT_ID: ${{ secrets.ARCGIS_CLIENT_ID }}
+          ARCGIS_CLIENT_SECRET: ${{ secrets.ARCGIS_CLIENT_SECRET }}
+          ARCGIS_COUNTY_LAYER_ID: ${{ secrets.ARCGIS_RAW_MEASLES }}
+          ARCGIS_STATE_MONTH_LAYER_ID: ${{ secrets.ARCGIS_STATE_MONTH }}
         run: python scripts/update_arcgis.py
 
       # Commit the refreshed data back into Pages site
