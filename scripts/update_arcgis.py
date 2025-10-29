@@ -5,12 +5,13 @@ from arcgis.gis import GIS
 from datetime import datetime
 import traceback
 
+from token_helper import get_access_token
+
 def create_gis():
-    client_id = os.getenv("ARCGIS_CLIENT_ID")
-    client_secret = os.getenv("ARCGIS_CLIENT_SECRET")
-    if not client_id or not client_secret:
-        raise RuntimeError("Missing ARCGIS_CLIENT_ID or ARCGIS_CLIENT_SECRET environment variables.")
-    return GIS("https://www.arcgis.com", client_id=client_id, client_secret=client_secret)
+    """Authenticate to ArcGIS Online using a short-lived access token."""
+    access_token = get_access_token()
+    print("Using short-lived access token.")
+    return GIS("https://asu.maps.arcgis.com", token=access_token)
 
 def get_layer_or_table(item):
     # Prefer layers, then tables
@@ -147,7 +148,7 @@ def main():
         }
     )
 
-    print("\n✅ All ArcGIS layers/tables updated successfully!")
+    print("\n All ArcGIS layers/tables updated successfully!")
     print(f"   - County records: {len(df)}")
     print(f"   - State-month records: {len(agg_df)}")
     print(f"   - Updated at: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')}")
