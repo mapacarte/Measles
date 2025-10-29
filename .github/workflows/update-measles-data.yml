@@ -37,9 +37,9 @@ jobs:
       - name: Update ArcGIS Online layers
         shell: bash -l {0}
         env:
-          AGO_CLIENT_ID: ${{ secrets.AGO_CLIENT_ID }}
-          AGO_CLIENT_SECRET: ${{ secrets.AGO_CLIENT_SECRET }}
-          AGO_REFRESH_TOKEN: ${{ secrets.AGO_REFRESH_TOKEN }}
+          ARCGIS_CLIENT_ID: ${{ secrets.ARCGIS_CLIENT_ID }}
+          ARCGIS_CLIENT_SECRET: ${{ secrets.ARCGIS_CLIENT_SECRET }}
+          ARCGIS_REFRESH_TOKEN: ${{ secrets.ARCGIS_REFRESH_TOKEN }}
           ARCGIS_RAW_MEASLES: ${{ secrets.ARCGIS_RAW_MEASLES }}
           ARCGIS_STATE_MONTH: ${{ secrets.ARCGIS_STATE_MONTH }}
         run: python scripts/update_arcgis.py
