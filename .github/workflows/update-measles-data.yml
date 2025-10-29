@@ -1,9 +1,7 @@
 name: Update Measles Data
-
 on:
   schedule:
-    # every day at 16:00 UTC
-    - cron: '0 16 * * *'
+    - cron: "0 16 * * *"
   workflow_dispatch:
 
 permissions:
@@ -14,30 +12,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout this repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      # Install Miniconda and create env with Python 3.11
+      - name: Setup conda
+        uses: conda-incubator/setup-miniconda@v3
         with:
-          python-version: '3.11'   # arcgis 2.3.0 works well here
+          activate-environment: arcenv
+          python-version: "3.11"
+          auto-update-conda: true
+          channels: esri,conda-forge,defaults
+          channel-priority: true
+          use-mamba: true
 
-      - name: Install dependencies
+      - name: Install deps (conda)
+        shell: bash -l {0}
         run: |
-          python -m pip install --upgrade pip
-          pip install requests pandas arcgis==2.3.0
+          mamba install -y arcgis=2.4.* pandas requests
+          python -c "import sys; import arcgis; print('OK', sys.version, arcgis.__version__)"
 
-      # Your data fetch step (unchanged)
       - name: Run measles pipeline
+        shell: bash -l {0}
         run: python scripts/fetch_measles_data.py
 
-      # Update ArcGIS Online layers using REFRESH->ACCESS token
       - name: Update ArcGIS Online layers
+        shell: bash -l {0}
         env:
           AGO_CLIENT_ID: ${{ secrets.AGO_CLIENT_ID }}
-          AGO_CLIENT_SECRET: ${{ secrets.AGO_CLIENT_SECRET }}   # omit if you’re using PKCE/public app
+          AGO_CLIENT_SECRET: ${{ secrets.AGO_CLIENT_SECRET }}   # omit if PKCE
           AGO_REFRESH_TOKEN: ${{ secrets.AGO_REFRESH_TOKEN }}
           ARCGIS_RAW_MEASLES: ${{ secrets.ARCGIS_RAW_MEASLES }}
           ARCGIS_STATE_MONTH: ${{ secrets.ARCGIS_STATE_MONTH }}
