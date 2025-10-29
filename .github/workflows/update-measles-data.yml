@@ -1,36 +1,24 @@
-name: Update Measles Data
-on:
-  schedule:
-    - cron: "0 16 * * *"
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
 jobs:
   refresh-data:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      # Install Miniconda and create env with Python 3.11
       - name: Setup conda
         uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: arcenv
           python-version: "3.11"
-          auto-update-conda: true
           channels: esri,conda-forge,defaults
           channel-priority: true
-          use-mamba: true
+          auto-update-conda: true
 
       - name: Install deps (conda)
         shell: bash -l {0}
         run: |
-          mamba install -y arcgis=2.4.* pandas requests
-          python -c "import sys; import arcgis; print('OK', sys.version, arcgis.__version__)"
+          conda install -y -c esri -c conda-forge arcgis=2.4.* pandas requests
+          python -c "import sys,arcgis; print('OK', sys.version, arcgis.__version__)"
 
       - name: Run measles pipeline
         shell: bash -l {0}
@@ -40,7 +28,7 @@ jobs:
         shell: bash -l {0}
         env:
           AGO_CLIENT_ID: ${{ secrets.AGO_CLIENT_ID }}
-          AGO_CLIENT_SECRET: ${{ secrets.AGO_CLIENT_SECRET }}   # omit if PKCE
+          AGO_CLIENT_SECRET: ${{ secrets.AGO_CLIENT_SECRET }}
           AGO_REFRESH_TOKEN: ${{ secrets.AGO_REFRESH_TOKEN }}
           ARCGIS_RAW_MEASLES: ${{ secrets.ARCGIS_RAW_MEASLES }}
           ARCGIS_STATE_MONTH: ${{ secrets.ARCGIS_STATE_MONTH }}
