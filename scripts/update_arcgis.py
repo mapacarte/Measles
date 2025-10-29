@@ -6,12 +6,11 @@ from datetime import datetime
 
 # Connect to ArcGIS Online
 print("Connecting to ArcGIS Online...")
-gis = GIS(
-    "https://www.arcgis.com",
-    username=os.environ.get("ARCGIS_CLIENT_ID"),
-    password=os.environ.get("ARCGIS_CLIENT_SECRET")
-)
-print(f"Connected as {gis.properties.user.username}")
+def create_gis(): 
+    client_id = os.getenv("ARCGIS_CLIENT_ID") 
+    client_secret = os.getenv("ARCGIS_CLIENT_SECRET") 
+    
+gis = create_gis()
 
 # Feature layer item IDs
 COUNTY_LAYER_ID = os.environ.get("ARCGIS_RAW_MEASLES")
@@ -107,3 +106,4 @@ print(f"   - County records: {len(df)}")
 print(f"   - State-month records: {len(agg_df)}")
 
 print(f"   - Updated at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
