@@ -13,4 +13,7 @@ def get_access_token():
 
     r = requests.post(f"{PORTAL_BASE}/sharing/rest/oauth2/token", data=data, timeout=30)
     r.raise_for_status()
-    return r.json()["access_token"]
+    result = r.json()
+    if "access_token" not in result:
+        raise RuntimeError(f"Failed to get access token: {result}")
+    return result["access_token"]
