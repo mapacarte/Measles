@@ -9,6 +9,7 @@ ALLEN,Indiana,18003,2025-04-23,case_lab-confirmed,2
 ALLEN,Ohio,39003,2025-03-14,case_lab-confirmed,1
 ANCHORAGE,Alaska,2020,2025-01-16,case_lab-confirmed,1
 ANCHORAGE,Alaska,2020,2025-05-22,case_lab-confirmed,1
+ANCHORAGE,Alaska,2020,2025-10-16,case_lab-confirmed,1
 ANDREWS,Texas,48003,2025-03-20,case_lab-confirmed,1
 ANDREWS,Texas,48003,2025-04-15,case_lab-confirmed,1
 ANDREWS,Texas,48003,2025-04-25,case_lab-confirmed,1
@@ -39,17 +40,25 @@ BEXAR,Texas,48029,2025-07-01,case_lab-confirmed,1
 BEXAR,Texas,48029,2025-08-12,case_lab-confirmed,1
 BONNER,Idaho,16017,2025-08-20,case_lab-confirmed,1
 BONNEVILLE,Idaho,16019,2025-08-07,case_lab-confirmed,2
-BONNEVILLE,Idaho,16019,2025-09-13,case_lab-confirmed,4
+BONNEVILLE,Idaho,16019,2025-09-13,case_lab-confirmed,3
 BORDEN,Texas,48033,2025-04-08,case_lab-confirmed,1
 BOULDER,Colorado,8013,2025-06-13,case_lab-confirmed,1
-BOUNDARY,Idaho,16021,2025-10-30,case_lab-confirmed,1
+BOUNDARY,Idaho,16021,2025-10-20,case_lab-confirmed,1
+BOUNDARY,Idaho,16021,2025-10-22,case_lab-confirmed,1
+BOUNDARY,Idaho,16021,2025-11-01,case_lab-confirmed,1
+BOUNDARY,Idaho,16021,2025-11-02,case_lab-confirmed,1
+BOUNDARY,Idaho,16021,2025-11-07,case_lab-confirmed,2
 BRAZORIA,Texas,48039,2025-04-18,case_lab-confirmed,1
 BREWSTER,Texas,48043,2025-05-23,case_lab-confirmed,1
 BROWARD,Florida,12011,2025-04-22,case_lab-confirmed,1
 BROWARD,Florida,12011,2025-08-16,case_lab-confirmed,1
 BROWN,Texas,48049,2025-04-04,case_lab-confirmed,1
 BUCKS,Pennsylvania,42017,2025-03-27,case_lab-confirmed,1
+BUNCOMBE,North Carolina,37021,2026-01-06,case_lab-confirmed,3
 BURKE,North Dakota,38013,2025-05-27,case_lab-confirmed,1
+BUTTE,South Dakota,46019,2025-11-29,case_lab-confirmed,1
+BUTTE,South Dakota,46019,2025-12-17,case_lab-confirmed,2
+BUTTE,South Dakota,46019,2025-12-24,case_lab-confirmed,1
 CARBON,Wyoming,56007,2025-07-22,case_lab-confirmed,1
 CARBON,Wyoming,56007,2025-08-02,case_lab-confirmed,4
 CARBON,Wyoming,56007,2025-08-15,case_lab-confirmed,1
@@ -62,11 +71,16 @@ CASS,North Dakota,38017,2025-05-12,case_lab-confirmed,1
 CASS,North Dakota,38017,2025-05-14,case_lab-confirmed,1
 CASS,North Dakota,38017,2025-05-15,case_lab-confirmed,1
 CASS,North Dakota,38017,2025-05-17,case_lab-confirmed,1
-CASSIA,Idaho,16031,2025-05-27,case_lab-confirmed,1
 CEDAR,Missouri,29039,2025-06-23,case_lab-confirmed,1
 CEDAR,Missouri,29039,2025-07-01,case_lab-confirmed,1
 CEDAR,Missouri,29039,2025-07-03,case_lab-confirmed,3
+CENTRAL REGION,Virginia,0,2025-12-24,case_lab-confirmed,1
+CENTRAL REGION,Virginia,0,2026-01-06,case_lab-confirmed,1
 CENTRAL,Iowa,19,2025-05-23,case_lab-confirmed,1
+CENTRAL,Iowa,19,2025-12-16,case_lab-confirmed,1
+CENTRAL,Utah,0,2025-11-18,case_lab-confirmed,2
+CENTRAL,Utah,0,2025-12-16,case_lab-confirmed,1
+CENTRAL,Utah,0,2026-01-06,case_lab-confirmed,2
 CHAVES,New Mexico,35005,2025-04-08,case_lab-confirmed,1
 CLARK,Nevada,32003,2025-11-07,case_lab-confirmed,1
 COCHRAN,Texas,48079,2025-03-18,case_lab-confirmed,7
@@ -76,22 +90,29 @@ COCHRAN,Texas,48079,2025-04-08,case_lab-confirmed,1
 COCHRAN,Texas,48079,2025-04-11,case_lab-confirmed,1
 COCHRAN,Texas,48079,2025-04-15,case_lab-confirmed,1
 COCHRAN,Texas,48079,2025-04-25,case_lab-confirmed,2
+COCONINO,Arizona,4005,2025-12-30,case_lab-confirmed,1
 COLLIN,Texas,48085,2025-04-25,case_lab-confirmed,1
 COLLIN,Texas,48085,2025-05-16,case_lab-confirmed,1
 COLLIN,Texas,48085,2025-06-02,case_lab-confirmed,1
 COLLIN,Texas,48085,2025-06-03,case_lab-confirmed,1
+CONTRA COSTA,California,6013,2025-12-24,case_lab-confirmed,1
 COOK,Illinois,17031,2025-04-25,case_lab-confirmed,1
 COOK,Illinois,17031,2025-04-28,case_lab-confirmed,1
 COOK,Illinois,17031,2025-05-02,case_lab-confirmed,4
 COOK,Illinois,17031,2025-09-16,case_lab-confirmed,1
 COOK,Illinois,17031,2025-09-30,case_lab-confirmed,1
+CUMBERLAND,Pennsylvania,42041,2025-12-18,case_lab-confirmed,2
 CURRY,New Mexico,35009,2025-05-09,case_lab-confirmed,1
 CUYAHOGA,Ohio,39035,2025-04-28,case_lab-confirmed,1
+CUYAHOGA,Ohio,39035,2025-12-29,case_lab-confirmed,1
+CUYAHOGA,Ohio,39035,2026-01-04,case_lab-confirmed,2
 DAKOTA,Minnesota,27037,2025-06-02,case_lab-confirmed,1
 DALLAM,Texas,48111,2025-02-25,case_lab-confirmed,4
 DALLAM,Texas,48111,2025-03-18,case_lab-confirmed,2
 DALLAM,Texas,48111,2025-03-20,case_lab-confirmed,1
 DALLAS,Texas,48113,2025-06-24,case_lab-confirmed,1
+DAVIS,Utah,49011,2025-12-02,case_lab-confirmed,1
+DAVIS,Utah,49011,2025-12-09,case_lab-confirmed,1
 DAWSON,Texas,48115,2025-02-21,case_lab-confirmed,6
 DAWSON,Texas,48115,2025-02-25,case_lab-confirmed,1
 DAWSON,Texas,48115,2025-02-28,case_lab-confirmed,1
@@ -173,6 +194,7 @@ FRANKLIN,Ohio,39049,2025-09-24,case_lab-confirmed,1
 FRANKLIN,Ohio,39049,2025-09-29,case_lab-confirmed,2
 FRANKLIN,Ohio,39049,2025-10-08,case_lab-confirmed,1
 FRANKLIN,Ohio,39049,2025-10-22,case_lab-confirmed,1
+FREMONT,Wyoming,56013,2025-12-18,case_lab-confirmed,5
 FRESNO,California,6019,2025-03-11,case_lab-confirmed,1
 FRESNO,California,6019,2025-03-19,case_lab-confirmed,1
 FULTON,Georgia,13121,2025-01-28,case_lab-confirmed,1
@@ -221,6 +243,9 @@ GALLATIN,Montana,30031,2025-06-10,case_lab-confirmed,1
 GALLATIN,Montana,30031,2025-06-15,case_lab-confirmed,3
 GALLATIN,Montana,30031,2025-06-22,case_lab-confirmed,1
 GALLATIN,Montana,30031,2025-07-20,case_lab-confirmed,2
+GALLATIN,Montana,30031,2025-11-23,case_lab-confirmed,1
+GALLATIN,Montana,30031,2025-11-30,case_lab-confirmed,2
+GALLATIN,Montana,30031,2025-12-07,case_lab-confirmed,1
 GARZA,Texas,48169,2025-03-20,case_lab-confirmed,1
 GARZA,Texas,48169,2025-04-02,case_lab-confirmed,1
 GRAND FORKS,North Dakota,38035,2025-05-16,case_lab-confirmed,1
@@ -242,7 +267,6 @@ GRAY,Kansas,20069,2025-06-02,case_lab-confirmed,1
 GRAY,Kansas,20069,2025-06-11,case_lab-confirmed,1
 GRAY,Kansas,20069,2025-07-02,case_lab-confirmed,2
 GRAY,Kansas,20069,2025-07-14,case_lab-confirmed,1
-GREENVILLE,South Carolina,45045,2025-10-09,case_lab-confirmed,1
 GUILFORD,North Carolina,37081,2025-06-24,case_lab-confirmed,1
 HALE,Texas,48189,2025-03-20,case_lab-confirmed,1
 HALE,Texas,48189,2025-04-04,case_lab-confirmed,2
@@ -262,8 +286,6 @@ HASKELL,Kansas,20081,2025-06-16,case_lab-confirmed,1
 HASKELL,Kansas,20081,2025-06-18,case_lab-confirmed,1
 HASKELL,Kansas,20081,2025-07-02,case_lab-confirmed,1
 HASKELL,Kansas,20081,2025-07-07,case_lab-confirmed,1
-HASKELL,Kansas,20081,2025-07-09,case_lab-confirmed,1
-HASKELL,Kansas,20081,2025-07-14,case_lab-confirmed,1
 HAYS,Texas,48209,2025-05-23,case_lab-confirmed,1
 HENNEPIN,Minnesota,27053,2025-03-24,case_lab-confirmed,1
 HENNEPIN,Minnesota,27053,2025-04-23,case_lab-confirmed,1
@@ -316,7 +338,7 @@ LAMAR,Texas,48277,2025-07-01,case_lab-confirmed,3
 LAMAR,Texas,48277,2025-07-08,case_lab-confirmed,2
 LAMB,Texas,48279,2025-03-20,case_lab-confirmed,1
 LAMOILLE,Vermont,50015,2025-03-11,case_lab-confirmed,1
-LANCASTER,Pennsylvania,42071,2025-04-15,case_lab-confirmed,1
+LANCASTER,Pennsylvania,42071,2025-04-13,case_lab-confirmed,1
 LEA,New Mexico,35025,2025-02-11,case_lab-confirmed,1
 LEA,New Mexico,35025,2025-02-14,case_lab-confirmed,2
 LEA,New Mexico,35025,2025-03-07,case_lab-confirmed,27
@@ -363,6 +385,7 @@ LYNN,Texas,48305,2025-02-14,case_lab-confirmed,1
 LYNN,Texas,48305,2025-02-28,case_lab-confirmed,1
 MACOMB,Michigan,26099,2025-04-04,case_lab-confirmed,1
 MACOMB,Michigan,26099,2025-06-11,case_lab-confirmed,1
+MADISON,Idaho,16065,2025-12-31,case_lab-confirmed,1
 MARQUETTE,Michigan,26103,2025-05-30,case_lab-confirmed,1
 MARQUETTE,Michigan,26103,2025-06-02,case_lab-confirmed,1
 MARTIN,Texas,48317,2025-02-25,case_lab-confirmed,3
@@ -398,9 +421,21 @@ MOHAVE,Arizona,4015,2025-10-14,case_lab-confirmed,14
 MOHAVE,Arizona,4015,2025-10-21,case_lab-confirmed,7
 MOHAVE,Arizona,4015,2025-10-28,case_lab-confirmed,13
 MOHAVE,Arizona,4015,2025-11-04,case_lab-confirmed,14
+MOHAVE,Arizona,4015,2025-11-11,case_lab-confirmed,17
+MOHAVE,Arizona,4015,2025-11-18,case_lab-confirmed,9
+MOHAVE,Arizona,4015,2025-11-25,case_lab-confirmed,16
+MOHAVE,Arizona,4015,2025-12-02,case_lab-confirmed,2
+MOHAVE,Arizona,4015,2025-12-09,case_lab-confirmed,21
+MOHAVE,Arizona,4015,2025-12-16,case_lab-confirmed,14
+MOHAVE,Arizona,4015,2025-12-23,case_lab-confirmed,5
+MOHAVE,Arizona,4015,2025-12-30,case_lab-confirmed,9
+MOHAVE,Arizona,4015,2026-01-06,case_lab-confirmed,8
 MONTCALM,Michigan,26117,2025-04-10,case_lab-confirmed,1
 MONTCALM,Michigan,26117,2025-04-17,case_lab-confirmed,2
 MONTCALM,Michigan,26117,2025-04-23,case_lab-confirmed,1
+MONTEZUMA,Colorado,8083,2025-11-13,case_lab-confirmed,1
+MONTEZUMA,Colorado,8083,2025-12-05,case_lab-confirmed,1
+MONTEZUMA,Colorado,8083,2025-12-15,case_lab-confirmed,2
 MONTGOMERY,Pennsylvania,42091,2025-03-02,case_lab-confirmed,1
 MULTNOMAH,Oregon,41051,2025-06-24,case_lab-confirmed,1
 MUSKEGON,Michigan,26121,2025-06-26,case_lab-confirmed,1
@@ -423,11 +458,14 @@ NEW YORK CITY,New York,36061,2025-09-12,case_lab-confirmed,1
 NEW YORK CITY,New York,36061,2025-09-19,case_lab-confirmed,2
 NEW YORK CITY,New York,36061,2025-09-26,case_lab-confirmed,1
 NEW YORK CITY,New York,36061,2025-10-17,case_lab-confirmed,2
+NEW YORK CITY,New York,36061,2025-11-28,case_lab-confirmed,1
+NEW YORK CITY,New York,36061,2025-12-05,case_lab-confirmed,1
 NIOBRARA,Wyoming,56027,2025-07-11,case_lab-confirmed,1
 NORTH,Alabama,1,2025-08-25,case_lab-confirmed,1
 NORTHWEST REGION,Virginia,0,2025-04-15,case_lab-confirmed,1
 NORTHWEST REGION,Virginia,0,2025-06-05,case_lab-confirmed,2
 OAKLAND,Michigan,26125,2025-03-14,case_lab-confirmed,1
+OAKLAND,Michigan,26125,2025-12-16,case_lab-confirmed,1
 OCEAN,New Jersey,34029,2025-07-10,case_lab-confirmed,1
 OCONTO,Wisconsin,55083,2025-07-13,case_lab-confirmed,1
 OCONTO,Wisconsin,55083,2025-07-20,case_lab-confirmed,4
@@ -437,16 +475,16 @@ OCONTO,Wisconsin,55083,2025-08-17,case_lab-confirmed,13
 OCONTO,Wisconsin,55083,2025-08-24,case_lab-confirmed,3
 OCONTO,Wisconsin,55083,2025-08-31,case_lab-confirmed,8
 OCONTO,Wisconsin,55083,2025-09-07,case_lab-confirmed,1
+OKALOOSA,Florida,12091,2025-11-11,case_lab-confirmed,1
 OLMSTED,Minnesota,27109,2025-10-17,case_lab-confirmed,1
 ONTARIO,New York,36069,2025-05-27,case_lab-confirmed,1
 ORANGE,California,6059,2025-02-25,case_lab-confirmed,1
 ORANGE,California,6059,2025-09-29,case_lab-confirmed,1
 ORANGE,New York,36071,2025-05-10,case_lab-confirmed,3
 ORANGE,New York,36071,2025-05-27,case_lab-confirmed,1
-ORLEANS,Louisiana,22071,2025-04-19,case_lab-confirmed,1
-ORLEANS,Louisiana,22071,2025-04-22,case_lab-confirmed,1
 OSCEOLA,Michigan,26133,2025-07-24,case_lab-confirmed,2
 OSCEOLA,Michigan,26133,2025-07-31,case_lab-confirmed,5
+PARK,Wyoming,56029,2025-12-19,case_lab-confirmed,1
 PARMER,Texas,48369,2025-04-18,case_lab-confirmed,4
 PARMER,Texas,48369,2025-05-06,case_lab-confirmed,1
 PASSAIC,New Jersey,34031,2025-08-02,case_lab-confirmed,1
@@ -455,7 +493,10 @@ PENNINGTON,South Dakota,46103,2025-05-31,case_lab-confirmed,1
 PENNINGTON,South Dakota,46103,2025-06-07,case_lab-confirmed,1
 PHILADELPHIA,Pennsylvania,42101,2025-03-31,case_lab-confirmed,1
 PHILADELPHIA,Pennsylvania,42101,2025-04-11,case_lab-confirmed,1
+PIMA,Arizona,4019,2026-01-06,case_lab-confirmed,1
 PLACER,California,6061,2025-03-31,case_lab-confirmed,1
+PLATTE,Nebraska,31141,2025-12-30,case_lab-confirmed,1
+POLK,North Carolina,37149,2025-12-31,case_lab-confirmed,1
 POTTER,Texas,48375,2025-04-18,case_lab-confirmed,1
 PRINCE GEORGE'S,Maryland,24033,2025-03-10,case_lab-confirmed,2
 PROVIDENCE,Rhode Island,44007,2025-01-18,case_lab-confirmed,1
@@ -468,16 +509,32 @@ RANDALL,Texas,48381,2025-05-20,case_lab-confirmed,1
 RANDALL,Texas,48381,2025-05-23,case_lab-confirmed,1
 REEVES,Texas,48389,2025-04-15,case_lab-confirmed,1
 REEVES,Texas,48389,2025-05-30,case_lab-confirmed,1
+REGION 1,Louisiana,22071,2025-04-19,case_lab-confirmed,1
+REGION 1,Louisiana,22071,2025-04-22,case_lab-confirmed,1
+REGION 9,Louisiana,0,2025-11-10,case_lab-confirmed,1
 RIVERSIDE,California,6065,2025-04-03,case_lab-confirmed,1
 ROCKLAND,New York,36087,2025-08-25,case_lab-confirmed,1
 ROCKLAND,New York,36087,2025-10-24,case_lab-confirmed,1
 ROCKLAND,New York,36087,2025-11-07,case_lab-confirmed,1
+ROCKLAND,New York,36087,2025-11-12,case_lab-confirmed,2
+ROCKLAND,New York,36087,2025-11-21,case_lab-confirmed,3
+ROCKLAND,New York,36087,2025-11-28,case_lab-confirmed,1
+ROCKLAND,New York,36087,2025-12-05,case_lab-confirmed,4
+ROCKLAND,New York,36087,2025-12-12,case_lab-confirmed,4
+ROCKLAND,New York,36087,2025-12-16,case_lab-confirmed,1
+ROCKLAND,New York,36087,2025-12-19,case_lab-confirmed,3
 ROCKWALL,Texas,48397,2025-03-20,case_lab-confirmed,1
 ROCKWALL,Texas,48397,2025-04-23,case_lab-confirmed,1
 SACRAMENTO,California,6067,2025-06-16,case_lab-confirmed,1
 SALINE,Arkansas,5125,2025-04-10,case_lab-confirmed,1
+SALT LAKE,Utah,49035,2025-11-18,case_lab-confirmed,1
+SALT LAKE,Utah,49035,2025-11-25,case_lab-confirmed,1
+SALT LAKE,Utah,49035,2025-12-09,case_lab-confirmed,1
+SALT LAKE,Utah,49035,2025-12-23,case_lab-confirmed,1
+SALT LAKE,Utah,49035,2025-12-30,case_lab-confirmed,1
 SAN DIEGO,California,6073,2025-08-11,case_lab-confirmed,1
 SAN JUAN,New Mexico,35045,2025-06-03,case_lab-confirmed,1
+SAN LUIS OBISPO,California,6079,2025-12-17,case_lab-confirmed,1
 SAN MATEO,California,6081,2025-03-31,case_lab-confirmed,1
 SANDOVAL,New Mexico,35043,2025-05-16,case_lab-confirmed,2
 SANDOVAL,New Mexico,35043,2025-05-23,case_lab-confirmed,4
@@ -490,6 +547,7 @@ SHACKELFORD,Texas,48417,2025-04-29,case_lab-confirmed,1
 SHERIDAN,Nebraska,31161,2025-05-28,case_lab-confirmed,1
 SNOHOMISH,Washington,53061,2025-03-18,case_lab-confirmed,1
 SNOHOMISH,Washington,53061,2025-04-02,case_lab-confirmed,1
+SOUTH CENTRAL CONNECTICUT,Connecticut,9170,2025-12-11,case_lab-confirmed,1
 SOUTHEAST HEALTH DISTRICT,Utah,0,2025-09-08,case_lab-confirmed,1
 SOUTHEAST HEALTH DISTRICT,Utah,0,2025-09-11,case_lab-confirmed,2
 SOUTHWEST HEALTH DISTRICT,Utah,0,2025-06-24,case_lab-confirmed,1
@@ -510,17 +568,15 @@ SOUTHWEST HEALTH DISTRICT,Utah,0,2025-10-09,case_lab-confirmed,10
 SOUTHWEST HEALTH DISTRICT,Utah,0,2025-10-23,case_lab-confirmed,4
 SOUTHWEST HEALTH DISTRICT,Utah,0,2025-10-31,case_lab-confirmed,5
 SOUTHWEST HEALTH DISTRICT,Utah,0,2025-11-04,case_lab-confirmed,2
-SPARTANBURG,South Carolina,45083,2025-09-08,case_lab-confirmed,1
-SPARTANBURG,South Carolina,45083,2025-09-26,case_lab-confirmed,1
-SPARTANBURG,South Carolina,45083,2025-10-02,case_lab-confirmed,4
-SPARTANBURG,South Carolina,45083,2025-10-07,case_lab-confirmed,2
-SPARTANBURG,South Carolina,45083,2025-10-14,case_lab-confirmed,4
-SPARTANBURG,South Carolina,45083,2025-10-17,case_lab-confirmed,3
-SPARTANBURG,South Carolina,45083,2025-10-21,case_lab-confirmed,4
-SPARTANBURG,South Carolina,45083,2025-10-24,case_lab-confirmed,2
-SPARTANBURG,South Carolina,45083,2025-10-28,case_lab-confirmed,8
-SPARTANBURG,South Carolina,45083,2025-10-31,case_lab-confirmed,4
-SPARTANBURG,South Carolina,45083,2025-11-07,case_lab-confirmed,1
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-11-14,case_lab-confirmed,7
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-11-18,case_lab-confirmed,10
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-11-25,case_lab-confirmed,6
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-12-02,case_lab-confirmed,2
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-12-09,case_lab-confirmed,6
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-12-16,case_lab-confirmed,9
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-12-23,case_lab-confirmed,10
+SOUTHWEST HEALTH DISTRICT,Utah,0,2025-12-30,case_lab-confirmed,13
+SOUTHWEST HEALTH DISTRICT,Utah,0,2026-01-06,case_lab-confirmed,15
 SPOKANE,Washington,53063,2025-08-25,case_lab-confirmed,1
 STEVENS,Kansas,20189,2025-03-31,case_lab-confirmed,6
 STEVENS,Kansas,20189,2025-04-09,case_lab-confirmed,1
@@ -553,17 +609,25 @@ TUOLUMNE,California,6109,2025-03-19,case_lab-confirmed,2
 TWIN CITIES METRO AREA,Minnesota,27,2025-10-01,case_lab-confirmed,10
 UNKNOWN COUNTY,California,6,2025-06-16,case_lab-confirmed,1
 UNKNOWN COUNTY,California,6,2025-10-13,case_lab-confirmed,1
+UNKNOWN COUNTY,California,6,2025-12-08,case_lab-confirmed,1
+UNKNOWN COUNTY,California,6,2026-01-06,case_lab-confirmed,1
+UNKNOWN COUNTY,Idaho,16,2025-09-30,case_lab-confirmed,2
 UNKNOWN COUNTY,Illinois,17,2025-10-22,case_lab-confirmed,2
 UNKNOWN COUNTY,Kansas,20,2025-03-31,case_lab-confirmed,9
 UNKNOWN COUNTY,Kansas,20,2025-04-05,case_lab-confirmed,1
 UNKNOWN COUNTY,Kansas,20,2025-04-09,case_lab-confirmed,2
 UNKNOWN COUNTY,Kansas,20,2025-04-16,case_lab-confirmed,3
 UNKNOWN COUNTY,Kansas,20,2025-06-16,case_lab-confirmed,2
+UNKNOWN COUNTY,Kansas,20,2025-11-02,case_lab-confirmed,4
 UNKNOWN COUNTY,Kentucky,21,2025-06-30,case_lab-confirmed,1
 UNKNOWN COUNTY,Minnesota,27,2025-06-11,case_lab-confirmed,1
 UNKNOWN COUNTY,Minnesota,27,2025-09-25,case_lab-confirmed,3
 UNKNOWN COUNTY,Minnesota,27,2025-10-09,case_lab-confirmed,2
 UNKNOWN COUNTY,Minnesota,27,2025-10-31,case_lab-confirmed,2
+UNKNOWN COUNTY,Minnesota,27,2025-11-13,case_lab-confirmed,1
+UNKNOWN COUNTY,Minnesota,27,2025-12-05,case_lab-confirmed,2
+UNKNOWN COUNTY,Nebraska,31,2025-12-31,case_lab-confirmed,1
+UNKNOWN COUNTY,Nebraska,31,2026-01-08,case_lab-confirmed,2
 UNKNOWN COUNTY,New Jersey,34,2025-08-29,case_lab-confirmed,2
 UNKNOWN COUNTY,New Jersey,34,2025-10-29,case_lab-confirmed,1
 UNKNOWN COUNTY,Oklahoma,40109,2025-03-25,case_lab-confirmed,7
@@ -576,7 +640,10 @@ UNKNOWN COUNTY,Oklahoma,40109,2025-05-06,case_lab-confirmed,1
 UNKNOWN COUNTY,Oklahoma,40109,2025-06-03,case_lab-confirmed,1
 UNKNOWN COUNTY,Oklahoma,40109,2025-06-06,case_lab-confirmed,1
 UNKNOWN COUNTY,Oklahoma,40109,2025-06-13,case_lab-confirmed,1
-UNKNOWN COUNTY,South Carolina,0,2025-10-14,case_lab-confirmed,1
+UNKNOWN COUNTY,Pennsylvania,42,2025-08-21,case_lab-confirmed,1
+UNKNOWN COUNTY,South Carolina,0,2025-11-25,case_lab-confirmed,3
+UNKNOWN COUNTY,Texas,48,2025-10-30,case_lab-confirmed,1
+UNKNOWN COUNTY,Vermont,,2025-08-28,case_lab-confirmed,1
 UPPER CUMBERLAND REGION,Tennessee,0,2025-03-30,case_lab-confirmed,1
 UPPER CUMBERLAND REGION,Tennessee,0,2025-03-31,case_lab-confirmed,1
 UPPER CUMBERLAND REGION,Tennessee,0,2025-04-14,case_lab-confirmed,1
@@ -584,8 +651,33 @@ UPPER CUMBERLAND REGION,Tennessee,0,2025-04-16,case_lab-confirmed,1
 UPSHUR,Texas,48459,2025-04-18,case_lab-confirmed,1
 UPSHUR,Texas,48459,2025-04-25,case_lab-confirmed,1
 UPSHUR,Texas,48459,2025-05-02,case_lab-confirmed,3
-UPSTATE,South Carolina,0,2025-07-09,case_lab-confirmed,1
-UPSTATE,South Carolina,0,2025-07-16,case_lab-confirmed,1
+UPSTATE,South Carolina,0,2025-09-08,case_lab-confirmed,1
+UPSTATE,South Carolina,0,2025-09-26,case_lab-confirmed,1
+UPSTATE,South Carolina,0,2025-10-02,case_lab-confirmed,4
+UPSTATE,South Carolina,0,2025-10-07,case_lab-confirmed,2
+UPSTATE,South Carolina,0,2025-10-14,case_lab-confirmed,6
+UPSTATE,South Carolina,0,2025-10-17,case_lab-confirmed,1
+UPSTATE,South Carolina,0,2025-10-21,case_lab-confirmed,4
+UPSTATE,South Carolina,0,2025-10-24,case_lab-confirmed,2
+UPSTATE,South Carolina,0,2025-10-28,case_lab-confirmed,8
+UPSTATE,South Carolina,0,2025-10-31,case_lab-confirmed,4
+UPSTATE,South Carolina,0,2025-11-07,case_lab-confirmed,1
+UPSTATE,South Carolina,0,2025-11-14,case_lab-confirmed,10
+UPSTATE,South Carolina,0,2025-11-21,case_lab-confirmed,8
+UPSTATE,South Carolina,0,2025-11-25,case_lab-confirmed,3
+UPSTATE,South Carolina,0,2025-11-28,case_lab-confirmed,7
+UPSTATE,South Carolina,0,2025-12-03,case_lab-confirmed,14
+UPSTATE,South Carolina,0,2025-12-05,case_lab-confirmed,8
+UPSTATE,South Carolina,0,2025-12-09,case_lab-confirmed,27
+UPSTATE,South Carolina,0,2025-12-12,case_lab-confirmed,15
+UPSTATE,South Carolina,0,2025-12-16,case_lab-confirmed,9
+UPSTATE,South Carolina,0,2025-12-19,case_lab-confirmed,9
+UPSTATE,South Carolina,0,2025-12-23,case_lab-confirmed,9
+UPSTATE,South Carolina,0,2025-12-26,case_lab-confirmed,3
+UPSTATE,South Carolina,0,2025-12-30,case_lab-confirmed,20
+UPSTATE,South Carolina,0,2026-01-02,case_lab-confirmed,9
+UPSTATE,South Carolina,0,2026-01-06,case_lab-confirmed,26
+UPSTATE,South Carolina,0,2026-01-09,case_lab-confirmed,99
 UTAH,Utah,49049,2025-06-20,case_lab-confirmed,1
 UTAH,Utah,49049,2025-06-24,case_lab-confirmed,1
 UTAH,Utah,49049,2025-06-26,case_lab-confirmed,1
@@ -593,8 +685,15 @@ UTAH,Utah,49049,2025-06-27,case_lab-confirmed,2
 UTAH,Utah,49049,2025-07-01,case_lab-confirmed,2
 UTAH,Utah,49049,2025-10-31,case_lab-confirmed,1
 UTAH,Utah,49049,2025-11-04,case_lab-confirmed,1
+UTAH,Utah,49049,2025-12-09,case_lab-confirmed,1
+UTAH,Utah,49049,2025-12-22,case_lab-confirmed,6
+UTAH,Utah,49049,2026-01-06,case_lab-confirmed,3
+WASATCH,Utah,49051,2025-11-25,case_lab-confirmed,8
+WASATCH,Utah,49051,2025-12-09,case_lab-confirmed,1
 WASHINGTON,District of Columbia,11001,2025-06-14,case_lab-confirmed,1
 WASHINGTON,Minnesota,27163,2025-06-02,case_lab-confirmed,1
+WASHOE,Nevada,32031,2025-12-27,case_lab-confirmed,1
+WELD,Colorado,8123,2025-12-15,case_lab-confirmed,1
 WESTERN,Iowa,19,2025-07-22,case_lab-confirmed,1
 WHATCOM,Washington,53073,2025-06-20,case_lab-confirmed,1
 WHATCOM,Washington,53073,2025-06-23,case_lab-confirmed,1
