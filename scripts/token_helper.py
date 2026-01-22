@@ -17,3 +17,6 @@ def get_access_token():
     if "access_token" not in result:
         raise RuntimeError(f"Failed to get access token: {result}")
     return result["access_token"]
+if __name__ == "__main__":
+    token = get_access_token()
+    print(token)
