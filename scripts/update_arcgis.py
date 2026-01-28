@@ -133,8 +133,8 @@ def main():
         raise RuntimeError(f"Could not find item with id {STATE_MONTH_LAYER_ID}")
     state_obj, state_kind = get_layer_or_table(state_item)
     
-    keep_cols = ["state", "year_month", "cases"]
-    agg_df = agg_df[keep_cols].copy()
+    #keep_cols = ["state", "year_month", "cases"]
+    #agg_df = agg_df[keep_cols].copy()
 
     agg_records = agg_df.to_dict("records")
 
@@ -163,3 +163,4 @@ if __name__ == "__main__":
         traceback.print_exc()
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
+
