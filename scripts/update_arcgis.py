@@ -132,6 +132,9 @@ def main():
     if state_item is None:
         raise RuntimeError(f"Could not find item with id {STATE_MONTH_LAYER_ID}")
     state_obj, state_kind = get_layer_or_table(state_item)
+    
+    keep_cols = ["state", "year_month", "cases"]
+    agg_df = agg_df[keep_cols].copy()
 
     agg_records = agg_df.to_dict("records")
 
